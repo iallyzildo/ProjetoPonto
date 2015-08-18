@@ -1,0 +1,87 @@
+﻿@model ProjetoPonto.Entity.ModeloMaquina
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+
+     <div class="form-horizontal">
+        <h4>Empresa</h4>
+        <hr />
+
+        @Html.HiddenFor(model => model.IdModeloMaquina)
+
+       <div class="form-group">
+            @Html.LabelFor(model => model.Descricao, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+            </div>
+        </div>
+        
+<div class="form-group">
+            @Html.LabelFor(model => model.IdMarca, new { @class = "control-label col-md-2" })
+       <div class="btn-group">
+            @Html.DropDownList("IdMarca")
+        </div>
+             </div>
+
+     <div class="form-group">
+            @Html.LabelFor(model => model.IdTipoMaquina, new { @class = "control-label col-md-2" })
+       <div class="btn-group">
+            @Html.DropDownList("IdTipoMaquina")
+        </div>
+             </div>
+
+        
+         <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default"  onclick="return validar();" />
+          </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@if (ViewBag.Erro != null && ViewBag.Erro != "")
+{
+    <script>
+        alert('@Html.Raw(ViewBag.Erro)');
+    </script>
+}
+<script>
+    function validar() {
+
+        if ($("#RazaoSocial").val() == "") {
+            alert("Razao Social é obrigatória");
+            return false;
+        }
+        if ($("#CNPJ").val() == "") {
+            alert("CNPJ é obrigatório");
+            return false;
+        }
+
+        return true;
+    }
+    $("#IdEstado").change(function () {
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "../ListaCidades",
+            data: { idEstado: $("#IdEstado").val() },
+            success: function (dados) {
+                var html = "";
+                $.each(dados["cidades"], function (idx, obj) {
+                    html = html + "<option value='" + obj.Value + "'>" + obj.Text + "</option>";
+                    //alert(obj.Value + " " + obj.Text);
+                });
+                $("#IdCidade").html(html);
+            }
+        });
+    });
+</script>

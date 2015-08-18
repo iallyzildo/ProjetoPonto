@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title -Ponto Online</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+</head>
+    <body>
+     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" href="#">Ponto Online </a>
+
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                     @if (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "usuario"))
+                            {  
+                                <li>@Html.ActionLink("Ponto Relogio", "Index", "Home")</li>
+                            }
+                     @if (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "admin"))
+                            {
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Funcionario e Usuario<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Funcionario", "Index", "Funcionario")</li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Cadastro Usuario</li>
+                            <li>@Html.ActionLink("Usuario", "Index", "Usuario")</li>                        
+                        </ul>
+                    </li>             
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Empresa e localidades<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            
+                            <li>@Html.ActionLink("Estado", "Index", "Estado")</li>
+                            
+                            <li>@Html.ActionLink("Cidade", "Index", "Cidade")</li>
+                            <li>@Html.ActionLink("Marca", "Index", "Marca")</li>
+                            <li>@Html.ActionLink("TipoMaquina", "Index", "TipoMaquina")</li>
+                            <li>@Html.ActionLink("ModeloMaquina", "Index", "ModeloMaquina")</li>
+                             <li>@Html.ActionLink("Os", "Index", "Os")</li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Cadastro de Empresa</li>
+                            <li>@Html.ActionLink("Empresa", "Index", "Empresa")</li>
+                        </ul>
+                    </li>
+                        }
+
+                </ul>
+
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+         <!-- /.container -->
+     </nav>
+            @RenderSection("featured", required: false)
+           
+
+
+        @RenderBody()
+        <hr />
+        
+         @RenderSection("scripts", required: false)
+    </body>
+</html>

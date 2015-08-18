@@ -1,0 +1,95 @@
+﻿@model ProjetoPonto.Entity.Usuario
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+
+
+    <div class="form-horizontal">
+        <h4>Usuario</h4>
+        <hr />
+
+        @Html.HiddenFor(model => model.IdUsuario)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Login, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Login, new { @class = "form-control" })
+            </div>
+        </div>
+
+       <div class="form-group">
+            @Html.LabelFor(model => model.Senha, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Senha, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdFuncionario, new { @class = "control-label col-md-2" })
+       <div class="btn-group">
+            @Html.DropDownList("IdFuncionario")
+        </div>
+             </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdEmpresa, new { @class = "control-label col-md-2" })
+       <div class="btn-group">
+            @Html.DropDownList("IdEmpresa")
+        </div>
+             </div>
+
+       <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default"  onclick="return validar();" />
+          </div>
+        </div>
+    </div>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index") |
+    @if (Model.IdUsuario != 0)
+    {
+        @Html.ActionLink("Perfis do Usuario", "ListaPerfilUsuario", new { idUsuario = Model.IdUsuario })
+    }
+</div>
+
+
+@if (ViewBag.Erro != null && ViewBag.Erro != "")
+{
+    <script>
+        alert('@Html.Raw(ViewBag.Erro)');
+    </script>
+}
+<script>
+
+    function validar() {
+
+        if ($("#Login").val() == "") {
+            alert("Login é obrigatório");
+            return false;
+        }
+        if ($("#Senha").val() == "") {
+            alert("Senha é obrigatória");
+            return false;
+        }
+        if ($("#Email").val() == "") {
+            alert("Email é obrigatório");
+            return false;
+        }
+
+        return true;
+    }
+
+</script>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4cd5a014312449b599bf7a19ba82b54b" Name="Diagram1" ZoomLevel="75">
+        <EntityTypeShape EntityType="pontoModel.Cidade" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="pontoModel.Empresa" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="pontoModel.Estado" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="pontoModel.Usuario" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="pontoModel.FK_Cidade_Estado" ManuallyRouted="false" />
+        <AssociationConnector Association="pontoModel.FK_Empresa_Cidade" ManuallyRouted="false" />
+        <AssociationConnector Association="pontoModel.FK_Usuario_Empresa" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="pontoModel.Funcionario" Width="1.5" PointX="5.125" PointY="4.625" />
+        <AssociationConnector Association="pontoModel.FK_Usuario_Funcionario" />
+        <EntityTypeShape EntityType="pontoModel.Perfil" Width="1.5" PointX="10.25" PointY="3.75" />
+        <EntityTypeShape EntityType="pontoModel.Cliente" Width="1.5" PointX="3.25" PointY="9.5" />
+        <EntityTypeShape EntityType="pontoModel.Marca" Width="1.5" PointX="6.625" PointY="11.75" />
+        <EntityTypeShape EntityType="pontoModel.ModeloMaquina" Width="1.5" PointX="2.5" PointY="11.625" />
+        <EntityTypeShape EntityType="pontoModel.TipoMaquina" Width="1.5" PointX="4.5" PointY="7.5" />
+        <AssociationConnector Association="pontoModel.FK_ModeloMaquina_Marca" />
+        <AssociationConnector Association="pontoModel.FK_ModeloMaquina_TipoMaquina" />
+        <EntityTypeShape EntityType="pontoModel.StatusOs" Width="1.5" PointX="1.375" PointY="4.75" />
+        <EntityTypeShape EntityType="pontoModel.Os" Width="1.5" PointX="1.25" PointY="7.25" />
+        <AssociationConnector Association="pontoModel.FK_Os_Cliente" />
+        <AssociationConnector Association="pontoModel.FK_Os_ModeloMaquina" />
+        <AssociationConnector Association="pontoModel.FK_Os_StatusOs" />
+        <EntityTypeShape EntityType="pontoModel.PerfilUsuario" Width="1.5" PointX="8.875" PointY="6.125" />
+        <AssociationConnector Association="pontoModel.FK_PerfilUsuario_Perfil" />
+        <AssociationConnector Association="pontoModel.FK_PerfilUsuario_Usuario" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

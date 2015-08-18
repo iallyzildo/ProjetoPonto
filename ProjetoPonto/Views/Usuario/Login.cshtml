@@ -1,0 +1,66 @@
+﻿@model ProjetoPonto.Entity.Usuario
+
+@{
+    ViewBag.Title = "Login";
+}
+<body>
+    <a name="services"></a>
+    <div class="content-section-a">
+
+        <div class="container">
+            Login
+            <div class="row">
+                
+                <hr class="section-heading-spacer">
+
+                <div class="clearfix"></div>
+
+@using (Html.BeginForm(new { @class = "form-horizontal", role = "form" })) {
+    <div class="form-horizontal">
+
+             <div class="form-group">
+            @Html.LabelFor(model => model.Login, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Login, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Senha, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.PasswordFor(model => model.Senha, new { @class = "form-control" })
+            </div>
+        </div>
+       
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Entrar" class="btn btn-default" onclick="return validar();" />
+        </div>
+    </div>
+  </div>
+
+   
+}
+
+
+@if (ViewBag.Erro != null && ViewBag.Erro != "")
+{ 
+<script>
+    alert('@Html.Raw(ViewBag.Erro)');
+</script>    
+}
+<script>
+    function validar() {
+        if ($("#Login").val() == "") {
+            alert("Login Obrigatório");
+            return false;
+        }
+        if ($("#Senha").val() == "") {
+            alert("Senha obrigatória");
+            return false;
+        }
+        return true;
+    }
+</script>
+                </body>

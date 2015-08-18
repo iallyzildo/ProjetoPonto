@@ -1,0 +1,95 @@
+﻿@model ProjetoPonto.Entity.Empresa
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+
+     <div class="form-horizontal">
+        <h4>Empresa</h4>
+        <hr />
+
+        @Html.HiddenFor(model => model.IdEmpresa)
+
+       <div class="form-group">
+            @Html.LabelFor(model => model.RazaoSocial, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.RazaoSocial, new { @class = "form-control" })
+            </div>
+        </div>
+
+       <div class="form-group">
+            @Html.LabelFor(model => model.CNPJ, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.CNPJ, new { @class = "form-control" })
+            </div>
+        </div>
+         
+        <div class="form-group">
+             Estado
+            <div class="control-label col-md-2">
+            @Html.DropDownList("IdEstado")
+                
+        </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdCidade, new { @class = "control-label col-md-2" })
+          <div class="col-md-10">
+            @Html.DropDownList("IdCidade")
+        </div>
+             </div>
+
+        
+         <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default"  onclick="return validar();" />
+          </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@if (ViewBag.Erro != null && ViewBag.Erro != "")
+{
+    <script>
+        alert('@Html.Raw(ViewBag.Erro)');
+    </script>
+}
+<script>
+    function validar() {
+
+        if ($("#RazaoSocial").val() == "") {
+            alert("Razao Social é obrigatória");
+            return false;
+        }
+        if ($("#CNPJ").val() == "") {
+            alert("CNPJ é obrigatório");
+            return false;
+        }
+
+        return true;
+    }
+    $("#IdEstado").change(function () {
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "../ListaCidades",
+            data: { idEstado: $("#IdEstado").val() },
+            success: function (dados) {
+                var html = "";
+                $.each(dados["cidades"], function (idx, obj) {
+                    html = html + "<option value='" + obj.Value + "'>" + obj.Text + "</option>";
+                    //alert(obj.Value + " " + obj.Text);
+                });
+                $("#IdCidade").html(html);
+            }
+        });
+    });
+</script>
