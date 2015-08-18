@@ -19,7 +19,7 @@ namespace ProjetoPonto.Controllers
 
         public ActionResult Index()
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "admin"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
             {
                 return View(osModel.todasOs());
             }
@@ -27,7 +27,7 @@ namespace ProjetoPonto.Controllers
         }
         public ActionResult Edit(int id)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "admin"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
             {
                 Os o = new Os();
                 int idStatusOs = 1;

@@ -206,7 +206,6 @@
     <Compile Include="Models\ModeloMaquinaModel.cs" />
     <Compile Include="Models\OsModel.cs" />
     <Compile Include="Models\PerfilModel.cs" />
-    <Compile Include="Models\PerfilUsuarioModel.cs" />
     <Compile Include="Models\StatusOsModel.cs" />
     <Compile Include="Models\TipoMaquinaModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
@@ -387,8 +386,6 @@
     <Content Include="Views\ModeloMaquina\Edit.cshtml" />
     <Content Include="Views\Os\Index.cshtml" />
     <Content Include="Views\Os\Edit.cshtml" />
-    <Content Include="Views\Usuario\ListaPerfilUsuario.cshtml" />
-    <Content Include="Views\Usuario\EditPerfilUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,7 +15,6 @@
           <EntitySet Name="ModeloMaquina" EntityType="pontoModel.Store.ModeloMaquina" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Os" EntityType="pontoModel.Store.Os" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Perfil" EntityType="pontoModel.Store.Perfil" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PerfilUsuario" EntityType="pontoModel.Store.PerfilUsuario" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="StatusOs" EntityType="pontoModel.Store.StatusOs" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TipoMaquina" EntityType="pontoModel.Store.TipoMaquina" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Usuario" EntityType="pontoModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
@@ -47,20 +46,16 @@
             <End Role="StatusOs" EntitySet="StatusOs" />
             <End Role="Os" EntitySet="Os" />
           </AssociationSet>
-          <AssociationSet Name="FK_PerfilUsuario_Perfil" Association="pontoModel.Store.FK_PerfilUsuario_Perfil">
-            <End Role="Perfil" EntitySet="Perfil" />
-            <End Role="PerfilUsuario" EntitySet="PerfilUsuario" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PerfilUsuario_Usuario" Association="pontoModel.Store.FK_PerfilUsuario_Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="PerfilUsuario" EntitySet="PerfilUsuario" />
-          </AssociationSet>
           <AssociationSet Name="FK_Usuario_Empresa" Association="pontoModel.Store.FK_Usuario_Empresa">
             <End Role="Empresa" EntitySet="Empresa" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuario_Funcionario" Association="pontoModel.Store.FK_Usuario_Funcionario">
             <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Perfil" Association="pontoModel.Store.FK_Usuario_Perfil">
+            <End Role="Perfil" EntitySet="Perfil" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
@@ -141,15 +136,6 @@
           <Property Name="IdPerfil" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="255" />
         </EntityType>
-        <EntityType Name="PerfilUsuario">
-          <Key>
-            <PropertyRef Name="IdPerfilUsuario" />
-          </Key>
-          <Property Name="IdPerfilUsuario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="IdPerfil" Type="int" Nullable="false" />
-          <Property Name="IdUsuario" Type="int" Nullable="false" />
-          <Property Name="DataAutorizacao" Type="datetime" />
-        </EntityType>
         <EntityType Name="StatusOs">
           <Key>
             <PropertyRef Name="IdStatusOs" />
@@ -174,6 +160,7 @@
           <Property Name="Senha" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="IdFuncionario" Type="int" Nullable="false" />
           <Property Name="IdEmpresa" Type="int" Nullable="false" />
+          <Property Name="IdPerfil" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Cidade_Estado">
           <End Role="Estado" Type="pontoModel.Store.Estado" Multiplicity="1" />
@@ -259,30 +246,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PerfilUsuario_Perfil">
-          <End Role="Perfil" Type="pontoModel.Store.Perfil" Multiplicity="1" />
-          <End Role="PerfilUsuario" Type="pontoModel.Store.PerfilUsuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Perfil">
-              <PropertyRef Name="IdPerfil" />
-            </Principal>
-            <Dependent Role="PerfilUsuario">
-              <PropertyRef Name="IdPerfil" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PerfilUsuario_Usuario">
-          <End Role="Usuario" Type="pontoModel.Store.Usuario" Multiplicity="1" />
-          <End Role="PerfilUsuario" Type="pontoModel.Store.PerfilUsuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="PerfilUsuario">
-              <PropertyRef Name="IdUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Usuario_Empresa">
           <End Role="Empresa" Type="pontoModel.Store.Empresa" Multiplicity="1" />
           <End Role="Usuario" Type="pontoModel.Store.Usuario" Multiplicity="*" />
@@ -304,6 +267,18 @@
             </Principal>
             <Dependent Role="Usuario">
               <PropertyRef Name="IdFuncionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Perfil">
+          <End Role="Perfil" Type="pontoModel.Store.Perfil" Multiplicity="1" />
+          <End Role="Usuario" Type="pontoModel.Store.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="IdPerfil" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IdPerfil" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -360,14 +335,9 @@
             <End Role="StatusOs" EntitySet="StatusOs" />
             <End Role="Os" EntitySet="Os" />
           </AssociationSet>
-          <EntitySet Name="PerfilUsuario" EntityType="pontoModel.PerfilUsuario" />
-          <AssociationSet Name="FK_PerfilUsuario_Perfil" Association="pontoModel.FK_PerfilUsuario_Perfil">
+          <AssociationSet Name="FK_Usuario_Perfil" Association="pontoModel.FK_Usuario_Perfil">
             <End Role="Perfil" EntitySet="Perfil" />
-            <End Role="PerfilUsuario" EntitySet="PerfilUsuario" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PerfilUsuario_Usuario" Association="pontoModel.FK_PerfilUsuario_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="PerfilUsuario" EntitySet="PerfilUsuario" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Cidade">
@@ -411,7 +381,8 @@
           <NavigationProperty Name="Empresa" Relationship="pontoModel.FK_Usuario_Empresa" FromRole="Usuario" ToRole="Empresa" />
           <Property Type="Int32" Name="IdFuncionario" Nullable="false" />
           <NavigationProperty Name="Funcionario" Relationship="pontoModel.FK_Usuario_Funcionario" FromRole="Usuario" ToRole="Funcionario" />
-          <NavigationProperty Name="PerfilUsuario" Relationship="pontoModel.FK_PerfilUsuario_Usuario" FromRole="Usuario" ToRole="PerfilUsuario" />
+          <Property Type="Int32" Name="IdPerfil" Nullable="false" />
+          <NavigationProperty Name="Perfil" Relationship="pontoModel.FK_Usuario_Perfil" FromRole="Usuario" ToRole="Perfil" />
         </EntityType>
         <Association Name="FK_Cidade_Estado">
           <End Role="Estado" Type="pontoModel.Estado" Multiplicity="1" />
@@ -476,7 +447,7 @@
           </Key>
           <Property Type="Int32" Name="IdPerfil" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Descricao" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="PerfilUsuario" Relationship="pontoModel.FK_PerfilUsuario_Perfil" FromRole="Perfil" ToRole="PerfilUsuario" />
+          <NavigationProperty Name="Usuario" Relationship="pontoModel.FK_Usuario_Perfil" FromRole="Perfil" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Cliente">
           <Key>
@@ -600,38 +571,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="PerfilUsuario">
-          <Key>
-            <PropertyRef Name="IdPerfilUsuario" />
-          </Key>
-          <Property Type="Int32" Name="IdPerfilUsuario" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="IdPerfil" Nullable="false" />
-          <Property Type="Int32" Name="IdUsuario" Nullable="false" />
-          <Property Type="DateTime" Name="DataAutorizacao" Precision="3" />
-          <NavigationProperty Name="Perfil" Relationship="pontoModel.FK_PerfilUsuario_Perfil" FromRole="PerfilUsuario" ToRole="Perfil" />
-          <NavigationProperty Name="Usuario" Relationship="pontoModel.FK_PerfilUsuario_Usuario" FromRole="PerfilUsuario" ToRole="Usuario" />
-        </EntityType>
-        <Association Name="FK_PerfilUsuario_Perfil">
+        <Association Name="FK_Usuario_Perfil">
           <End Type="pontoModel.Perfil" Role="Perfil" Multiplicity="1" />
-          <End Type="pontoModel.PerfilUsuario" Role="PerfilUsuario" Multiplicity="*" />
+          <End Type="pontoModel.Usuario" Role="Usuario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Perfil">
               <PropertyRef Name="IdPerfil" />
             </Principal>
-            <Dependent Role="PerfilUsuario">
+            <Dependent Role="Usuario">
               <PropertyRef Name="IdPerfil" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PerfilUsuario_Usuario">
-          <End Type="pontoModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="pontoModel.PerfilUsuario" Role="PerfilUsuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="PerfilUsuario">
-              <PropertyRef Name="IdUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -671,6 +619,7 @@
           <EntitySetMapping Name="Usuario">
             <EntityTypeMapping TypeName="pontoModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
                 <ScalarProperty Name="IdFuncionario" ColumnName="IdFuncionario" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -752,16 +701,6 @@
                 <ScalarProperty Name="Observacao" ColumnName="Observacao" />
                 <ScalarProperty Name="NumeroOs" ColumnName="NumeroOs" />
                 <ScalarProperty Name="IdOs" ColumnName="IdOs" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PerfilUsuario">
-            <EntityTypeMapping TypeName="pontoModel.PerfilUsuario">
-              <MappingFragment StoreEntitySet="PerfilUsuario">
-                <ScalarProperty Name="DataAutorizacao" ColumnName="DataAutorizacao" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
-                <ScalarProperty Name="IdPerfilUsuario" ColumnName="IdPerfilUsuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

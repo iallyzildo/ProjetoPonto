@@ -17,7 +17,7 @@ namespace ProjetoPonto.Controllers
 
         public ActionResult Index()
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "usuario"))
+            if (Roles.IsUserInRole(User.Identity.Name, "mecanico"))
             {
             return View(cidadeModel.todasCidades());
             }
@@ -25,7 +25,7 @@ namespace ProjetoPonto.Controllers
         }
         public ActionResult Edit(int id)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "admin"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
             {
             Cidade c = new Cidade();
             int idEstado = 1;

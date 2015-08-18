@@ -17,7 +17,7 @@ namespace ProjetoPonto.Controllers
 
         public ActionResult Index()
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "admin"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
             {
             return View(estadoModel.todosEstados());
             }
@@ -25,7 +25,7 @@ namespace ProjetoPonto.Controllers
         }
         public ActionResult Edit(int id)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "admin"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
             {
             Estado e = new Estado();
             ViewBag.Titulo = "Novo Estado";

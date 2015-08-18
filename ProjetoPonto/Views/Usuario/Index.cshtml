@@ -43,6 +43,9 @@
         <th>
             @Html.DisplayNameFor(model => model.IdEmpresa)
         </th>
+                                            <th>
+            @Html.DisplayNameFor(model => model.IdPerfil)
+        </th>
         <th></th>
     </tr>
 
@@ -62,6 +65,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Empresa.RazaoSocial)
+        </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.Perfil.Descricao)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IdUsuario }) |

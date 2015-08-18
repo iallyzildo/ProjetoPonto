@@ -28,11 +28,11 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                     @if (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "usuario"))
+                     @if (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "mecanico"))
                             {  
                                 <li>@Html.ActionLink("Ponto Relogio", "Index", "Home")</li>
                             }
-                     @if (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "admin"))
+                     @if (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "administrador"))
                             {
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Funcionario e Usuario<span class="caret"></span></a>

@@ -16,7 +16,7 @@ namespace ProjetoPonto.Controllers
 
         public ActionResult Index()
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "admin"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
             {
                 return View(tipoMaquinaModel.todosTipoMaquina());
             }
@@ -24,7 +24,7 @@ namespace ProjetoPonto.Controllers
         }
         public ActionResult Edit(int id)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "admin"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
             {
                 TipoMaquina t = new TipoMaquina();
                 ViewBag.Titulo = "Nova TipoMaquina";

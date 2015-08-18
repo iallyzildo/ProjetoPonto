@@ -28,8 +28,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("pontoModel", "FK_Os_Cliente", "Cliente", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.Cliente), "Os", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Os), true)]
 [assembly: EdmRelationshipAttribute("pontoModel", "FK_Os_ModeloMaquina", "ModeloMaquina", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.ModeloMaquina), "Os", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Os), true)]
 [assembly: EdmRelationshipAttribute("pontoModel", "FK_Os_StatusOs", "StatusOs", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.StatusOs), "Os", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Os), true)]
-[assembly: EdmRelationshipAttribute("pontoModel", "FK_PerfilUsuario_Perfil", "Perfil", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.Perfil), "PerfilUsuario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.PerfilUsuario), true)]
-[assembly: EdmRelationshipAttribute("pontoModel", "FK_PerfilUsuario_Usuario", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.Usuario), "PerfilUsuario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.PerfilUsuario), true)]
+[assembly: EdmRelationshipAttribute("pontoModel", "FK_Usuario_Perfil", "Perfil", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.Perfil), "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Usuario), true)]
 
 #endregion
 
@@ -272,22 +271,6 @@ namespace ProjetoPonto.Entity
             }
         }
         private ObjectSet<Os> _Os;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<PerfilUsuario> PerfilUsuario
-        {
-            get
-            {
-                if ((_PerfilUsuario == null))
-                {
-                    _PerfilUsuario = base.CreateObjectSet<PerfilUsuario>("PerfilUsuario");
-                }
-                return _PerfilUsuario;
-            }
-        }
-        private ObjectSet<PerfilUsuario> _PerfilUsuario;
 
         #endregion
 
@@ -387,14 +370,6 @@ namespace ProjetoPonto.Entity
         public void AddToOs(Os os)
         {
             base.AddObject("Os", os);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the PerfilUsuario EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToPerfilUsuario(PerfilUsuario perfilUsuario)
-        {
-            base.AddObject("PerfilUsuario", perfilUsuario);
         }
 
         #endregion
@@ -1955,230 +1930,18 @@ namespace ProjetoPonto.Entity
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("pontoModel", "FK_PerfilUsuario_Perfil", "PerfilUsuario")]
-        public EntityCollection<PerfilUsuario> PerfilUsuario
+        [EdmRelationshipNavigationPropertyAttribute("pontoModel", "FK_Usuario_Perfil", "Usuario")]
+        public EntityCollection<Usuario> Usuario
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PerfilUsuario>("pontoModel.FK_PerfilUsuario_Perfil", "PerfilUsuario");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Usuario>("pontoModel.FK_Usuario_Perfil", "Usuario");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PerfilUsuario>("pontoModel.FK_PerfilUsuario_Perfil", "PerfilUsuario", value);
-                }
-            }
-        }
-
-        #endregion
-
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="pontoModel", Name="PerfilUsuario")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class PerfilUsuario : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new PerfilUsuario object.
-        /// </summary>
-        /// <param name="idPerfilUsuario">Initial value of the IdPerfilUsuario property.</param>
-        /// <param name="idPerfil">Initial value of the IdPerfil property.</param>
-        /// <param name="idUsuario">Initial value of the IdUsuario property.</param>
-        public static PerfilUsuario CreatePerfilUsuario(global::System.Int32 idPerfilUsuario, global::System.Int32 idPerfil, global::System.Int32 idUsuario)
-        {
-            PerfilUsuario perfilUsuario = new PerfilUsuario();
-            perfilUsuario.IdPerfilUsuario = idPerfilUsuario;
-            perfilUsuario.IdPerfil = idPerfil;
-            perfilUsuario.IdUsuario = idUsuario;
-            return perfilUsuario;
-        }
-
-        #endregion
-
-        #region Simple Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 IdPerfilUsuario
-        {
-            get
-            {
-                return _IdPerfilUsuario;
-            }
-            set
-            {
-                if (_IdPerfilUsuario != value)
-                {
-                    OnIdPerfilUsuarioChanging(value);
-                    ReportPropertyChanging("IdPerfilUsuario");
-                    _IdPerfilUsuario = StructuralObject.SetValidValue(value, "IdPerfilUsuario");
-                    ReportPropertyChanged("IdPerfilUsuario");
-                    OnIdPerfilUsuarioChanged();
-                }
-            }
-        }
-        private global::System.Int32 _IdPerfilUsuario;
-        partial void OnIdPerfilUsuarioChanging(global::System.Int32 value);
-        partial void OnIdPerfilUsuarioChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 IdPerfil
-        {
-            get
-            {
-                return _IdPerfil;
-            }
-            set
-            {
-                OnIdPerfilChanging(value);
-                ReportPropertyChanging("IdPerfil");
-                _IdPerfil = StructuralObject.SetValidValue(value, "IdPerfil");
-                ReportPropertyChanged("IdPerfil");
-                OnIdPerfilChanged();
-            }
-        }
-        private global::System.Int32 _IdPerfil;
-        partial void OnIdPerfilChanging(global::System.Int32 value);
-        partial void OnIdPerfilChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 IdUsuario
-        {
-            get
-            {
-                return _IdUsuario;
-            }
-            set
-            {
-                OnIdUsuarioChanging(value);
-                ReportPropertyChanging("IdUsuario");
-                _IdUsuario = StructuralObject.SetValidValue(value, "IdUsuario");
-                ReportPropertyChanged("IdUsuario");
-                OnIdUsuarioChanged();
-            }
-        }
-        private global::System.Int32 _IdUsuario;
-        partial void OnIdUsuarioChanging(global::System.Int32 value);
-        partial void OnIdUsuarioChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> DataAutorizacao
-        {
-            get
-            {
-                return _DataAutorizacao;
-            }
-            set
-            {
-                OnDataAutorizacaoChanging(value);
-                ReportPropertyChanging("DataAutorizacao");
-                _DataAutorizacao = StructuralObject.SetValidValue(value, "DataAutorizacao");
-                ReportPropertyChanged("DataAutorizacao");
-                OnDataAutorizacaoChanged();
-            }
-        }
-        private Nullable<global::System.DateTime> _DataAutorizacao;
-        partial void OnDataAutorizacaoChanging(Nullable<global::System.DateTime> value);
-        partial void OnDataAutorizacaoChanged();
-
-        #endregion
-
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("pontoModel", "FK_PerfilUsuario_Perfil", "Perfil")]
-        public Perfil Perfil
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Perfil>("pontoModel.FK_PerfilUsuario_Perfil", "Perfil").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Perfil>("pontoModel.FK_PerfilUsuario_Perfil", "Perfil").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Perfil> PerfilReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Perfil>("pontoModel.FK_PerfilUsuario_Perfil", "Perfil");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Perfil>("pontoModel.FK_PerfilUsuario_Perfil", "Perfil", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("pontoModel", "FK_PerfilUsuario_Usuario", "Usuario")]
-        public Usuario Usuario
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("pontoModel.FK_PerfilUsuario_Usuario", "Usuario").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("pontoModel.FK_PerfilUsuario_Usuario", "Usuario").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Usuario> UsuarioReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("pontoModel.FK_PerfilUsuario_Usuario", "Usuario");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Usuario>("pontoModel.FK_PerfilUsuario_Usuario", "Usuario", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Usuario>("pontoModel.FK_Usuario_Perfil", "Usuario", value);
                 }
             }
         }
@@ -2422,7 +2185,8 @@ namespace ProjetoPonto.Entity
         /// <param name="senha">Initial value of the Senha property.</param>
         /// <param name="idEmpresa">Initial value of the IdEmpresa property.</param>
         /// <param name="idFuncionario">Initial value of the IdFuncionario property.</param>
-        public static Usuario CreateUsuario(global::System.Int32 idUsuario, global::System.String email, global::System.String login, global::System.String senha, global::System.Int32 idEmpresa, global::System.Int32 idFuncionario)
+        /// <param name="idPerfil">Initial value of the IdPerfil property.</param>
+        public static Usuario CreateUsuario(global::System.Int32 idUsuario, global::System.String email, global::System.String login, global::System.String senha, global::System.Int32 idEmpresa, global::System.Int32 idFuncionario, global::System.Int32 idPerfil)
         {
             Usuario usuario = new Usuario();
             usuario.IdUsuario = idUsuario;
@@ -2431,6 +2195,7 @@ namespace ProjetoPonto.Entity
             usuario.Senha = senha;
             usuario.IdEmpresa = idEmpresa;
             usuario.IdFuncionario = idFuncionario;
+            usuario.IdPerfil = idPerfil;
             return usuario;
         }
 
@@ -2584,6 +2349,30 @@ namespace ProjetoPonto.Entity
         private global::System.Int32 _IdFuncionario;
         partial void OnIdFuncionarioChanging(global::System.Int32 value);
         partial void OnIdFuncionarioChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IdPerfil
+        {
+            get
+            {
+                return _IdPerfil;
+            }
+            set
+            {
+                OnIdPerfilChanging(value);
+                ReportPropertyChanging("IdPerfil");
+                _IdPerfil = StructuralObject.SetValidValue(value, "IdPerfil");
+                ReportPropertyChanged("IdPerfil");
+                OnIdPerfilChanged();
+            }
+        }
+        private global::System.Int32 _IdPerfil;
+        partial void OnIdPerfilChanging(global::System.Int32 value);
+        partial void OnIdPerfilChanged();
 
         #endregion
 
@@ -2671,18 +2460,34 @@ namespace ProjetoPonto.Entity
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("pontoModel", "FK_PerfilUsuario_Usuario", "PerfilUsuario")]
-        public EntityCollection<PerfilUsuario> PerfilUsuario
+        [EdmRelationshipNavigationPropertyAttribute("pontoModel", "FK_Usuario_Perfil", "Perfil")]
+        public Perfil Perfil
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PerfilUsuario>("pontoModel.FK_PerfilUsuario_Usuario", "PerfilUsuario");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Perfil>("pontoModel.FK_Usuario_Perfil", "Perfil").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Perfil>("pontoModel.FK_Usuario_Perfil", "Perfil").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Perfil> PerfilReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Perfil>("pontoModel.FK_Usuario_Perfil", "Perfil");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PerfilUsuario>("pontoModel.FK_PerfilUsuario_Usuario", "PerfilUsuario", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Perfil>("pontoModel.FK_Usuario_Perfil", "Perfil", value);
                 }
             }
         }

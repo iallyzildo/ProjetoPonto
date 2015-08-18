@@ -17,13 +17,13 @@ namespace ProjetoPonto.Controllers
         private FuncionarioModel funcionarioModel = new FuncionarioModel();
         private EmpresaModel empresaModel = new EmpresaModel();
         private PerfilModel perfilModel = new PerfilModel();
-        private PerfilUsuarioModel perfilUsuarioModel = new PerfilUsuarioModel();
+      
       
         
         [Authorize]
         public ActionResult Index()
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "admin"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
             {
             return View(usuarioModel.todosUsuarios());
             }
@@ -38,20 +38,23 @@ namespace ProjetoPonto.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "admin"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
             {
             Usuario u = new Usuario();
             int idFuncionario = 1;
             int idEmpresa = 1;
+            int idPerfil = 1;
             if (id != 0)
             {
                 u = usuarioModel.obterUsuario(id);
                 idFuncionario = u.IdFuncionario;
                 idEmpresa = u.IdEmpresa;
+                idPerfil = u.IdPerfil;
             }
 
             ViewBag.IdFuncionario = new SelectList(funcionarioModel.todosFuncionarios(), "IdFuncionario", "Nome", idFuncionario);
             ViewBag.IdEmpresa = new SelectList(empresaModel.todasEmpresas(), "IdEmpresa", "RazaoSocial", idEmpresa);
+            ViewBag.IdPerfil= new SelectList(perfilModel.todosPerfis(), "IdPerfil", "Descricao", idPerfil);
 
             return View(u);
         }
@@ -111,10 +114,10 @@ namespace ProjetoPonto.Controllers
             //Adicionar perfis do usuarui a classe Role
             foreach (Perfil p in perfilModel.listarPerfisPorUsuario(banco.IdUsuario))
             {
-                // Testa se o usuario nao está na role associada ao banco
+                // Testa se o mecanico nao está na role associada ao banco
                 if (!Roles.IsUserInRole(u.Login, p.Descricao))
                 {
-                    Roles.AddUserToRole(u.Login, p.Descricao); // adiciona o usuario
+                    Roles.AddUserToRole(u.Login, p.Descricao); // adiciona o mecanico
                 }
             }
 
@@ -126,12 +129,12 @@ namespace ProjetoPonto.Controllers
         {
 
             Usuario u = usuarioModel.obterUsuarioPorLogin(User.Identity.Name);
-            // Remover todos os perfis do usuario
+            // Remover todos os perfis do mecanico
             foreach (Perfil p in perfilModel.listarPerfisPorUsuario(u.IdUsuario))
             {
                 if (Roles.IsUserInRole(u.Login, p.Descricao))
                 {
-                    Roles.RemoveUserFromRole(u.Login, p.Descricao); // adiciona o usuario
+                    Roles.RemoveUserFromRole(u.Login, p.Descricao); // adiciona o mecanico
                 }
             }
             FormsAuthentication.SignOut();
@@ -143,59 +146,7 @@ namespace ProjetoPonto.Controllers
             usuarioModel.excluirUsuario(u);
             return RedirectToAction("Index");
         }
-        public ActionResult ListaPerfilUsuario(int idUsuario)
-        {
-            List<PerfilUsuario> perfilUsuarioUsuarios = perfilUsuarioModel.listarPerfilUsaurioPorUsuario(idUsuario);
-            Usuario u = usuarioModel.obterUsuario(idUsuario);
-            ViewBag.IdUsuario = u.IdUsuario;
-            ViewBag.LoginUsuario = u.Login;
-            return View(perfilUsuarioUsuarios);
-        }
-        public ActionResult EditPerfilUsuario(int idUsuario, int idPerfilUsuario)
-        {
-            PerfilUsuario p = new PerfilUsuario();
-            p.IdUsuario = idUsuario;
-
-            int idPerfil = 2; //admin
-
-            if (idPerfilUsuario != 0)
-            {
-                p = perfilUsuarioModel.obterPerfilUsuario(idPerfilUsuario);
-                idPerfil= p.IdPerfil;
-            }
-
-
-            ViewBag.IdPerfil = new SelectList(perfilModel.todosPerfis(), "IdPerfil", "Descricao", idPerfil);
-            return View(p);
-        }
-        [HttpPost]
-        public ActionResult EditPerfilUsuario(PerfilUsuario p)
-        {
-            string erro = null;
-            if (p.IdPerfilUsuario == 0)
-            {
-                erro = perfilUsuarioModel.adicionarPerfilUsuario(p);
-            }
-            else
-            {
-                erro = perfilUsuarioModel.editarPerfilUsaurio(p);
-            }
-            if (erro == null)
-            {
-                return RedirectToAction("ListaPerfilUsuario", new { idUsuario= p.IdUsuario });
-            }
-            else
-            {
-                ViewBag.Erro = erro;
-                return View(p);
-            }
-        }
-        public ActionResult DeletePerfilUsuario(int idPerfilUsuario)
-        {
-            PerfilUsuario p = perfilUsuarioModel.obterPerfilUsuario(idPerfilUsuario);
-            perfilUsuarioModel.excluirPerfilUsuario(p);
-            return RedirectToAction("ListaPerfilUsuario", new { idUsuario= p.IdUsuario });
-        }
+       
 
     }
 }

@@ -26,9 +26,7 @@
         <AssociationConnector Association="pontoModel.FK_Os_Cliente" />
         <AssociationConnector Association="pontoModel.FK_Os_ModeloMaquina" />
         <AssociationConnector Association="pontoModel.FK_Os_StatusOs" />
-        <EntityTypeShape EntityType="pontoModel.PerfilUsuario" Width="1.5" PointX="8.875" PointY="6.125" />
-        <AssociationConnector Association="pontoModel.FK_PerfilUsuario_Perfil" />
-        <AssociationConnector Association="pontoModel.FK_PerfilUsuario_Usuario" />
+        <AssociationConnector Association="pontoModel.FK_Usuario_Perfil" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
