@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ProjetoPonto.Entity;
+using System.Web.Security;
 
 namespace ProjetoPonto.Models
 {
@@ -55,6 +56,7 @@ namespace ProjetoPonto.Models
                 }
                 db.ObjectStateManager.ChangeObjectState(u, System.Data.EntityState.Modified);
                 db.SaveChanges();
+                Roles.DeleteCookie();
             }
             catch (Exception ex)
             {

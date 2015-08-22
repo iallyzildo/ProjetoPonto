@@ -15,6 +15,9 @@
           <EntitySet Name="ModeloMaquina" EntityType="pontoModel.Store.ModeloMaquina" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Os" EntityType="pontoModel.Store.Os" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Perfil" EntityType="pontoModel.Store.Perfil" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Problema" EntityType="pontoModel.Store.Problema" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SecaoProblema" EntityType="pontoModel.Store.SecaoProblema" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Solucao" EntityType="pontoModel.Store.Solucao" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="StatusOs" EntityType="pontoModel.Store.StatusOs" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TipoMaquina" EntityType="pontoModel.Store.TipoMaquina" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Usuario" EntityType="pontoModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
@@ -45,6 +48,18 @@
           <AssociationSet Name="FK_Os_StatusOs" Association="pontoModel.Store.FK_Os_StatusOs">
             <End Role="StatusOs" EntitySet="StatusOs" />
             <End Role="Os" EntitySet="Os" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Problema_Os" Association="pontoModel.Store.FK_Problema_Os">
+            <End Role="Os" EntitySet="Os" />
+            <End Role="Problema" EntitySet="Problema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Problema_Secao" Association="pontoModel.Store.FK_Problema_Secao">
+            <End Role="SecaoProblema" EntitySet="SecaoProblema" />
+            <End Role="Problema" EntitySet="Problema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solucao_Problema" Association="pontoModel.Store.FK_Solucao_Problema">
+            <End Role="Problema" EntitySet="Problema" />
+            <End Role="Solucao" EntitySet="Solucao" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuario_Empresa" Association="pontoModel.Store.FK_Usuario_Empresa">
             <End Role="Empresa" EntitySet="Empresa" />
@@ -135,6 +150,30 @@
           </Key>
           <Property Name="IdPerfil" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Problema">
+          <Key>
+            <PropertyRef Name="IdProblema" />
+          </Key>
+          <Property Name="IdProblema" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="IdOs" Type="int" Nullable="false" />
+          <Property Name="IdSecao" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SecaoProblema">
+          <Key>
+            <PropertyRef Name="IdSecao" />
+          </Key>
+          <Property Name="IdSecao" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Solucao">
+          <Key>
+            <PropertyRef Name="IdSolucao" />
+          </Key>
+          <Property Name="IdSolucao" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="IdProblema" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="StatusOs">
           <Key>
@@ -246,6 +285,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Problema_Os">
+          <End Role="Os" Type="pontoModel.Store.Os" Multiplicity="1" />
+          <End Role="Problema" Type="pontoModel.Store.Problema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Os">
+              <PropertyRef Name="IdOs" />
+            </Principal>
+            <Dependent Role="Problema">
+              <PropertyRef Name="IdOs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Problema_Secao">
+          <End Role="SecaoProblema" Type="pontoModel.Store.SecaoProblema" Multiplicity="1" />
+          <End Role="Problema" Type="pontoModel.Store.Problema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecaoProblema">
+              <PropertyRef Name="IdSecao" />
+            </Principal>
+            <Dependent Role="Problema">
+              <PropertyRef Name="IdSecao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solucao_Problema">
+          <End Role="Problema" Type="pontoModel.Store.Problema" Multiplicity="1" />
+          <End Role="Solucao" Type="pontoModel.Store.Solucao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Problema">
+              <PropertyRef Name="IdProblema" />
+            </Principal>
+            <Dependent Role="Solucao">
+              <PropertyRef Name="IdProblema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Usuario_Empresa">
           <End Role="Empresa" Type="pontoModel.Store.Empresa" Multiplicity="1" />
           <End Role="Usuario" Type="pontoModel.Store.Usuario" Multiplicity="*" />
@@ -290,7 +365,6 @@
           <EntitySet Name="Cidade" EntityType="pontoModel.Cidade" />
           <EntitySet Name="Empresa" EntityType="pontoModel.Empresa" />
           <EntitySet Name="Estado" EntityType="pontoModel.Estado" />
-          <EntitySet Name="Usuario" EntityType="pontoModel.Usuario" />
           <AssociationSet Name="FK_Cidade_Estado" Association="pontoModel.FK_Cidade_Estado">
             <End Role="Estado" EntitySet="Estado" />
             <End Role="Cidade" EntitySet="Cidade" />
@@ -299,15 +373,7 @@
             <End Role="Cidade" EntitySet="Cidade" />
             <End Role="Empresa" EntitySet="Empresa" />
           </AssociationSet>
-          <AssociationSet Name="FK_Usuario_Empresa" Association="pontoModel.FK_Usuario_Empresa">
-            <End Role="Empresa" EntitySet="Empresa" />
-            <End Role="Usuario" EntitySet="Usuario" />
-          </AssociationSet>
           <EntitySet Name="Funcionario" EntityType="pontoModel.Funcionario" />
-          <AssociationSet Name="FK_Usuario_Funcionario" Association="pontoModel.FK_Usuario_Funcionario">
-            <End Role="Funcionario" EntitySet="Funcionario" />
-            <End Role="Usuario" EntitySet="Usuario" />
-          </AssociationSet>
           <EntitySet Name="Perfil" EntityType="pontoModel.Perfil" />
           <EntitySet Name="Cliente" EntityType="pontoModel.Cliente" />
           <EntitySet Name="Marca" EntityType="pontoModel.Marca" />
@@ -334,6 +400,30 @@
           <AssociationSet Name="FK_Os_StatusOs" Association="pontoModel.FK_Os_StatusOs">
             <End Role="StatusOs" EntitySet="StatusOs" />
             <End Role="Os" EntitySet="Os" />
+          </AssociationSet>
+          <EntitySet Name="Problema" EntityType="pontoModel.Problema" />
+          <EntitySet Name="SecaoProblema" EntityType="pontoModel.SecaoProblema" />
+          <EntitySet Name="Solucao" EntityType="pontoModel.Solucao" />
+          <AssociationSet Name="FK_Problema_Os" Association="pontoModel.FK_Problema_Os">
+            <End Role="Os" EntitySet="Os" />
+            <End Role="Problema" EntitySet="Problema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Problema_Secao" Association="pontoModel.FK_Problema_Secao">
+            <End Role="SecaoProblema" EntitySet="SecaoProblema" />
+            <End Role="Problema" EntitySet="Problema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solucao_Problema" Association="pontoModel.FK_Solucao_Problema">
+            <End Role="Problema" EntitySet="Problema" />
+            <End Role="Solucao" EntitySet="Solucao" />
+          </AssociationSet>
+          <EntitySet Name="Usuario" EntityType="pontoModel.Usuario" />
+          <AssociationSet Name="FK_Usuario_Empresa" Association="pontoModel.FK_Usuario_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Funcionario" Association="pontoModel.FK_Usuario_Funcionario">
+            <End Role="Funcionario" EntitySet="Funcionario" />
+            <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuario_Perfil" Association="pontoModel.FK_Usuario_Perfil">
             <End Role="Perfil" EntitySet="Perfil" />
@@ -369,21 +459,6 @@
           <Property Name="Descricao" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Cidade" Relationship="pontoModel.FK_Cidade_Estado" FromRole="Estado" ToRole="Cidade" />
         </EntityType>
-        <EntityType Name="Usuario">
-          <Key>
-            <PropertyRef Name="IdUsuario" />
-          </Key>
-          <Property Name="IdUsuario" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="Login" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="Senha" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Empresa" Relationship="pontoModel.FK_Usuario_Empresa" FromRole="Usuario" ToRole="Empresa" />
-          <Property Type="Int32" Name="IdFuncionario" Nullable="false" />
-          <NavigationProperty Name="Funcionario" Relationship="pontoModel.FK_Usuario_Funcionario" FromRole="Usuario" ToRole="Funcionario" />
-          <Property Type="Int32" Name="IdPerfil" Nullable="false" />
-          <NavigationProperty Name="Perfil" Relationship="pontoModel.FK_Usuario_Perfil" FromRole="Usuario" ToRole="Perfil" />
-        </EntityType>
         <Association Name="FK_Cidade_Estado">
           <End Role="Estado" Type="pontoModel.Estado" Multiplicity="1" />
           <End Role="Cidade" Type="pontoModel.Cidade" Multiplicity="*" />
@@ -408,18 +483,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Usuario_Empresa">
-          <End Role="Empresa" Type="pontoModel.Empresa" Multiplicity="1" />
-          <End Role="Usuario" Type="pontoModel.Usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empresa">
-              <PropertyRef Name="IdEmpresa" />
-            </Principal>
-            <Dependent Role="Usuario">
-              <PropertyRef Name="IdEmpresa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Funcionario">
           <Key>
             <PropertyRef Name="IdFuncionario" />
@@ -429,18 +492,6 @@
           <Property Type="String" Name="Cpf" Nullable="false" MaxLength="11" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Usuario" Relationship="pontoModel.FK_Usuario_Funcionario" FromRole="Funcionario" ToRole="Usuario" />
         </EntityType>
-        <Association Name="FK_Usuario_Funcionario">
-          <End Type="pontoModel.Funcionario" Role="Funcionario" Multiplicity="1" />
-          <End Type="pontoModel.Usuario" Role="Usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Funcionario">
-              <PropertyRef Name="IdFuncionario" />
-            </Principal>
-            <Dependent Role="Usuario">
-              <PropertyRef Name="IdFuncionario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Perfil">
           <Key>
             <PropertyRef Name="IdPerfil" />
@@ -534,6 +585,7 @@
           <NavigationProperty Name="Cliente" Relationship="pontoModel.FK_Os_Cliente" FromRole="Os" ToRole="Cliente" />
           <NavigationProperty Name="ModeloMaquina" Relationship="pontoModel.FK_Os_ModeloMaquina" FromRole="Os" ToRole="ModeloMaquina" />
           <NavigationProperty Name="StatusOs" Relationship="pontoModel.FK_Os_StatusOs" FromRole="Os" ToRole="StatusOs" />
+          <NavigationProperty Name="Problema" Relationship="pontoModel.FK_Problema_Os" FromRole="Os" ToRole="Problema" />
         </EntityType>
         <Association Name="FK_Os_Cliente">
           <End Type="pontoModel.Cliente" Role="Cliente" Multiplicity="1" />
@@ -568,6 +620,110 @@
             </Principal>
             <Dependent Role="Os">
               <PropertyRef Name="IdStatusOs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Problema">
+          <Key>
+            <PropertyRef Name="IdProblema" />
+          </Key>
+          <Property Type="Int32" Name="IdProblema" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descricao" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="IdOs" Nullable="false" />
+          <Property Type="Int32" Name="IdSecao" Nullable="false" />
+          <NavigationProperty Name="Os" Relationship="pontoModel.FK_Problema_Os" FromRole="Problema" ToRole="Os" />
+          <NavigationProperty Name="SecaoProblema" Relationship="pontoModel.FK_Problema_Secao" FromRole="Problema" ToRole="SecaoProblema" />
+          <NavigationProperty Name="Solucao" Relationship="pontoModel.FK_Solucao_Problema" FromRole="Problema" ToRole="Solucao" />
+        </EntityType>
+        <EntityType Name="SecaoProblema">
+          <Key>
+            <PropertyRef Name="IdSecao" />
+          </Key>
+          <Property Type="Int32" Name="IdSecao" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descricao" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Problema" Relationship="pontoModel.FK_Problema_Secao" FromRole="SecaoProblema" ToRole="Problema" />
+        </EntityType>
+        <EntityType Name="Solucao">
+          <Key>
+            <PropertyRef Name="IdSolucao" />
+          </Key>
+          <Property Type="Int32" Name="IdSolucao" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descricao" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="IdProblema" Nullable="false" />
+          <NavigationProperty Name="Problema" Relationship="pontoModel.FK_Solucao_Problema" FromRole="Solucao" ToRole="Problema" />
+        </EntityType>
+        <Association Name="FK_Problema_Os">
+          <End Type="pontoModel.Os" Role="Os" Multiplicity="1" />
+          <End Type="pontoModel.Problema" Role="Problema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Os">
+              <PropertyRef Name="IdOs" />
+            </Principal>
+            <Dependent Role="Problema">
+              <PropertyRef Name="IdOs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Problema_Secao">
+          <End Type="pontoModel.SecaoProblema" Role="SecaoProblema" Multiplicity="1" />
+          <End Type="pontoModel.Problema" Role="Problema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecaoProblema">
+              <PropertyRef Name="IdSecao" />
+            </Principal>
+            <Dependent Role="Problema">
+              <PropertyRef Name="IdSecao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solucao_Problema">
+          <End Type="pontoModel.Problema" Role="Problema" Multiplicity="1" />
+          <End Type="pontoModel.Solucao" Role="Solucao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Problema">
+              <PropertyRef Name="IdProblema" />
+            </Principal>
+            <Dependent Role="Solucao">
+              <PropertyRef Name="IdProblema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Type="Int32" Name="IdUsuario" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Login" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Senha" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="IdFuncionario" Nullable="false" />
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Int32" Name="IdPerfil" Nullable="false" />
+          <NavigationProperty Name="Empresa" Relationship="pontoModel.FK_Usuario_Empresa" FromRole="Usuario" ToRole="Empresa" />
+          <NavigationProperty Name="Funcionario" Relationship="pontoModel.FK_Usuario_Funcionario" FromRole="Usuario" ToRole="Funcionario" />
+          <NavigationProperty Name="Perfil" Relationship="pontoModel.FK_Usuario_Perfil" FromRole="Usuario" ToRole="Perfil" />
+        </EntityType>
+        <Association Name="FK_Usuario_Empresa">
+          <End Type="pontoModel.Empresa" Role="Empresa" Multiplicity="1" />
+          <End Type="pontoModel.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Funcionario">
+          <End Type="pontoModel.Funcionario" Role="Funcionario" Multiplicity="1" />
+          <End Type="pontoModel.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funcionario">
+              <PropertyRef Name="IdFuncionario" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IdFuncionario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -613,19 +769,6 @@
               <MappingFragment StoreEntitySet="Estado">
                 <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
                 <ScalarProperty Name="Descricao" ColumnName="Descricao" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Usuario">
-            <EntityTypeMapping TypeName="pontoModel.Usuario">
-              <MappingFragment StoreEntitySet="Usuario">
-                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
-                <ScalarProperty Name="IdFuncionario" ColumnName="IdFuncionario" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Senha" ColumnName="Senha" />
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -701,6 +844,46 @@
                 <ScalarProperty Name="Observacao" ColumnName="Observacao" />
                 <ScalarProperty Name="NumeroOs" ColumnName="NumeroOs" />
                 <ScalarProperty Name="IdOs" ColumnName="IdOs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Problema">
+            <EntityTypeMapping TypeName="pontoModel.Problema">
+              <MappingFragment StoreEntitySet="Problema">
+                <ScalarProperty Name="IdSecao" ColumnName="IdSecao" />
+                <ScalarProperty Name="IdOs" ColumnName="IdOs" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="IdProblema" ColumnName="IdProblema" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SecaoProblema">
+            <EntityTypeMapping TypeName="pontoModel.SecaoProblema">
+              <MappingFragment StoreEntitySet="SecaoProblema">
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="IdSecao" ColumnName="IdSecao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Solucao">
+            <EntityTypeMapping TypeName="pontoModel.Solucao">
+              <MappingFragment StoreEntitySet="Solucao">
+                <ScalarProperty Name="IdProblema" ColumnName="IdProblema" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="IdSolucao" ColumnName="IdSolucao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="pontoModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="IdFuncionario" ColumnName="IdFuncionario" />
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

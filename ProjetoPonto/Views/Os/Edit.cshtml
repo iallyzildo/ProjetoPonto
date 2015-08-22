@@ -77,7 +77,12 @@
 
 <div>
     @Html.ActionLink("Back to List", "Index")
+
 </div>
+    @if (Model.IdCliente != 0)
+    {
+        @Html.ActionLink("Problemas", "ListaProblemas", new { idOs= Model.IdOs })
+    }
 
 @if (ViewBag.Erro != null && ViewBag.Erro != "")
 {

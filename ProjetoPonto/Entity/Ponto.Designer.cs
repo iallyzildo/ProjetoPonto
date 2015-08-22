@@ -21,13 +21,16 @@ using System.Xml.Serialization;
 
 [assembly: EdmRelationshipAttribute("pontoModel", "FK_Cidade_Estado", "Estado", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.Estado), "Cidade", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Cidade), true)]
 [assembly: EdmRelationshipAttribute("pontoModel", "FK_Empresa_Cidade", "Cidade", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.Cidade), "Empresa", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Empresa), true)]
-[assembly: EdmRelationshipAttribute("pontoModel", "FK_Usuario_Empresa", "Empresa", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.Empresa), "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Usuario), true)]
-[assembly: EdmRelationshipAttribute("pontoModel", "FK_Usuario_Funcionario", "Funcionario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.Funcionario), "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Usuario), true)]
 [assembly: EdmRelationshipAttribute("pontoModel", "FK_ModeloMaquina_Marca", "Marca", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.Marca), "ModeloMaquina", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.ModeloMaquina), true)]
 [assembly: EdmRelationshipAttribute("pontoModel", "FK_ModeloMaquina_TipoMaquina", "TipoMaquina", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.TipoMaquina), "ModeloMaquina", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.ModeloMaquina), true)]
 [assembly: EdmRelationshipAttribute("pontoModel", "FK_Os_Cliente", "Cliente", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.Cliente), "Os", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Os), true)]
 [assembly: EdmRelationshipAttribute("pontoModel", "FK_Os_ModeloMaquina", "ModeloMaquina", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.ModeloMaquina), "Os", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Os), true)]
 [assembly: EdmRelationshipAttribute("pontoModel", "FK_Os_StatusOs", "StatusOs", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.StatusOs), "Os", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Os), true)]
+[assembly: EdmRelationshipAttribute("pontoModel", "FK_Problema_Os", "Os", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.Os), "Problema", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Problema), true)]
+[assembly: EdmRelationshipAttribute("pontoModel", "FK_Problema_Secao", "SecaoProblema", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.SecaoProblema), "Problema", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Problema), true)]
+[assembly: EdmRelationshipAttribute("pontoModel", "FK_Solucao_Problema", "Problema", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.Problema), "Solucao", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Solucao), true)]
+[assembly: EdmRelationshipAttribute("pontoModel", "FK_Usuario_Empresa", "Empresa", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.Empresa), "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Usuario), true)]
+[assembly: EdmRelationshipAttribute("pontoModel", "FK_Usuario_Funcionario", "Funcionario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.Funcionario), "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Usuario), true)]
 [assembly: EdmRelationshipAttribute("pontoModel", "FK_Usuario_Perfil", "Perfil", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.Perfil), "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Usuario), true)]
 
 #endregion
@@ -127,22 +130,6 @@ namespace ProjetoPonto.Entity
             }
         }
         private ObjectSet<Estado> _Estado;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Usuario> Usuario
-        {
-            get
-            {
-                if ((_Usuario == null))
-                {
-                    _Usuario = base.CreateObjectSet<Usuario>("Usuario");
-                }
-                return _Usuario;
-            }
-        }
-        private ObjectSet<Usuario> _Usuario;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -271,6 +258,70 @@ namespace ProjetoPonto.Entity
             }
         }
         private ObjectSet<Os> _Os;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Problema> Problema
+        {
+            get
+            {
+                if ((_Problema == null))
+                {
+                    _Problema = base.CreateObjectSet<Problema>("Problema");
+                }
+                return _Problema;
+            }
+        }
+        private ObjectSet<Problema> _Problema;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SecaoProblema> SecaoProblema
+        {
+            get
+            {
+                if ((_SecaoProblema == null))
+                {
+                    _SecaoProblema = base.CreateObjectSet<SecaoProblema>("SecaoProblema");
+                }
+                return _SecaoProblema;
+            }
+        }
+        private ObjectSet<SecaoProblema> _SecaoProblema;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Solucao> Solucao
+        {
+            get
+            {
+                if ((_Solucao == null))
+                {
+                    _Solucao = base.CreateObjectSet<Solucao>("Solucao");
+                }
+                return _Solucao;
+            }
+        }
+        private ObjectSet<Solucao> _Solucao;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Usuario> Usuario
+        {
+            get
+            {
+                if ((_Usuario == null))
+                {
+                    _Usuario = base.CreateObjectSet<Usuario>("Usuario");
+                }
+                return _Usuario;
+            }
+        }
+        private ObjectSet<Usuario> _Usuario;
 
         #endregion
 
@@ -298,14 +349,6 @@ namespace ProjetoPonto.Entity
         public void AddToEstado(Estado estado)
         {
             base.AddObject("Estado", estado);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Usuario EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToUsuario(Usuario usuario)
-        {
-            base.AddObject("Usuario", usuario);
         }
     
         /// <summary>
@@ -370,6 +413,38 @@ namespace ProjetoPonto.Entity
         public void AddToOs(Os os)
         {
             base.AddObject("Os", os);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Problema EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToProblema(Problema problema)
+        {
+            base.AddObject("Problema", problema);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SecaoProblema EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSecaoProblema(SecaoProblema secaoProblema)
+        {
+            base.AddObject("SecaoProblema", secaoProblema);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Solucao EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSolucao(Solucao solucao)
+        {
+            base.AddObject("Solucao", solucao);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Usuario EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToUsuario(Usuario usuario)
+        {
+            base.AddObject("Usuario", usuario);
         }
 
         #endregion
@@ -1837,6 +1912,28 @@ namespace ProjetoPonto.Entity
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pontoModel", "FK_Problema_Os", "Problema")]
+        public EntityCollection<Problema> Problema
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Problema>("pontoModel.FK_Problema_Os", "Problema");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Problema>("pontoModel.FK_Problema_Os", "Problema", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -1942,6 +2039,500 @@ namespace ProjetoPonto.Entity
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Usuario>("pontoModel.FK_Usuario_Perfil", "Usuario", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="pontoModel", Name="Problema")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Problema : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Problema object.
+        /// </summary>
+        /// <param name="idProblema">Initial value of the IdProblema property.</param>
+        /// <param name="descricao">Initial value of the Descricao property.</param>
+        /// <param name="idOs">Initial value of the IdOs property.</param>
+        /// <param name="idSecao">Initial value of the IdSecao property.</param>
+        public static Problema CreateProblema(global::System.Int32 idProblema, global::System.String descricao, global::System.Int32 idOs, global::System.Int32 idSecao)
+        {
+            Problema problema = new Problema();
+            problema.IdProblema = idProblema;
+            problema.Descricao = descricao;
+            problema.IdOs = idOs;
+            problema.IdSecao = idSecao;
+            return problema;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IdProblema
+        {
+            get
+            {
+                return _IdProblema;
+            }
+            set
+            {
+                if (_IdProblema != value)
+                {
+                    OnIdProblemaChanging(value);
+                    ReportPropertyChanging("IdProblema");
+                    _IdProblema = StructuralObject.SetValidValue(value, "IdProblema");
+                    ReportPropertyChanged("IdProblema");
+                    OnIdProblemaChanged();
+                }
+            }
+        }
+        private global::System.Int32 _IdProblema;
+        partial void OnIdProblemaChanging(global::System.Int32 value);
+        partial void OnIdProblemaChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Descricao
+        {
+            get
+            {
+                return _Descricao;
+            }
+            set
+            {
+                OnDescricaoChanging(value);
+                ReportPropertyChanging("Descricao");
+                _Descricao = StructuralObject.SetValidValue(value, false, "Descricao");
+                ReportPropertyChanged("Descricao");
+                OnDescricaoChanged();
+            }
+        }
+        private global::System.String _Descricao;
+        partial void OnDescricaoChanging(global::System.String value);
+        partial void OnDescricaoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IdOs
+        {
+            get
+            {
+                return _IdOs;
+            }
+            set
+            {
+                OnIdOsChanging(value);
+                ReportPropertyChanging("IdOs");
+                _IdOs = StructuralObject.SetValidValue(value, "IdOs");
+                ReportPropertyChanged("IdOs");
+                OnIdOsChanged();
+            }
+        }
+        private global::System.Int32 _IdOs;
+        partial void OnIdOsChanging(global::System.Int32 value);
+        partial void OnIdOsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IdSecao
+        {
+            get
+            {
+                return _IdSecao;
+            }
+            set
+            {
+                OnIdSecaoChanging(value);
+                ReportPropertyChanging("IdSecao");
+                _IdSecao = StructuralObject.SetValidValue(value, "IdSecao");
+                ReportPropertyChanged("IdSecao");
+                OnIdSecaoChanged();
+            }
+        }
+        private global::System.Int32 _IdSecao;
+        partial void OnIdSecaoChanging(global::System.Int32 value);
+        partial void OnIdSecaoChanged();
+
+        #endregion
+
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pontoModel", "FK_Problema_Os", "Os")]
+        public Os Os
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Os>("pontoModel.FK_Problema_Os", "Os").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Os>("pontoModel.FK_Problema_Os", "Os").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Os> OsReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Os>("pontoModel.FK_Problema_Os", "Os");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Os>("pontoModel.FK_Problema_Os", "Os", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pontoModel", "FK_Problema_Secao", "SecaoProblema")]
+        public SecaoProblema SecaoProblema
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecaoProblema>("pontoModel.FK_Problema_Secao", "SecaoProblema").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecaoProblema>("pontoModel.FK_Problema_Secao", "SecaoProblema").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SecaoProblema> SecaoProblemaReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SecaoProblema>("pontoModel.FK_Problema_Secao", "SecaoProblema");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SecaoProblema>("pontoModel.FK_Problema_Secao", "SecaoProblema", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pontoModel", "FK_Solucao_Problema", "Solucao")]
+        public EntityCollection<Solucao> Solucao
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Solucao>("pontoModel.FK_Solucao_Problema", "Solucao");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Solucao>("pontoModel.FK_Solucao_Problema", "Solucao", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="pontoModel", Name="SecaoProblema")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SecaoProblema : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new SecaoProblema object.
+        /// </summary>
+        /// <param name="idSecao">Initial value of the IdSecao property.</param>
+        /// <param name="descricao">Initial value of the Descricao property.</param>
+        public static SecaoProblema CreateSecaoProblema(global::System.Int32 idSecao, global::System.String descricao)
+        {
+            SecaoProblema secaoProblema = new SecaoProblema();
+            secaoProblema.IdSecao = idSecao;
+            secaoProblema.Descricao = descricao;
+            return secaoProblema;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IdSecao
+        {
+            get
+            {
+                return _IdSecao;
+            }
+            set
+            {
+                if (_IdSecao != value)
+                {
+                    OnIdSecaoChanging(value);
+                    ReportPropertyChanging("IdSecao");
+                    _IdSecao = StructuralObject.SetValidValue(value, "IdSecao");
+                    ReportPropertyChanged("IdSecao");
+                    OnIdSecaoChanged();
+                }
+            }
+        }
+        private global::System.Int32 _IdSecao;
+        partial void OnIdSecaoChanging(global::System.Int32 value);
+        partial void OnIdSecaoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Descricao
+        {
+            get
+            {
+                return _Descricao;
+            }
+            set
+            {
+                OnDescricaoChanging(value);
+                ReportPropertyChanging("Descricao");
+                _Descricao = StructuralObject.SetValidValue(value, false, "Descricao");
+                ReportPropertyChanged("Descricao");
+                OnDescricaoChanged();
+            }
+        }
+        private global::System.String _Descricao;
+        partial void OnDescricaoChanging(global::System.String value);
+        partial void OnDescricaoChanged();
+
+        #endregion
+
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pontoModel", "FK_Problema_Secao", "Problema")]
+        public EntityCollection<Problema> Problema
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Problema>("pontoModel.FK_Problema_Secao", "Problema");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Problema>("pontoModel.FK_Problema_Secao", "Problema", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="pontoModel", Name="Solucao")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Solucao : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Solucao object.
+        /// </summary>
+        /// <param name="idSolucao">Initial value of the IdSolucao property.</param>
+        /// <param name="descricao">Initial value of the Descricao property.</param>
+        /// <param name="idProblema">Initial value of the IdProblema property.</param>
+        public static Solucao CreateSolucao(global::System.Int32 idSolucao, global::System.String descricao, global::System.Int32 idProblema)
+        {
+            Solucao solucao = new Solucao();
+            solucao.IdSolucao = idSolucao;
+            solucao.Descricao = descricao;
+            solucao.IdProblema = idProblema;
+            return solucao;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IdSolucao
+        {
+            get
+            {
+                return _IdSolucao;
+            }
+            set
+            {
+                if (_IdSolucao != value)
+                {
+                    OnIdSolucaoChanging(value);
+                    ReportPropertyChanging("IdSolucao");
+                    _IdSolucao = StructuralObject.SetValidValue(value, "IdSolucao");
+                    ReportPropertyChanged("IdSolucao");
+                    OnIdSolucaoChanged();
+                }
+            }
+        }
+        private global::System.Int32 _IdSolucao;
+        partial void OnIdSolucaoChanging(global::System.Int32 value);
+        partial void OnIdSolucaoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Descricao
+        {
+            get
+            {
+                return _Descricao;
+            }
+            set
+            {
+                OnDescricaoChanging(value);
+                ReportPropertyChanging("Descricao");
+                _Descricao = StructuralObject.SetValidValue(value, false, "Descricao");
+                ReportPropertyChanged("Descricao");
+                OnDescricaoChanged();
+            }
+        }
+        private global::System.String _Descricao;
+        partial void OnDescricaoChanging(global::System.String value);
+        partial void OnDescricaoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IdProblema
+        {
+            get
+            {
+                return _IdProblema;
+            }
+            set
+            {
+                OnIdProblemaChanging(value);
+                ReportPropertyChanging("IdProblema");
+                _IdProblema = StructuralObject.SetValidValue(value, "IdProblema");
+                ReportPropertyChanged("IdProblema");
+                OnIdProblemaChanged();
+            }
+        }
+        private global::System.Int32 _IdProblema;
+        partial void OnIdProblemaChanging(global::System.Int32 value);
+        partial void OnIdProblemaChanged();
+
+        #endregion
+
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pontoModel", "FK_Solucao_Problema", "Problema")]
+        public Problema Problema
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Problema>("pontoModel.FK_Solucao_Problema", "Problema").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Problema>("pontoModel.FK_Solucao_Problema", "Problema").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Problema> ProblemaReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Problema>("pontoModel.FK_Solucao_Problema", "Problema");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Problema>("pontoModel.FK_Solucao_Problema", "Problema", value);
                 }
             }
         }
@@ -2183,18 +2774,18 @@ namespace ProjetoPonto.Entity
         /// <param name="email">Initial value of the Email property.</param>
         /// <param name="login">Initial value of the Login property.</param>
         /// <param name="senha">Initial value of the Senha property.</param>
-        /// <param name="idEmpresa">Initial value of the IdEmpresa property.</param>
         /// <param name="idFuncionario">Initial value of the IdFuncionario property.</param>
+        /// <param name="idEmpresa">Initial value of the IdEmpresa property.</param>
         /// <param name="idPerfil">Initial value of the IdPerfil property.</param>
-        public static Usuario CreateUsuario(global::System.Int32 idUsuario, global::System.String email, global::System.String login, global::System.String senha, global::System.Int32 idEmpresa, global::System.Int32 idFuncionario, global::System.Int32 idPerfil)
+        public static Usuario CreateUsuario(global::System.Int32 idUsuario, global::System.String email, global::System.String login, global::System.String senha, global::System.Int32 idFuncionario, global::System.Int32 idEmpresa, global::System.Int32 idPerfil)
         {
             Usuario usuario = new Usuario();
             usuario.IdUsuario = idUsuario;
             usuario.Email = email;
             usuario.Login = login;
             usuario.Senha = senha;
-            usuario.IdEmpresa = idEmpresa;
             usuario.IdFuncionario = idFuncionario;
+            usuario.IdEmpresa = idEmpresa;
             usuario.IdPerfil = idPerfil;
             return usuario;
         }
@@ -2307,30 +2898,6 @@ namespace ProjetoPonto.Entity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 IdEmpresa
-        {
-            get
-            {
-                return _IdEmpresa;
-            }
-            set
-            {
-                OnIdEmpresaChanging(value);
-                ReportPropertyChanging("IdEmpresa");
-                _IdEmpresa = StructuralObject.SetValidValue(value, "IdEmpresa");
-                ReportPropertyChanged("IdEmpresa");
-                OnIdEmpresaChanged();
-            }
-        }
-        private global::System.Int32 _IdEmpresa;
-        partial void OnIdEmpresaChanging(global::System.Int32 value);
-        partial void OnIdEmpresaChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
         public global::System.Int32 IdFuncionario
         {
             get
@@ -2349,6 +2916,30 @@ namespace ProjetoPonto.Entity
         private global::System.Int32 _IdFuncionario;
         partial void OnIdFuncionarioChanging(global::System.Int32 value);
         partial void OnIdFuncionarioChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IdEmpresa
+        {
+            get
+            {
+                return _IdEmpresa;
+            }
+            set
+            {
+                OnIdEmpresaChanging(value);
+                ReportPropertyChanging("IdEmpresa");
+                _IdEmpresa = StructuralObject.SetValidValue(value, "IdEmpresa");
+                ReportPropertyChanged("IdEmpresa");
+                OnIdEmpresaChanged();
+            }
+        }
+        private global::System.Int32 _IdEmpresa;
+        partial void OnIdEmpresaChanging(global::System.Int32 value);
+        partial void OnIdEmpresaChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

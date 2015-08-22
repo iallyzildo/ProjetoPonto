@@ -41,6 +41,8 @@ namespace ProjetoPonto.Controllers
             if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
             {
             Usuario u = new Usuario();
+            u = usuarioModel.obterUsuario(id);
+              
             int idFuncionario = 1;
             int idEmpresa = 1;
             int idPerfil = 1;
@@ -129,12 +131,12 @@ namespace ProjetoPonto.Controllers
         {
 
             Usuario u = usuarioModel.obterUsuarioPorLogin(User.Identity.Name);
-            // Remover todos os perfis do mecanico
+            // Remover todos os perfis do usuario
             foreach (Perfil p in perfilModel.listarPerfisPorUsuario(u.IdUsuario))
             {
                 if (Roles.IsUserInRole(u.Login, p.Descricao))
                 {
-                    Roles.RemoveUserFromRole(u.Login, p.Descricao); // adiciona o mecanico
+                    Roles.RemoveUserFromRole(u.Login, p.Descricao); // adiciona o usuario
                 }
             }
             FormsAuthentication.SignOut();
@@ -142,7 +144,13 @@ namespace ProjetoPonto.Controllers
         }
         public ActionResult Delete(int id)
         {
+
             Usuario u = usuarioModel.obterUsuario(id);
+
+            if (u.Login == User.Identity.Name)
+            {
+                return Redirect("/Shared/Error");
+            }
             usuarioModel.excluirUsuario(u);
             return RedirectToAction("Index");
         }
