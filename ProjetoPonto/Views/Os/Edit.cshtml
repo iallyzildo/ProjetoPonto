@@ -79,7 +79,7 @@
     @Html.ActionLink("Back to List", "Index")
 
 </div>
-    @if (Model.IdCliente != 0)
+    @if (Model.IdOs != 0)
     {
         @Html.ActionLink("Problemas", "ListaProblemas", new { idOs= Model.IdOs })
     }

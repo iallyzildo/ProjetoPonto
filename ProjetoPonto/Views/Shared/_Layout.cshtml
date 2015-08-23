@@ -37,6 +37,8 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Funcionario e Usuario<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
+                             <li class="divider"></li>
+                            <li class="dropdown-header">Cadastro de Funcionario</li>
                             <li>@Html.ActionLink("Funcionario", "Index", "Funcionario")</li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Cadastro Usuario</li>
@@ -46,20 +48,42 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Empresa e localidades<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            
-                            <li>@Html.ActionLink("Estado", "Index", "Estado")</li>
-                            
+                              <li class="divider"></li>
+                            <li class="dropdown-header">Cadastro de Cidade e Estado</li>
+                            <li>@Html.ActionLink("Estado", "Index", "Estado")</li>                       
                             <li>@Html.ActionLink("Cidade", "Index", "Cidade")</li>
-                            <li>@Html.ActionLink("Marca", "Index", "Marca")</li>
-                            <li>@Html.ActionLink("TipoMaquina", "Index", "TipoMaquina")</li>
-                            <li>@Html.ActionLink("ModeloMaquina", "Index", "ModeloMaquina")</li>
-                             <li>@Html.ActionLink("Os", "Index", "Os")</li>
+                            
                             <li class="divider"></li>
                             <li class="dropdown-header">Cadastro de Empresa</li>
                             <li>@Html.ActionLink("Empresa", "Index", "Empresa")</li>
+                            
+                        </ul>
+                    </li>
+                           <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Maquinas e Modelos<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                              <li class="divider"></li>
+                            <li class="dropdown-header">Cadastro de Marca</li>
+                            <li>@Html.ActionLink("Marca", "Index", "Marca")</li>
+                               <li class="divider"></li>
+                            <li class="dropdown-header">Cadastro de Tipo de Maquina</li>
+                            <li>@Html.ActionLink("TipoMaquina", "Index", "TipoMaquina")</li>
+                               <li class="divider"></li>
+                            <li class="dropdown-header">Cadastro de Modelos</li>
+                            <li>@Html.ActionLink("ModeloMaquina", "Index", "ModeloMaquina")</li>
+                        </ul>
+                    </li>
+                         <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">OS<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                               <li class="divider"></li>
+                            <li class="dropdown-header">Cadastro de Ordem de Serviço</li>
+                            <li>@Html.ActionLink("Os", "Index", "Os")</li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Problemas e solucoes</li>
                             <li>@Html.ActionLink("SecaoProblema", "Index", "SecaoProblema")</li>
                             <li>@Html.ActionLink("Problema", "Index", "Problema")</li>
-                             <li>@Html.ActionLink("Solucao", "Index", "Solucao")</li>
+                            <li>@Html.ActionLink("Solucao", "Index", "Solucao")</li>
                         </ul>
                     </li>
                         }

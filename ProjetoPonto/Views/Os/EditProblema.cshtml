@@ -40,6 +40,10 @@
 }
 <div>
     @Html.ActionLink("Back to List", "Index") |
+       @if (Model.IdProblema != 0)
+    {
+        @Html.ActionLink("Solucoes", "ListaSolucoes", new { idProblema= Model.IdProblema })
+    }
 </div>
 
 

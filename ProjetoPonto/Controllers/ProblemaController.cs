@@ -15,6 +15,7 @@ namespace ProjetoPonto.Controllers
         private ProblemaModel problemaModel = new ProblemaModel();
         private OsModel osModel = new OsModel();
         private SecaoProblemaModel secaoProblemaModel = new SecaoProblemaModel();
+        private SolucaoModel solucaoModel = new SolucaoModel();
 
         public ActionResult Index()
         {
@@ -73,11 +74,59 @@ namespace ProjetoPonto.Controllers
                 return View(p);
             }
         }
+        public ActionResult EditSolucao(int idProblema, int idSolucao)
+        {
+            Solucao s = new Solucao();
+            s.IdProblema = idProblema;
+
+            if (idSolucao != 0)
+            {
+                s = solucaoModel.obterSolucao(idSolucao);
+            }
+
+            return View(s);
+        }
+        [HttpPost]
+        public ActionResult EditSolucao(Solucao s)
+        {
+            string erro = null;
+            if (s.IdSolucao == 0)
+            {
+                erro = solucaoModel.adicionarSolucao(s);
+            }
+            else
+            {
+                erro = solucaoModel.editarSolucao(s);
+            }
+            if (erro == null)
+            {
+                return RedirectToAction("ListaSolucoes", new { idProblema = s.IdProblema });
+            }
+            else
+            {
+                ViewBag.Erro = erro;
+                return View(s);
+            }
+        }
+        public ActionResult ListaSolucoes(int idProblema)
+        {
+            List<Solucao> solucoesProblema = solucaoModel.listarSolucaoPorProblema(idProblema);
+            Problema p = problemaModel.obterProblema(idProblema);
+            ViewBag.IdProblema = p.IdProblema;
+            ViewBag.DescricaoProblema = p.Descricao;
+            return View(solucoesProblema);
+        }
         public ActionResult Delete(int id)
         {
             Problema p = problemaModel.obterProblema(id);
             problemaModel.excluirProblema(p);
             return RedirectToAction("Index");
+        }
+        public ActionResult DeleteSolucao(int idSolucao)
+        {
+            Solucao s = solucaoModel.obterSolucao(idSolucao);
+            solucaoModel.excluirSolucao(s);
+            return RedirectToAction("ListaSolucoes", new { idProblema = s.IdProblema });
         }
     }
 }

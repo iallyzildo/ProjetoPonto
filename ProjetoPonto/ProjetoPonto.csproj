@@ -400,6 +400,9 @@
     <Content Include="Views\Os\EditProblema.cshtml" />
     <Content Include="Views\Solucao\Index.cshtml" />
     <Content Include="Views\Solucao\Edit.cshtml" />
+    <Content Include="Views\Problema\ListaSolucoes.cshtml" />
+    <Content Include="Views\Problema\EditSolucao.cshtml" />
+    <Content Include="Views\Os\ListaSolucoes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

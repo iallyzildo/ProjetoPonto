@@ -1,4 +1,4 @@
-﻿@model ProjetoPonto.Entity.Problema
+﻿@model ProjetoPonto.Entity.Solucao
 
 @{
     ViewBag.Title = "Edit";
@@ -10,7 +10,7 @@
 
 
     <div class="form-horizontal">
-        <h4>Problema</h4>
+        <h4>Solucao</h4>
         <hr />
 
         @Html.HiddenFor(model => model.IdProblema)
@@ -22,20 +22,7 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdOs, new { @class = "control-label col-md-2" })
-       <div class="btn-group">
-            @Html.DropDownList("IdOs")
-        </div>
-             </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdSecao, new { @class = "control-label col-md-2" })
-       <div class="btn-group">
-            @Html.DropDownList("IdSecao")
-        </div>
-             </div>
-
+      
 
        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -46,11 +33,6 @@
 }
 <div>
     @Html.ActionLink("Back to List", "Index") |
-   
-    @if (Model.IdProblema != 0)
-    {
-        @Html.ActionLink("Solucoes", "ListaSolucoes", new { idProblema= Model.IdProblema })
-    }
 </div>
 
 

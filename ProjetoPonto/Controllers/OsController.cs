@@ -18,6 +18,7 @@ namespace ProjetoPonto.Controllers
         private ProblemaModel problemaModel = new ProblemaModel();
         private SecaoProblemaModel secaoProblemaModel = new SecaoProblemaModel();
         private OsModel osModel = new OsModel();
+        private SolucaoModel solucaoModel = new SolucaoModel();
 
         public ActionResult Index()
         {
@@ -125,6 +126,14 @@ namespace ProjetoPonto.Controllers
             ViewBag.IdOs = o.IdOs;
             ViewBag.NumeroOs = o.NumeroOs;
             return View(problemasOs);
+        }
+        public ActionResult ListaSolucoes(int idProblema)
+        {
+            List<Solucao> solucoesProblema = solucaoModel.listarSolucaoPorProblema(idProblema);
+            Problema p = problemaModel.obterProblema(idProblema);
+            ViewBag.IdProblema = p.IdProblema;
+            ViewBag.DescricaoProblema = p.Descricao;
+            return View(solucoesProblema);
         }
         public ActionResult Delete(int id)
         {
