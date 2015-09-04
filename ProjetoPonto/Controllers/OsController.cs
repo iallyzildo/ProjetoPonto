@@ -111,7 +111,7 @@ namespace ProjetoPonto.Controllers
             }
             if (erro == null)
             {
-                return RedirectToAction("ListaProblemas", new { idOs = p.IdOs });
+                return RedirectToAction("ListaProblemas", new { idProblema = p.IdProblema});
             }
             else
             {
@@ -119,6 +119,7 @@ namespace ProjetoPonto.Controllers
                 return View(p);
             }
         }
+        
         public ActionResult ListaProblemas(int idOs)
         {
             List<Problema> problemasOs = problemaModel.listarProblemaPorOs(idOs);

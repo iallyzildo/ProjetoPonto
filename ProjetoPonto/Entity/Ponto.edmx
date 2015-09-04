@@ -15,11 +15,13 @@
           <EntitySet Name="ModeloMaquina" EntityType="pontoModel.Store.ModeloMaquina" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Os" EntityType="pontoModel.Store.Os" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Perfil" EntityType="pontoModel.Store.Perfil" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Ponto" EntityType="pontoModel.Store.Ponto" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Problema" EntityType="pontoModel.Store.Problema" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SecaoProblema" EntityType="pontoModel.Store.SecaoProblema" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Solucao" EntityType="pontoModel.Store.Solucao" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="StatusOs" EntityType="pontoModel.Store.StatusOs" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TipoMaquina" EntityType="pontoModel.Store.TipoMaquina" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TipoPonto" EntityType="pontoModel.Store.TipoPonto" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Usuario" EntityType="pontoModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Cidade_Estado" Association="pontoModel.Store.FK_Cidade_Estado">
             <End Role="Estado" EntitySet="Estado" />
@@ -48,6 +50,18 @@
           <AssociationSet Name="FK_Os_StatusOs" Association="pontoModel.Store.FK_Os_StatusOs">
             <End Role="StatusOs" EntitySet="StatusOs" />
             <End Role="Os" EntitySet="Os" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ponto_Os" Association="pontoModel.Store.FK_Ponto_Os">
+            <End Role="Os" EntitySet="Os" />
+            <End Role="Ponto" EntitySet="Ponto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ponto_TipoPonto" Association="pontoModel.Store.FK_Ponto_TipoPonto">
+            <End Role="TipoPonto" EntitySet="TipoPonto" />
+            <End Role="Ponto" EntitySet="Ponto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ponto_Usuario" Association="pontoModel.Store.FK_Ponto_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Ponto" EntitySet="Ponto" />
           </AssociationSet>
           <AssociationSet Name="FK_Problema_Os" Association="pontoModel.Store.FK_Problema_Os">
             <End Role="Os" EntitySet="Os" />
@@ -151,6 +165,19 @@
           <Property Name="IdPerfil" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="255" />
         </EntityType>
+        <EntityType Name="Ponto">
+          <Key>
+            <PropertyRef Name="IdPonto" />
+          </Key>
+          <Property Name="IdPonto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DataAbertura" Type="datetime" Nullable="false" />
+          <Property Name="HoraInicial" Type="time" Nullable="false" />
+          <Property Name="HoraFinal" Type="time" />
+          <Property Name="Observacao" Type="varchar" MaxLength="254" />
+          <Property Name="IdOs" Type="int" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="IdTipoPonto" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Problema">
           <Key>
             <PropertyRef Name="IdProblema" />
@@ -188,6 +215,13 @@
           </Key>
           <Property Name="IdTipoMaquina" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TipoPonto">
+          <Key>
+            <PropertyRef Name="IdTipoPonto" />
+          </Key>
+          <Property Name="IdTipoPonto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="255" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -282,6 +316,42 @@
             </Principal>
             <Dependent Role="Os">
               <PropertyRef Name="IdStatusOs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ponto_Os">
+          <End Role="Os" Type="pontoModel.Store.Os" Multiplicity="1" />
+          <End Role="Ponto" Type="pontoModel.Store.Ponto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Os">
+              <PropertyRef Name="IdOs" />
+            </Principal>
+            <Dependent Role="Ponto">
+              <PropertyRef Name="IdOs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ponto_TipoPonto">
+          <End Role="TipoPonto" Type="pontoModel.Store.TipoPonto" Multiplicity="1" />
+          <End Role="Ponto" Type="pontoModel.Store.Ponto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPonto">
+              <PropertyRef Name="IdTipoPonto" />
+            </Principal>
+            <Dependent Role="Ponto">
+              <PropertyRef Name="IdTipoPonto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ponto_Usuario">
+          <End Role="Usuario" Type="pontoModel.Store.Usuario" Multiplicity="1" />
+          <End Role="Ponto" Type="pontoModel.Store.Ponto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Ponto">
+              <PropertyRef Name="IdUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -428,6 +498,20 @@
           <AssociationSet Name="FK_Usuario_Perfil" Association="pontoModel.FK_Usuario_Perfil">
             <End Role="Perfil" EntitySet="Perfil" />
             <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <EntitySet Name="Ponto" EntityType="pontoModel.Ponto" />
+          <EntitySet Name="TipoPonto" EntityType="pontoModel.TipoPonto" />
+          <AssociationSet Name="FK_Ponto_Os" Association="pontoModel.FK_Ponto_Os">
+            <End Role="Os" EntitySet="Os" />
+            <End Role="Ponto" EntitySet="Ponto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ponto_TipoPonto" Association="pontoModel.FK_Ponto_TipoPonto">
+            <End Role="TipoPonto" EntitySet="TipoPonto" />
+            <End Role="Ponto" EntitySet="Ponto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ponto_Usuario" Association="pontoModel.FK_Ponto_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Ponto" EntitySet="Ponto" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Cidade">
@@ -586,6 +670,7 @@
           <NavigationProperty Name="ModeloMaquina" Relationship="pontoModel.FK_Os_ModeloMaquina" FromRole="Os" ToRole="ModeloMaquina" />
           <NavigationProperty Name="StatusOs" Relationship="pontoModel.FK_Os_StatusOs" FromRole="Os" ToRole="StatusOs" />
           <NavigationProperty Name="Problema" Relationship="pontoModel.FK_Problema_Os" FromRole="Os" ToRole="Problema" />
+          <NavigationProperty Name="Ponto" Relationship="pontoModel.FK_Ponto_Os" FromRole="Os" ToRole="Ponto" />
         </EntityType>
         <Association Name="FK_Os_Cliente">
           <End Type="pontoModel.Cliente" Role="Cliente" Multiplicity="1" />
@@ -702,6 +787,7 @@
           <NavigationProperty Name="Empresa" Relationship="pontoModel.FK_Usuario_Empresa" FromRole="Usuario" ToRole="Empresa" />
           <NavigationProperty Name="Funcionario" Relationship="pontoModel.FK_Usuario_Funcionario" FromRole="Usuario" ToRole="Funcionario" />
           <NavigationProperty Name="Perfil" Relationship="pontoModel.FK_Usuario_Perfil" FromRole="Usuario" ToRole="Perfil" />
+          <NavigationProperty Name="Ponto" Relationship="pontoModel.FK_Ponto_Usuario" FromRole="Usuario" ToRole="Ponto" />
         </EntityType>
         <Association Name="FK_Usuario_Empresa">
           <End Type="pontoModel.Empresa" Role="Empresa" Multiplicity="1" />
@@ -736,6 +822,66 @@
             </Principal>
             <Dependent Role="Usuario">
               <PropertyRef Name="IdPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Ponto">
+          <Key>
+            <PropertyRef Name="IdPonto" />
+          </Key>
+          <Property Type="Int32" Name="IdPonto" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="DataAbertura" Nullable="false" Precision="3" />
+          <Property Type="Time" Name="HoraInicial" Nullable="false" Precision="7" />
+          <Property Type="Time" Name="HoraFinal" Precision="7" />
+          <Property Type="String" Name="Observacao" MaxLength="254" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="IdOs" Nullable="false" />
+          <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+          <Property Type="Int32" Name="IdTipoPonto" Nullable="false" />
+          <NavigationProperty Name="Os" Relationship="pontoModel.FK_Ponto_Os" FromRole="Ponto" ToRole="Os" />
+          <NavigationProperty Name="TipoPonto" Relationship="pontoModel.FK_Ponto_TipoPonto" FromRole="Ponto" ToRole="TipoPonto" />
+          <NavigationProperty Name="Usuario" Relationship="pontoModel.FK_Ponto_Usuario" FromRole="Ponto" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="TipoPonto">
+          <Key>
+            <PropertyRef Name="IdTipoPonto" />
+          </Key>
+          <Property Type="Int32" Name="IdTipoPonto" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descricao" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Ponto" Relationship="pontoModel.FK_Ponto_TipoPonto" FromRole="TipoPonto" ToRole="Ponto" />
+        </EntityType>
+        <Association Name="FK_Ponto_Os">
+          <End Type="pontoModel.Os" Role="Os" Multiplicity="1" />
+          <End Type="pontoModel.Ponto" Role="Ponto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Os">
+              <PropertyRef Name="IdOs" />
+            </Principal>
+            <Dependent Role="Ponto">
+              <PropertyRef Name="IdOs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ponto_TipoPonto">
+          <End Type="pontoModel.TipoPonto" Role="TipoPonto" Multiplicity="1" />
+          <End Type="pontoModel.Ponto" Role="Ponto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPonto">
+              <PropertyRef Name="IdTipoPonto" />
+            </Principal>
+            <Dependent Role="Ponto">
+              <PropertyRef Name="IdTipoPonto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ponto_Usuario">
+          <End Type="pontoModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="pontoModel.Ponto" Role="Ponto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Ponto">
+              <PropertyRef Name="IdUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -884,6 +1030,28 @@
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ponto">
+            <EntityTypeMapping TypeName="pontoModel.Ponto">
+              <MappingFragment StoreEntitySet="Ponto">
+                <ScalarProperty Name="IdTipoPonto" ColumnName="IdTipoPonto" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdOs" ColumnName="IdOs" />
+                <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+                <ScalarProperty Name="HoraFinal" ColumnName="HoraFinal" />
+                <ScalarProperty Name="HoraInicial" ColumnName="HoraInicial" />
+                <ScalarProperty Name="DataAbertura" ColumnName="DataAbertura" />
+                <ScalarProperty Name="IdPonto" ColumnName="IdPonto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoPonto">
+            <EntityTypeMapping TypeName="pontoModel.TipoPonto">
+              <MappingFragment StoreEntitySet="TipoPonto">
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="IdTipoPonto" ColumnName="IdTipoPonto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

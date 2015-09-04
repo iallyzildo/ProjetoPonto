@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4cd5a014312449b599bf7a19ba82b54b" Name="Diagram1" ZoomLevel="46">
+      <Diagram DiagramId="4cd5a014312449b599bf7a19ba82b54b" Name="Diagram1" ZoomLevel="30">
         <EntityTypeShape EntityType="pontoModel.Cidade" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="pontoModel.Empresa" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="pontoModel.Estado" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
@@ -33,6 +33,11 @@
         <AssociationConnector Association="pontoModel.FK_Usuario_Empresa" />
         <AssociationConnector Association="pontoModel.FK_Usuario_Funcionario" />
         <AssociationConnector Association="pontoModel.FK_Usuario_Perfil" />
+        <EntityTypeShape EntityType="pontoModel.Ponto" Width="1.5" PointX="13.5" PointY="5.375" />
+        <EntityTypeShape EntityType="pontoModel.TipoPonto" Width="1.5" PointX="13.75" PointY="9.5" />
+        <AssociationConnector Association="pontoModel.FK_Ponto_Os" />
+        <AssociationConnector Association="pontoModel.FK_Ponto_TipoPonto" />
+        <AssociationConnector Association="pontoModel.FK_Ponto_Usuario" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

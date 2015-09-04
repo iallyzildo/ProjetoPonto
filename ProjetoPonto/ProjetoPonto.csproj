@@ -403,6 +403,7 @@
     <Content Include="Views\Problema\ListaSolucoes.cshtml" />
     <Content Include="Views\Problema\EditSolucao.cshtml" />
     <Content Include="Views\Os\ListaSolucoes.cshtml" />
+    <Content Include="Views\Os\EditSolucao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

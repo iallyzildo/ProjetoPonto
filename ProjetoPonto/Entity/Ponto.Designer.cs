@@ -32,6 +32,9 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("pontoModel", "FK_Usuario_Empresa", "Empresa", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.Empresa), "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Usuario), true)]
 [assembly: EdmRelationshipAttribute("pontoModel", "FK_Usuario_Funcionario", "Funcionario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.Funcionario), "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Usuario), true)]
 [assembly: EdmRelationshipAttribute("pontoModel", "FK_Usuario_Perfil", "Perfil", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.Perfil), "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Usuario), true)]
+[assembly: EdmRelationshipAttribute("pontoModel", "FK_Ponto_Os", "Os", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.Os), "Ponto", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Ponto), true)]
+[assembly: EdmRelationshipAttribute("pontoModel", "FK_Ponto_TipoPonto", "TipoPonto", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.TipoPonto), "Ponto", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Ponto), true)]
+[assembly: EdmRelationshipAttribute("pontoModel", "FK_Ponto_Usuario", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProjetoPonto.Entity.Usuario), "Ponto", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProjetoPonto.Entity.Ponto), true)]
 
 #endregion
 
@@ -322,6 +325,38 @@ namespace ProjetoPonto.Entity
             }
         }
         private ObjectSet<Usuario> _Usuario;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Ponto> Ponto
+        {
+            get
+            {
+                if ((_Ponto == null))
+                {
+                    _Ponto = base.CreateObjectSet<Ponto>("Ponto");
+                }
+                return _Ponto;
+            }
+        }
+        private ObjectSet<Ponto> _Ponto;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<TipoPonto> TipoPonto
+        {
+            get
+            {
+                if ((_TipoPonto == null))
+                {
+                    _TipoPonto = base.CreateObjectSet<TipoPonto>("TipoPonto");
+                }
+                return _TipoPonto;
+            }
+        }
+        private ObjectSet<TipoPonto> _TipoPonto;
 
         #endregion
 
@@ -445,6 +480,22 @@ namespace ProjetoPonto.Entity
         public void AddToUsuario(Usuario usuario)
         {
             base.AddObject("Usuario", usuario);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Ponto EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPonto(Ponto ponto)
+        {
+            base.AddObject("Ponto", ponto);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the TipoPonto EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTipoPonto(TipoPonto tipoPonto)
+        {
+            base.AddObject("TipoPonto", tipoPonto);
         }
 
         #endregion
@@ -1934,6 +1985,28 @@ namespace ProjetoPonto.Entity
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pontoModel", "FK_Ponto_Os", "Ponto")]
+        public EntityCollection<Ponto> Ponto
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Ponto>("pontoModel.FK_Ponto_Os", "Ponto");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Ponto>("pontoModel.FK_Ponto_Os", "Ponto", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -2039,6 +2112,358 @@ namespace ProjetoPonto.Entity
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Usuario>("pontoModel.FK_Usuario_Perfil", "Usuario", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="pontoModel", Name="Ponto")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Ponto : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Ponto object.
+        /// </summary>
+        /// <param name="idPonto">Initial value of the IdPonto property.</param>
+        /// <param name="dataAbertura">Initial value of the DataAbertura property.</param>
+        /// <param name="horaInicial">Initial value of the HoraInicial property.</param>
+        /// <param name="idOs">Initial value of the IdOs property.</param>
+        /// <param name="idUsuario">Initial value of the IdUsuario property.</param>
+        /// <param name="idTipoPonto">Initial value of the IdTipoPonto property.</param>
+        public static Ponto CreatePonto(global::System.Int32 idPonto, global::System.DateTime dataAbertura, global::System.TimeSpan horaInicial, global::System.Int32 idOs, global::System.Int32 idUsuario, global::System.Int32 idTipoPonto)
+        {
+            Ponto ponto = new Ponto();
+            ponto.IdPonto = idPonto;
+            ponto.DataAbertura = dataAbertura;
+            ponto.HoraInicial = horaInicial;
+            ponto.IdOs = idOs;
+            ponto.IdUsuario = idUsuario;
+            ponto.IdTipoPonto = idTipoPonto;
+            return ponto;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IdPonto
+        {
+            get
+            {
+                return _IdPonto;
+            }
+            set
+            {
+                if (_IdPonto != value)
+                {
+                    OnIdPontoChanging(value);
+                    ReportPropertyChanging("IdPonto");
+                    _IdPonto = StructuralObject.SetValidValue(value, "IdPonto");
+                    ReportPropertyChanged("IdPonto");
+                    OnIdPontoChanged();
+                }
+            }
+        }
+        private global::System.Int32 _IdPonto;
+        partial void OnIdPontoChanging(global::System.Int32 value);
+        partial void OnIdPontoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime DataAbertura
+        {
+            get
+            {
+                return _DataAbertura;
+            }
+            set
+            {
+                OnDataAberturaChanging(value);
+                ReportPropertyChanging("DataAbertura");
+                _DataAbertura = StructuralObject.SetValidValue(value, "DataAbertura");
+                ReportPropertyChanged("DataAbertura");
+                OnDataAberturaChanged();
+            }
+        }
+        private global::System.DateTime _DataAbertura;
+        partial void OnDataAberturaChanging(global::System.DateTime value);
+        partial void OnDataAberturaChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.TimeSpan HoraInicial
+        {
+            get
+            {
+                return _HoraInicial;
+            }
+            set
+            {
+                OnHoraInicialChanging(value);
+                ReportPropertyChanging("HoraInicial");
+                _HoraInicial = StructuralObject.SetValidValue(value, "HoraInicial");
+                ReportPropertyChanged("HoraInicial");
+                OnHoraInicialChanged();
+            }
+        }
+        private global::System.TimeSpan _HoraInicial;
+        partial void OnHoraInicialChanging(global::System.TimeSpan value);
+        partial void OnHoraInicialChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.TimeSpan> HoraFinal
+        {
+            get
+            {
+                return _HoraFinal;
+            }
+            set
+            {
+                OnHoraFinalChanging(value);
+                ReportPropertyChanging("HoraFinal");
+                _HoraFinal = StructuralObject.SetValidValue(value, "HoraFinal");
+                ReportPropertyChanged("HoraFinal");
+                OnHoraFinalChanged();
+            }
+        }
+        private Nullable<global::System.TimeSpan> _HoraFinal;
+        partial void OnHoraFinalChanging(Nullable<global::System.TimeSpan> value);
+        partial void OnHoraFinalChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Observacao
+        {
+            get
+            {
+                return _Observacao;
+            }
+            set
+            {
+                OnObservacaoChanging(value);
+                ReportPropertyChanging("Observacao");
+                _Observacao = StructuralObject.SetValidValue(value, true, "Observacao");
+                ReportPropertyChanged("Observacao");
+                OnObservacaoChanged();
+            }
+        }
+        private global::System.String _Observacao;
+        partial void OnObservacaoChanging(global::System.String value);
+        partial void OnObservacaoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IdOs
+        {
+            get
+            {
+                return _IdOs;
+            }
+            set
+            {
+                OnIdOsChanging(value);
+                ReportPropertyChanging("IdOs");
+                _IdOs = StructuralObject.SetValidValue(value, "IdOs");
+                ReportPropertyChanged("IdOs");
+                OnIdOsChanged();
+            }
+        }
+        private global::System.Int32 _IdOs;
+        partial void OnIdOsChanging(global::System.Int32 value);
+        partial void OnIdOsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IdUsuario
+        {
+            get
+            {
+                return _IdUsuario;
+            }
+            set
+            {
+                OnIdUsuarioChanging(value);
+                ReportPropertyChanging("IdUsuario");
+                _IdUsuario = StructuralObject.SetValidValue(value, "IdUsuario");
+                ReportPropertyChanged("IdUsuario");
+                OnIdUsuarioChanged();
+            }
+        }
+        private global::System.Int32 _IdUsuario;
+        partial void OnIdUsuarioChanging(global::System.Int32 value);
+        partial void OnIdUsuarioChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IdTipoPonto
+        {
+            get
+            {
+                return _IdTipoPonto;
+            }
+            set
+            {
+                OnIdTipoPontoChanging(value);
+                ReportPropertyChanging("IdTipoPonto");
+                _IdTipoPonto = StructuralObject.SetValidValue(value, "IdTipoPonto");
+                ReportPropertyChanged("IdTipoPonto");
+                OnIdTipoPontoChanged();
+            }
+        }
+        private global::System.Int32 _IdTipoPonto;
+        partial void OnIdTipoPontoChanging(global::System.Int32 value);
+        partial void OnIdTipoPontoChanged();
+
+        #endregion
+
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pontoModel", "FK_Ponto_Os", "Os")]
+        public Os Os
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Os>("pontoModel.FK_Ponto_Os", "Os").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Os>("pontoModel.FK_Ponto_Os", "Os").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Os> OsReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Os>("pontoModel.FK_Ponto_Os", "Os");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Os>("pontoModel.FK_Ponto_Os", "Os", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pontoModel", "FK_Ponto_TipoPonto", "TipoPonto")]
+        public TipoPonto TipoPonto
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TipoPonto>("pontoModel.FK_Ponto_TipoPonto", "TipoPonto").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TipoPonto>("pontoModel.FK_Ponto_TipoPonto", "TipoPonto").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<TipoPonto> TipoPontoReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TipoPonto>("pontoModel.FK_Ponto_TipoPonto", "TipoPonto");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TipoPonto>("pontoModel.FK_Ponto_TipoPonto", "TipoPonto", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pontoModel", "FK_Ponto_Usuario", "Usuario")]
+        public Usuario Usuario
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("pontoModel.FK_Ponto_Usuario", "Usuario").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("pontoModel.FK_Ponto_Usuario", "Usuario").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Usuario> UsuarioReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("pontoModel.FK_Ponto_Usuario", "Usuario");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Usuario>("pontoModel.FK_Ponto_Usuario", "Usuario", value);
                 }
             }
         }
@@ -2760,6 +3185,114 @@ namespace ProjetoPonto.Entity
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="pontoModel", Name="TipoPonto")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class TipoPonto : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new TipoPonto object.
+        /// </summary>
+        /// <param name="idTipoPonto">Initial value of the IdTipoPonto property.</param>
+        /// <param name="descricao">Initial value of the Descricao property.</param>
+        public static TipoPonto CreateTipoPonto(global::System.Int32 idTipoPonto, global::System.String descricao)
+        {
+            TipoPonto tipoPonto = new TipoPonto();
+            tipoPonto.IdTipoPonto = idTipoPonto;
+            tipoPonto.Descricao = descricao;
+            return tipoPonto;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IdTipoPonto
+        {
+            get
+            {
+                return _IdTipoPonto;
+            }
+            set
+            {
+                if (_IdTipoPonto != value)
+                {
+                    OnIdTipoPontoChanging(value);
+                    ReportPropertyChanging("IdTipoPonto");
+                    _IdTipoPonto = StructuralObject.SetValidValue(value, "IdTipoPonto");
+                    ReportPropertyChanged("IdTipoPonto");
+                    OnIdTipoPontoChanged();
+                }
+            }
+        }
+        private global::System.Int32 _IdTipoPonto;
+        partial void OnIdTipoPontoChanging(global::System.Int32 value);
+        partial void OnIdTipoPontoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Descricao
+        {
+            get
+            {
+                return _Descricao;
+            }
+            set
+            {
+                OnDescricaoChanging(value);
+                ReportPropertyChanging("Descricao");
+                _Descricao = StructuralObject.SetValidValue(value, false, "Descricao");
+                ReportPropertyChanged("Descricao");
+                OnDescricaoChanged();
+            }
+        }
+        private global::System.String _Descricao;
+        partial void OnDescricaoChanging(global::System.String value);
+        partial void OnDescricaoChanged();
+
+        #endregion
+
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pontoModel", "FK_Ponto_TipoPonto", "Ponto")]
+        public EntityCollection<Ponto> Ponto
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Ponto>("pontoModel.FK_Ponto_TipoPonto", "Ponto");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Ponto>("pontoModel.FK_Ponto_TipoPonto", "Ponto", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="pontoModel", Name="Usuario")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -3079,6 +3612,28 @@ namespace ProjetoPonto.Entity
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Perfil>("pontoModel.FK_Usuario_Perfil", "Perfil", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pontoModel", "FK_Ponto_Usuario", "Ponto")]
+        public EntityCollection<Ponto> Ponto
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Ponto>("pontoModel.FK_Ponto_Usuario", "Ponto");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Ponto>("pontoModel.FK_Ponto_Usuario", "Ponto", value);
                 }
             }
         }
