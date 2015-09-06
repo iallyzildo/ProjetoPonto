@@ -313,6 +313,22 @@ namespace ProjetoPonto.Entity
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<TipoPonto> TipoPonto
+        {
+            get
+            {
+                if ((_TipoPonto == null))
+                {
+                    _TipoPonto = base.CreateObjectSet<TipoPonto>("TipoPonto");
+                }
+                return _TipoPonto;
+            }
+        }
+        private ObjectSet<TipoPonto> _TipoPonto;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Usuario> Usuario
         {
             get
@@ -341,22 +357,6 @@ namespace ProjetoPonto.Entity
             }
         }
         private ObjectSet<Ponto> _Ponto;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<TipoPonto> TipoPonto
-        {
-            get
-            {
-                if ((_TipoPonto == null))
-                {
-                    _TipoPonto = base.CreateObjectSet<TipoPonto>("TipoPonto");
-                }
-                return _TipoPonto;
-            }
-        }
-        private ObjectSet<TipoPonto> _TipoPonto;
 
         #endregion
 
@@ -475,6 +475,14 @@ namespace ProjetoPonto.Entity
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the TipoPonto EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTipoPonto(TipoPonto tipoPonto)
+        {
+            base.AddObject("TipoPonto", tipoPonto);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Usuario EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToUsuario(Usuario usuario)
@@ -488,14 +496,6 @@ namespace ProjetoPonto.Entity
         public void AddToPonto(Ponto ponto)
         {
             base.AddObject("Ponto", ponto);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the TipoPonto EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToTipoPonto(TipoPonto tipoPonto)
-        {
-            base.AddObject("TipoPonto", tipoPonto);
         }
 
         #endregion

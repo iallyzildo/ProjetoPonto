@@ -119,12 +119,14 @@ namespace ProjetoPonto.Controllers
                 // Testa se o mecanico nao está na role associada ao banco
                 if (!Roles.IsUserInRole(u.Login, p.Descricao))
                 {
-                    Roles.AddUserToRole(u.Login, p.Descricao); // adiciona o mecanico
+                    Roles.AddUserToRole(u.Login, p.Descricao); // adiciona o usuario
                 }
             }
 
             FormsAuthentication.SetAuthCookie(u.Login, true);
+
             return Redirect("/");
+                        
         }
 
         public ActionResult Logoff()
@@ -154,7 +156,8 @@ namespace ProjetoPonto.Controllers
             usuarioModel.excluirUsuario(u);
             return RedirectToAction("Index");
         }
-       
+         
+              
 
     }
 }

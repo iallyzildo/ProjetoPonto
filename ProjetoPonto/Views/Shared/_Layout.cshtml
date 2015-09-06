@@ -30,7 +30,7 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                      @if (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "mecanico"))
                             {  
-                                <li>@Html.ActionLink("Ponto Relogio", "Index", "Home")</li>
+                                <li>@Html.ActionLink("Ponto Relogio", "Index", "Ponto")</li>
                             }
                      @if (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "administrador"))
                             {

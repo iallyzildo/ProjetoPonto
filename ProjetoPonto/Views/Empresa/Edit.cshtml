@@ -29,17 +29,17 @@
         </div>
          
         <div class="form-group">
-             Estado
-            <div class="control-label col-md-2">
-            @Html.DropDownList("IdEstado")
+             <span class="control-label col-md-2">Estado</span>
+           <div class="btn-group">
+            @Html.DropDownList("IdEstado",null, new { @class = "form-control" })
                 
         </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.IdCidade, new { @class = "control-label col-md-2" })
-          <div class="col-md-10">
-            @Html.DropDownList("IdCidade")
+          <div class="btn-group">
+            @Html.DropDownList("IdCidade",null, new { @class = "form-control" })
         </div>
              </div>
 

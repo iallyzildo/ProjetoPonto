@@ -90,5 +90,13 @@ namespace ProjetoPonto.Models
             }
             return erro;
         }
+        public List<ModeloMaquina> listarModeloMaquinaPorTipoMaquina(int idTipoMaquina)
+        {
+            var lista = from m in db.ModeloMaquina
+                        where m.IdTipoMaquina == idTipoMaquina
+                        select m;
+
+            return lista.ToList();
+        }
     }
 }

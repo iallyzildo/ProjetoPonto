@@ -24,14 +24,14 @@
 <div class="form-group">
             @Html.LabelFor(model => model.IdMarca, new { @class = "control-label col-md-2" })
        <div class="btn-group">
-            @Html.DropDownList("IdMarca")
+            @Html.DropDownList("IdMarca",null, new { @class = "form-control" })
         </div>
              </div>
 
      <div class="form-group">
             @Html.LabelFor(model => model.IdTipoMaquina, new { @class = "control-label col-md-2" })
        <div class="btn-group">
-            @Html.DropDownList("IdTipoMaquina")
+            @Html.DropDownList("IdTipoMaquina",null, new { @class = "form-control" })
         </div>
              </div>
 

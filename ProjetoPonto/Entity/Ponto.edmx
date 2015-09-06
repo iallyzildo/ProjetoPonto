@@ -486,6 +486,7 @@
             <End Role="Problema" EntitySet="Problema" />
             <End Role="Solucao" EntitySet="Solucao" />
           </AssociationSet>
+          <EntitySet Name="TipoPonto" EntityType="pontoModel.TipoPonto" />
           <EntitySet Name="Usuario" EntityType="pontoModel.Usuario" />
           <AssociationSet Name="FK_Usuario_Empresa" Association="pontoModel.FK_Usuario_Empresa">
             <End Role="Empresa" EntitySet="Empresa" />
@@ -500,7 +501,6 @@
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
           <EntitySet Name="Ponto" EntityType="pontoModel.Ponto" />
-          <EntitySet Name="TipoPonto" EntityType="pontoModel.TipoPonto" />
           <AssociationSet Name="FK_Ponto_Os" Association="pontoModel.FK_Ponto_Os">
             <End Role="Os" EntitySet="Os" />
             <End Role="Ponto" EntitySet="Ponto" />
@@ -773,6 +773,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TipoPonto">
+          <Key>
+            <PropertyRef Name="IdTipoPonto" />
+          </Key>
+          <Property Type="Int32" Name="IdTipoPonto" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descricao" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Ponto" Relationship="pontoModel.FK_Ponto_TipoPonto" FromRole="TipoPonto" ToRole="Ponto" />
+        </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="IdUsuario" />
@@ -840,14 +848,6 @@
           <NavigationProperty Name="Os" Relationship="pontoModel.FK_Ponto_Os" FromRole="Ponto" ToRole="Os" />
           <NavigationProperty Name="TipoPonto" Relationship="pontoModel.FK_Ponto_TipoPonto" FromRole="Ponto" ToRole="TipoPonto" />
           <NavigationProperty Name="Usuario" Relationship="pontoModel.FK_Ponto_Usuario" FromRole="Ponto" ToRole="Usuario" />
-        </EntityType>
-        <EntityType Name="TipoPonto">
-          <Key>
-            <PropertyRef Name="IdTipoPonto" />
-          </Key>
-          <Property Type="Int32" Name="IdTipoPonto" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Descricao" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Ponto" Relationship="pontoModel.FK_Ponto_TipoPonto" FromRole="TipoPonto" ToRole="Ponto" />
         </EntityType>
         <Association Name="FK_Ponto_Os">
           <End Type="pontoModel.Os" Role="Os" Multiplicity="1" />
@@ -1020,6 +1020,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TipoPonto">
+            <EntityTypeMapping TypeName="pontoModel.TipoPonto">
+              <MappingFragment StoreEntitySet="TipoPonto">
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="IdTipoPonto" ColumnName="IdTipoPonto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Usuario">
             <EntityTypeMapping TypeName="pontoModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
@@ -1044,14 +1052,6 @@
                 <ScalarProperty Name="HoraInicial" ColumnName="HoraInicial" />
                 <ScalarProperty Name="DataAbertura" ColumnName="DataAbertura" />
                 <ScalarProperty Name="IdPonto" ColumnName="IdPonto" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TipoPonto">
-            <EntityTypeMapping TypeName="pontoModel.TipoPonto">
-              <MappingFragment StoreEntitySet="TipoPonto">
-                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
-                <ScalarProperty Name="IdTipoPonto" ColumnName="IdTipoPonto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -17,7 +17,7 @@ namespace ProjetoPonto.Controllers
 
         public ActionResult Index()
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "mecanico"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
             {
             return View(cidadeModel.todasCidades());
             }

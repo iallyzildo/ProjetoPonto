@@ -18,6 +18,7 @@ namespace ProjetoPonto.Controllers
         private ProblemaModel problemaModel = new ProblemaModel();
         private SecaoProblemaModel secaoProblemaModel = new SecaoProblemaModel();
         private OsModel osModel = new OsModel();
+        private TipoMaquinaModel tipoMaquinaModel = new TipoMaquinaModel();
         private SolucaoModel solucaoModel = new SolucaoModel();
 
         public ActionResult Index()
@@ -36,19 +37,21 @@ namespace ProjetoPonto.Controllers
                 int idStatusOs = 1;
                 int idModeloMaquina = 1;
                 int idCliente = 1;
+                int idTipoMaquina = 1;
                 if (id != 0)
                 {
                     o = osModel.obterOs(id);
                     idStatusOs = o.IdStatusOs;
                     idModeloMaquina = o.IdModeloMaquina;
                     idCliente = o.IdCliente;
+                    idTipoMaquina = o.ModeloMaquina.IdTipoMaquina;
 
                 }
 
-                ViewBag.IdStatusOs= new SelectList(statusOsModel.todosStatusOs(), "IdStatusOs", "Descricao", idStatusOs);
-                ViewBag.IdModeloMaquina = new SelectList(modeloMaquinaModel.todosModeloMaquina(), "IdModeloMaquina", "Descricao", idModeloMaquina);
+                ViewBag.IdStatusOs= new SelectList(statusOsModel.todosStatusOs(), "IdStatusOs", "Descricao", idStatusOs);               
                 ViewBag.IdCliente = new SelectList(clienteModel.todosClientes(), "IdCliente", "Nome", idCliente);
-
+                ViewBag.IdTipoMaquina= new SelectList(tipoMaquinaModel.todosTipoMaquina(), "IdTipoMaquina", "Descricao", idTipoMaquina);
+                ViewBag.IdModeloMaquina = new SelectList(modeloMaquinaModel.listarModeloMaquinaPorTipoMaquina(idTipoMaquina), "IdModeloMaquina", "Descricao", idModeloMaquina);
 
                 return View(o);
             }
@@ -111,12 +114,48 @@ namespace ProjetoPonto.Controllers
             }
             if (erro == null)
             {
-                return RedirectToAction("ListaProblemas", new { idProblema = p.IdProblema});
+                return RedirectToAction("ListaProblemas", new { idOs = p.IdOs});
             }
             else
             {
                 ViewBag.Erro = erro;
                 return View(p);
+            }
+        }
+
+        public ActionResult EditSolucao(int idProblema, int idSolucao)
+        {
+            Solucao s = new Solucao();
+            s.IdProblema = idProblema;
+
+
+            if (idSolucao != 0)
+            {
+                s = solucaoModel.obterSolucao(idSolucao);
+            }
+            ViewBag.IdProblema = new SelectList(problemaModel.todosProblemas(), "IdProblema", "Descricao", idProblema);
+            return View(s);
+        }
+        [HttpPost]
+        public ActionResult EditSolucao(Solucao s)
+        {
+            string erro = null;
+            if (s.IdSolucao == 0)
+            {
+                erro = solucaoModel.adicionarSolucao(s);
+            }
+            else
+            {
+                erro = solucaoModel.editarSolucao(s);
+            }
+            if (erro == null)
+            {
+                return RedirectToAction("ListaSolucoes", new { idProblema = s.IdProblema });
+            }
+            else
+            {
+                ViewBag.Erro = erro;
+                return View(s);
             }
         }
         
@@ -147,6 +186,11 @@ namespace ProjetoPonto.Controllers
             Problema p = problemaModel.obterProblema(idProblema);
             problemaModel.excluirProblema(p);
             return RedirectToAction("ListaProblemas", new { idOs = p.IdOs});
+        }
+        public JsonResult ListaModeloMaquina(int idTipoMaquina)
+        {
+            var lista = new SelectList(modeloMaquinaModel.listarModeloMaquinaPorTipoMaquina(idTipoMaquina), "IdModeloMaquina", "Descricao", 0);
+            return Json(new { modeloMaquinas = lista });
         }
 
     }

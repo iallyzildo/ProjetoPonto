@@ -49,20 +49,28 @@
 
          <div class="form-group">
             @Html.LabelFor(model => model.IdCliente, new { @class = "control-label col-md-2" })
-          <div class="col-md-10">
-            @Html.DropDownList("IdCliente")
+          <div class="btn-group">
+            @Html.DropDownList("IdCliente",null, new { @class = "form-control" })
         </div>
              </div>
+
+         <div class="form-group">
+             <span class="control-label col-md-2">TipoMaquina</span>
+            <div class="btn-group">
+            @Html.DropDownList("IdTipoMaquina",null, new { @class = "form-control" })
+                
+        </div>
+        </div>
             <div class="form-group">
             @Html.LabelFor(model => model.IdModeloMaquina,  new{ @class = "control-label col-md-2" })
-          <div class="col-md-10">
-            @Html.DropDownList("IdModeloMaquina")
+          <div class="btn-group">
+            @Html.DropDownList("IdModeloMaquina",null, new { @class = "form-control" })
         </div>
              </div>
            <div class="form-group">
             @Html.LabelFor(model => model.IdStatusOs,  new{ @class = "control-label col-md-2" })
-          <div class="col-md-10">
-            @Html.DropDownList("IdStatusOs")
+          <div class="btn-group">
+            @Html.DropDownList("IdStatusOs",null, new { @class = "form-control" })
         </div>
              </div>
 
@@ -90,3 +98,31 @@
         alert('@Html.Raw(ViewBag.Erro)');
     </script>
 }
+<script>
+    function validar() {
+
+        if ($("#Serie").val() == "") {
+            alert("Serie é obrigatória");
+            return false;
+        }
+
+        return true;
+    }
+    $("#IdTipoMaquina").change(function () {
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "../ListaModeloMaquina",
+            data: { idTipoMaquina: $("#IdTipoMaquina").val() },
+            success: function (dados) {
+                var html = "";
+                $.each(dados["modeloMaquinas"], function (idx, obj) {
+                    html = html + "<option value='" + obj.Value + "'>" + obj.Text + "</option>";
+                    //alert(obj.Value + " " + obj.Text);
+                });
+                $("#IdModeloMaquina").html(html);
+            }
+        });
+    });
+</script>
+
