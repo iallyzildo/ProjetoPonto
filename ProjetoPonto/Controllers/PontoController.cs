@@ -38,16 +38,23 @@ namespace ProjetoPonto.Controllers
                 int idUsuario = 1;
                 int idOs = 1;
                 int idTipoPonto = 1;
+                DateTime dataAbertura = DateTime.Now;
+                TimeSpan horaInicial = DateTime.Now.TimeOfDay;
+                
+            
                 if (id != 0)
                 {
                     p = pontoModel.obterPonto(id);
                     idUsuario = p.IdUsuario;
                     idOs = p.IdOs;
                     idTipoPonto = p.IdTipoPonto;
+                    dataAbertura = p.DataAbertura.Date;
+                    horaInicial = p.HoraInicial;
                    
                 }
-                ViewBag.HoraInicial = DateTime.Now.ToString(@"HH:mm:ss");
-                ViewBag.DataAbertura = DateTime.Now.ToString(@"dd/MM/yyyy");
+                ViewBag.HoraInicial = horaInicial.ToString(@"hh\:mm\:ss"); 
+               // ViewBag.HoraInicial = horaInicial.ToString(@"HH:mm:ss");
+                ViewBag.DataAbertura = dataAbertura.ToString(@"dd/MM/yyyy");
                 ViewBag.IdUsuario = new SelectList(usuarioModel.todosUsuarios(), "IdUsuario", "Login", idUsuario);
                 ViewBag.IdOs = new SelectList(osModel.todasOs(), "IdOs", "NumeroOs", idOs);
                 ViewBag.IdTipoPonto = new SelectList(tipoPontoModel.todosTipoPonto(), "IdTipoPonto", "Descricao", idTipoPonto);

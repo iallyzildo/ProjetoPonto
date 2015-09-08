@@ -42,13 +42,13 @@
                                                 @Html.DisplayNameFor(model => model.Observacao)
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.IdUsuario)
+                                                @Html.DisplayNameFor(model => model.Usuario.Login)
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.IdOs)
+                                                @Html.DisplayNameFor(model => model.Os.NumeroOs)
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.IdTipoPonto)
+                                                @Html.DisplayNameFor(model => model.TipoPonto.Descricao)
                                             </th>
                                             <th></th>
                                         </tr>
@@ -69,10 +69,10 @@
             @Html.DisplayFor(modelItem => item.Observacao)
         </td>
           <td>
-            @Html.DisplayFor(modelItem => item.IdUsuario)
+            @Html.DisplayFor(modelItem => item.Usuario.Login)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IdPonto)
+            @Html.DisplayFor(modelItem => item.Os.NumeroOs)
         </td>
          <td>
             @Html.DisplayFor(modelItem => item.TipoPonto.Descricao)
