@@ -40,7 +40,7 @@ namespace ProjetoPonto.Controllers
                 int idTipoPonto = 1;
                 DateTime dataAbertura = DateTime.Now;
                 TimeSpan horaInicial = DateTime.Now.TimeOfDay;
-                
+               
             
                 if (id != 0)
                 {

@@ -13,14 +13,8 @@
         <hr />
 
         @Html.HiddenFor(model => model.IdPonto)
-
-       <div class="form-group">
-             @Html.LabelFor(model => model.HoraInicial, new { @class = "control-label col-md-2" })
-             <div class="btn-group">
-                 @Html.TextBox("HoraInicial",null, new { @class = "form-control" })
-             </div>
-         </div>
-
+        @Html.Hidden("DataAbertura",null, new { @class = "form-control" })
+        @Html.Hidden("HoraInicial",null, new { @class = "form-control" })
        <div class="form-group">
            @Html.LabelFor(model => model.HoraFinal, new { @class = "control-label col-md-2" })
            <div class="col-md-3">
@@ -28,12 +22,8 @@
            </div>
        </div>
    
-          <div class="form-group">
-             @Html.LabelFor(model => model.DataAbertura, new { @class = "control-label col-md-2" })
-             <div class="btn-group">
-                 @Html.TextBox("DataAbertura",null, new { @class = "form-control" })
-             </div>
-         </div>
+          
+                
            
        <div class="form-group">
            @Html.LabelFor(model => model.Observacao, new { @class = "control-label col-md-2" })

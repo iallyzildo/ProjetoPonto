@@ -4,19 +4,23 @@ using System.Linq;
 using System.Web;
 using ProjetoPonto.Entity;
 using System.Web.Security;
+using System.Web.Mvc;
 
 namespace ProjetoPonto.Models
 {
     public class UsuarioModel
     {
         private pontoEntities db = new pontoEntities();
-
+        private PerfilModel perfilModel = new PerfilModel();
+       
         public List<Usuario> todosUsuarios()
         {
             var lista = from u in db.Usuario
                         select u;
             return lista.ToList();
         }
+
+
         public string adicionarUsuario(Usuario u)
         {
             string erro = null;

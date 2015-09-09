@@ -156,6 +156,7 @@ namespace ProjetoPonto.Controllers
             usuarioModel.excluirUsuario(u);
             return RedirectToAction("Index");
         }
+
          
               
 
