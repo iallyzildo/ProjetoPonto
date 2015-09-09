@@ -15,13 +15,18 @@
         @Html.HiddenFor(model => model.IdPonto)
         @Html.Hidden("DataAbertura",null, new { @class = "form-control" })
         @Html.Hidden("HoraInicial",null, new { @class = "form-control" })
+
+        @if (Model.IdPonto != 0)
+    {
+       
+    
        <div class="form-group">
            @Html.LabelFor(model => model.HoraFinal, new { @class = "control-label col-md-2" })
            <div class="col-md-3">
                @Html.TextBoxFor(model => model.HoraFinal, new { @class = "form-control" })
            </div>
        </div>
-   
+   }
           
                 
            
