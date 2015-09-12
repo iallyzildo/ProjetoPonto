@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row">
                 <p>
-                    @Html.ActionLink("Novo", "Edit", new { id = 0 })
+                    @Html.ActionLink("Novo", "Registro", new { id = 0 })
                 </p>
                 <hr class="section-heading-spacer">
 
@@ -79,9 +79,7 @@
         </td>
 
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.IdPonto }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.IdPonto },
-                new { @onclick = "return confirm('Tem certeza?');" })
+            @Html.ActionLink("Fechar", "Registro", new { id = item.IdPonto })
         </td>
     </tr>
 }

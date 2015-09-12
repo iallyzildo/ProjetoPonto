@@ -3,43 +3,36 @@
 @{
     ViewBag.Title = "Login";
 }
+
 <body>
-    <a name="services"></a>
-    <div class="content-section-a">
 
-        <div class="container">
-            Login
-            <div class="row">
-                
-                <hr class="section-heading-spacer">
 
-                <div class="clearfix"></div>
+   @using (Html.BeginForm()) {
+       <center>
+    <div class="container">
+   <form class="form-signin">
+       <br />
+       <br />
+       <br />
+       <br />
 
-@using (Html.BeginForm(new { @class = "form-horizontal", role = "form" })) {
-    <div class="form-horizontal">
+        <h2 class="form-signin-heading">Area Restrita</h2>
+       <br />
+        <label for="inputEmail" class="sr-only">Email address</label>
+        @Html.TextBoxFor(model => model.Login, new { @class = "form-control",placeholder="Login"  })
+       <br />
 
-             <div class="form-group">
-            @Html.LabelFor(model => model.Login, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.TextBoxFor(model => model.Login, new { @class = "form-control" })
-            </div>
-        </div>
+        <label for="inputPassword" class="sr-only">Password</label>
+         @Html.PasswordFor(model => model.Senha, new { @class = "form-control",placeholder="Senha" })
+       <br />
+       <br />
+       <br />
+       <br />
+       <input type="submit" value="Entrar" class="btn btn-default btn-lg" onclick="return validar();" />
+      </form>
+       </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Senha, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.PasswordFor(model => model.Senha, new { @class = "form-control" })
-            </div>
-        </div>
-       
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Entrar" class="btn btn-default" onclick="return validar();" />
-        </div>
-    </div>
-  </div>
-
+           </center>
    
 }
 

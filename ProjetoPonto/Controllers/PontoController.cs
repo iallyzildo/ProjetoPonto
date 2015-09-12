@@ -22,13 +22,13 @@ namespace ProjetoPonto.Controllers
         {
             if (Roles.IsUserInRole(User.Identity.Name, "mecanico"))
             {
-                return View(pontoModel.todosPontos());
+                return View(pontoModel.todosPontosAbertos());
             }
             return Redirect("/Shared/Error");
         }
 
 
-        public ActionResult Edit(int id)
+        public ActionResult Registro(int id)
         {
             if (Roles.IsUserInRole(User.Identity.Name, "mecanico"))
             {
@@ -50,10 +50,11 @@ namespace ProjetoPonto.Controllers
                     idTipoPonto = p.IdTipoPonto;
                     dataAbertura = p.DataAbertura.Date;
                     horaInicial = p.HoraInicial;
+                    TimeSpan horaFinal = DateTime.Now.TimeOfDay;
+                    ViewBag.HoraFinal = horaFinal.ToString(@"hh\:mm\:ss"); 
                    
                 }
                 ViewBag.HoraInicial = horaInicial.ToString(@"hh\:mm\:ss"); 
-               // ViewBag.HoraInicial = horaInicial.ToString(@"HH:mm:ss");
                 ViewBag.DataAbertura = dataAbertura.ToString(@"dd/MM/yyyy");
                 ViewBag.IdUsuario = new SelectList(usuarioModel.todosUsuarios(), "IdUsuario", "Login", idUsuario);
                 ViewBag.IdOs = new SelectList(osModel.todasOs(), "IdOs", "NumeroOs", idOs);
@@ -63,7 +64,7 @@ namespace ProjetoPonto.Controllers
             return Redirect("/Shared/Error");
         }
         [HttpPost]
-        public ActionResult Edit(Ponto p)
+        public ActionResult Registro(Ponto p)
         {
 
             string erro = null;
