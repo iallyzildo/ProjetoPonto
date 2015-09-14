@@ -7,36 +7,41 @@
 <body>
 
 
-   @using (Html.BeginForm()) {
-       <center>
-    <div class="container">
-   <form class="form-signin">
-       <br />
-       <br />
-       <br />
-       <br />
-
-        <h2 class="form-signin-heading">Area Restrita</h2>
-       <br />
-        <label for="inputEmail" class="sr-only">Email address</label>
-        @Html.TextBoxFor(model => model.Login, new { @class = "form-control",placeholder="Login"  })
-       <br />
-
-        <label for="inputPassword" class="sr-only">Password</label>
-         @Html.PasswordFor(model => model.Senha, new { @class = "form-control",placeholder="Senha" })
-       <br />
-       <br />
-       <br />
-       <br />
-       <input type="submit" value="Entrar" class="btn btn-default btn-lg" onclick="return validar();" />
-      </form>
-       </div>
-
-           </center>
+   @using (Html.BeginForm())
+   {
+       <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <a href="/" class="close"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">x</span></a>
+          <h1 class="text-center">Área Restrita</h1>
+      </div>
+      <div class="modal-body">
+          <form class="form col-md-12 center-block">
+            <div class="form-group">
+                @Html.TextBoxFor(model => model.Login, new { @class = "form-control input-lg",placeholder="Login"  })
+            </div>
+            <div class="form-group">
+                     @Html.PasswordFor(model => model.Senha, new { @class = "form-control input-lg",placeholder="Senha" })
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary btn-lg btn-block" onclick="return validar();">Entrar</button>
+            </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+          <div class="col-md-12">
+          <a href="/" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Cancel</span></a>
+		  </div>	
+      </div>
+  </div>
+  </div>
+</div>
    
-}
+   }
 
 
+    
 @if (ViewBag.Erro != null && ViewBag.Erro != "")
 { 
 <script>

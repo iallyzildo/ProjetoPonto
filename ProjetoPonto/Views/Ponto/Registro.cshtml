@@ -15,6 +15,7 @@
         @Html.HiddenFor(model => model.IdPonto)
         @Html.Hidden("DataAbertura",null, new { @class = "form-control" })
         @Html.Hidden("HoraInicial",null, new { @class = "form-control" })
+        @Html.Hidden("IdUsuario",null, new { @class = "form-control" })
 
         @if (Model.IdPonto != 0)
     {
@@ -29,13 +30,6 @@
                @Html.TextBoxFor(model => model.Observacao, new { @class = "form-control" })
            </div>
        </div>
-
-        <div class="form-group">
-             @Html.LabelFor(model => model.IdUsuario, new { @class = "control-label col-md-2" })
-             <div class="btn-group">
-                @Html.DropDownList("IdUsuario", null, new { @class = "form-control" })
-             </div>
-         </div>
 
       <div class="form-group">
              @Html.LabelFor(model => model.IdOs, new { @class = "control-label col-md-2" })

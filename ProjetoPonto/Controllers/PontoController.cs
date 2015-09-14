@@ -22,7 +22,8 @@ namespace ProjetoPonto.Controllers
         {
             if (Roles.IsUserInRole(User.Identity.Name, "mecanico"))
             {
-                return View(pontoModel.todosPontosAbertos());
+                string login = User.Identity.Name;
+                return View(pontoModel.todosPontosAbertosPorUsuario(login));
             }
             return Redirect("/Shared/Error");
         }
@@ -34,8 +35,10 @@ namespace ProjetoPonto.Controllers
             {
                 
                 Ponto p = new Ponto();
-                
-                int idUsuario = 1;
+                string login = User.Identity.Name;
+                Usuario u = usuarioModel.obterUsuarioPorLogin(login);
+
+                int idUsuario = u.IdUsuario;
                 int idOs = 1;
                 int idTipoPonto = 1;
                 DateTime dataAbertura = DateTime.Now;
@@ -56,7 +59,7 @@ namespace ProjetoPonto.Controllers
                 }
                 ViewBag.HoraInicial = horaInicial.ToString(@"hh\:mm\:ss"); 
                 ViewBag.DataAbertura = dataAbertura.ToString(@"dd/MM/yyyy");
-                ViewBag.IdUsuario = new SelectList(usuarioModel.todosUsuarios(), "IdUsuario", "Login", idUsuario);
+                ViewBag.IdUsuario = idUsuario;
                 ViewBag.IdOs = new SelectList(osModel.todasOs(), "IdOs", "NumeroOs", idOs);
                 ViewBag.IdTipoPonto = new SelectList(tipoPontoModel.todosTipoPonto(), "IdTipoPonto", "Descricao", idTipoPonto);
                 return View(p);
