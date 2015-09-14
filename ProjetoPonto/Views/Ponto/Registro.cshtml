@@ -6,50 +6,51 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     
-   <div class="form-horizontal">
+    <div class="form-horizontal">
         <h4>Estado</h4>
         <hr />
 
         @Html.HiddenFor(model => model.IdPonto)
-        @Html.Hidden("DataAbertura",null, new { @class = "form-control" })
-        @Html.Hidden("HoraInicial",null, new { @class = "form-control" })
-        @Html.Hidden("IdUsuario",null, new { @class = "form-control" })
+        @Html.Hidden("DataAbertura", null, new { @class = "form-control" })
+        @Html.Hidden("HoraInicial", null, new { @class = "form-control" })
+        @Html.Hidden("IdUsuario", null, new { @class = "form-control" })
 
         @if (Model.IdPonto != 0)
-    {
-         @Html.Hidden("HoraFinal",null, new { @class = "form-control" })
-   }
-          
-                
-           
-       <div class="form-group">
-           @Html.LabelFor(model => model.Observacao, new { @class = "control-label col-md-2" })
-           <div class="col-md-3">
-               @Html.TextBoxFor(model => model.Observacao, new { @class = "form-control" })
-           </div>
-       </div>
+        {
+            @Html.Hidden("HoraFinal", null, new { @class = "form-control" })
+        }
 
-      <div class="form-group">
-             @Html.LabelFor(model => model.IdOs, new { @class = "control-label col-md-2" })
-             <div class="btn-group">
-                 @Html.DropDownList("IdOs",null, new { @class = "form-control" })
-             </div>
-         </div>
 
-       <div class="form-group">
-             @Html.LabelFor(model => model.IdTipoPonto, new { @class = "control-label col-md-2" })
-             <div class="btn-group">
-                 @Html.DropDownList("IdTipoPonto",null, new { @class = "form-control" })
-             </div>
-         </div>
-     
 
-       <div class="form-group">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Observacao, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Observacao, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdOs, new { @class = "control-label col-md-2" })
+            <div class="btn-group">
+                @Html.DropDownList("IdOs", null, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdTipoPonto, new { @class = "control-label col-md-2" })
+            <div class="btn-group">
+                @Html.DropDownList("IdTipoPonto", null, new { @class = "form-control" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default"  onclick="return validar();" />
-          </div>
+                <input type="submit" value="Save" class="btn btn-default" onclick="return validar();" />
+            </div>
         </div>
     </div>
 }
@@ -68,7 +69,7 @@
     </script>
 }
 <script>
-   
+
 
     function validar() {
         if ($("#HoraInicial").val() == "") {
