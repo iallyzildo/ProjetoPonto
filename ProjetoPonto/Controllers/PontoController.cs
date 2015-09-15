@@ -28,6 +28,15 @@ namespace ProjetoPonto.Controllers
             return Redirect("/Shared/Error");
         }
 
+        public ActionResult ConsultaRegistros()
+        {
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            {
+                return View(pontoModel.todosPontos());
+            }
+            return Redirect("/Shared/Error");
+        }
+
 
         public ActionResult Registro(int id)
         {

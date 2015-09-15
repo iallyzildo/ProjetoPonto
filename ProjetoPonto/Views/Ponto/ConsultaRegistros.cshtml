@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ProjetoPonto.Entity.Ponto>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Consulta de Registros";
 }
 
 <body>
@@ -10,9 +10,6 @@
 
         <div class="container">
             <div class="row">
-                <p>
-                    @Html.ActionLink("Novo", "Registro", new { id = 0 })
-                </p>
                 <hr class="section-heading-spacer">
 
                 <div class="clearfix"></div>
@@ -21,7 +18,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Gerenciamento de Ponto
+                            Consulta de Registros
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -50,7 +47,7 @@
                                             <th>
                                                 @Html.DisplayNameFor(model => model.TipoPonto.Descricao)
                                             </th>
-                                            <th></th>
+                                           
                                         </tr>
 
 @foreach (var item in Model)
@@ -78,9 +75,6 @@
             @Html.DisplayFor(modelItem => item.TipoPonto.Descricao)
         </td>
 
-        <td>
-            @Html.ActionLink("Fechar", "Registro", new { id = item.IdPonto })
-        </td>
     </tr>
 }
                                 </table>

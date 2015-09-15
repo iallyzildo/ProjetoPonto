@@ -41,22 +41,31 @@
                         <h3>O software de registro e gerenciamento </h3>
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
-                            <li>
-                                @if (Request.IsAuthenticated) {
-                               
-                                }else
-                                {
-                                     <a href="usuario/login" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name"><h5>ÁREA RESTRITA</h5>  </span></a>
+    <li>
+        @if (Request.IsAuthenticated)
+        {
+            
+        }
+        else
+        {
+
+            <a href="usuario/login" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i><span class="network-name">
+                <h5>ÁREA RESTRITA</h5>
+            </span></a>
                                 }
-                                   @if (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "mecanico"))
-                            {  
-                               <a href="Ponto/Index" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name"><h5>Registrar Ponto</h5>  </span></a>
+        @if (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "mecanico"))
+        {  
+            <a href="Ponto/Index" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i><span class="network-name">
+                <h5>Registrar Ponto</h5>
+            </span></a>
                             }
-                                  @if (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "administrador"))
-                            {  
-                               <a href="Usuario/Index" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name"><h5>Painel de Gerenciamento</h5>  </span></a>
+        @if (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "administrador"))
+        {  
+            <a href="Usuario/Index" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i><span class="network-name">
+                <h5>Painel de Gerenciamento</h5>
+            </span></a>
                             }
-                            </li>
+    </li>
                         </ul>
                     </div>
                 </div>
@@ -78,7 +87,7 @@
                 <div class="col-lg-5 col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    
+                     @Html.Partial("_LoginPartial")
                     <h2 class="section-heading">Death to the Stock Photo:<br>Special Thanks</h2>
                     <p class="lead">A special thanks to <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a> for providing the photographs that you see in this template. Visit their website to become a member.</p>
                 </div>
