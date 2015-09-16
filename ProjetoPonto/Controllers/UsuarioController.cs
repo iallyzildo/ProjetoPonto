@@ -29,6 +29,18 @@ namespace ProjetoPonto.Controllers
             }
              return Redirect("/Shared/Error");
         }
+
+         [Authorize]
+        public ActionResult AreaRestrita()
+        {
+
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            {
+                return View("AreaRestrita");
+            }
+            return Redirect("/Shared/Error");     
+
+        }
         public ActionResult Login()
         {
 

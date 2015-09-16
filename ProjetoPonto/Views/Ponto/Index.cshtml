@@ -79,7 +79,9 @@
         </td>
 
         <td>
-            @Html.ActionLink("Fechar", "Registro", new { id = item.IdPonto })
+            
+            @Html.ActionLink("Fechar", "Registro", new { @class="btn btn-default btn-lg",  id = item.IdPonto })
+            
         </td>
     </tr>
 }

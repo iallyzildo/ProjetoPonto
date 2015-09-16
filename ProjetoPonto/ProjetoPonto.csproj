@@ -420,10 +420,11 @@
     <Content Include="Views\Ponto\ConsultaRegistros.cshtml" />
     <Content Include="Views\Relatorios\Modelo.cshtml" />
     <Content Include="Views\Relatorios\PDFConfigurado.cshtml" />
+    <Content Include="Views\Usuario\AreaRestrita.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\login\" />
+    <Folder Include="Content\AreaRestrita\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
