@@ -16,6 +16,11 @@ namespace ProjetoPonto.Models
                         select o;
             return lista.ToList();
         }
+        public int qtdOs()
+        {
+            int quantidadeOs= (from o in db.Os select o).Count();
+            return quantidadeOs;
+        }
         public string adicionarOs(Os o)
         {
             string erro = null;

@@ -19,7 +19,12 @@ namespace ProjetoPonto.Models
                         select u;
             return lista.ToList();
         }
-
+        public int qtdUsuarios()
+        {
+            int quantidadeUsuarios = (from p in db.Usuario select p).Count();
+            return quantidadeUsuarios;
+        }
+       
         public string adicionarUsuario(Usuario u)
         {
             string erro = null;

@@ -17,13 +17,17 @@ namespace ProjetoPonto.Models
                         select p;
             return lista.ToList();
         }
-        //public List<Ponto> todosPontosAbertos()
-        //{
-        //    var lista = from p in db.Ponto 
-        //                where p.HoraFinal == null
-        //                select p ;
-        //    return lista.ToList();
-        //}
+
+        public int qtdPontos()
+        {
+            int quantidadePonto = (from p in db.Ponto select p).Count();
+            return quantidadePonto;
+        }
+        public int qtdPontosAbertos()
+        {
+            int quantidadePontoAbertos = (from p in db.Ponto where p.HoraFinal == null select p).Count();
+            return quantidadePontoAbertos;
+        }
         public List<Ponto> todosPontosAbertosPorUsuario(string login)
         {
             var lista = from p in db.Ponto

@@ -14,6 +14,8 @@ namespace ProjetoPonto.Controllers
     public class UsuarioController : Controller
     {
         private UsuarioModel usuarioModel = new UsuarioModel();
+        private OsModel osModel = new OsModel();
+        private PontoModel pontoModel = new PontoModel();
         private FuncionarioModel funcionarioModel = new FuncionarioModel();
         private EmpresaModel empresaModel = new EmpresaModel();
         private PerfilModel perfilModel = new PerfilModel();
@@ -33,6 +35,23 @@ namespace ProjetoPonto.Controllers
          [Authorize]
         public ActionResult AreaRestrita()
         {
+            Usuario u = new Usuario();
+            int totalUsuarios = usuarioModel.qtdUsuarios();
+
+            Ponto p = new Ponto();
+            int totalPontos = pontoModel.qtdPontos();
+            int totalPontosAbertos = pontoModel.qtdPontosAbertos();
+
+            Os o = new Os();
+            int totalOs = osModel.qtdOs();
+
+
+
+            ViewBag.TotalUsuarios = totalUsuarios;
+            ViewBag.TotalPontos   = totalPontos;
+            ViewBag.TotalOs = totalOs;
+            ViewBag.TotalPontosAbertos = totalPontosAbertos;
+
 
             if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
             {
@@ -143,7 +162,14 @@ namespace ProjetoPonto.Controllers
 
         public ActionResult Logoff()
         {
-
+            //LIMPAR TODO CACHE
+            //string currentKey = "";
+            //System.Collections.IDictionaryEnumerator cacheContents = System.Web.HttpContext.Current.Cache.GetEnumerator();
+            //while (cacheContents.MoveNext())
+            //{
+            //    currentKey = cacheContents.Key.ToString();
+            //    System.Web.HttpContext.Current.Cache.Remove(currentKey);
+            //}
             Usuario u = usuarioModel.obterUsuarioPorLogin(User.Identity.Name);
             // Remover todos os perfis do usuario
             foreach (Perfil p in perfilModel.listarPerfisPorUsuario(u.IdUsuario))
@@ -151,6 +177,7 @@ namespace ProjetoPonto.Controllers
                 if (Roles.IsUserInRole(u.Login, p.Descricao))
                 {
                     Roles.RemoveUserFromRole(u.Login, p.Descricao); // adiciona o usuario
+             
                 }
             }
             FormsAuthentication.SignOut();
