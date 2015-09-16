@@ -1,5 +1,6 @@
-﻿@model IEnumerable<ProjetoPonto.Entity.Ponto>
-
+﻿@model PagedList.IPagedList<ProjetoPonto.Entity.Ponto>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css"/>
 @{
     ViewBag.Title = "Consulta de Registros";
 }
@@ -27,25 +28,25 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.HoraInicial)
+                                                @Html.DisplayName("HoraInicial")
                                             </th>
                                              <th>
-                                                @Html.DisplayNameFor(model => model.HoraFinal)
+                                                 @Html.DisplayName("HoraFinal")
                                             </th>
                                              <th>
-                                                @Html.DisplayNameFor(model => model.DataAbertura)
+                                                 @Html.DisplayName("DataAbertura")
                                             </th>
                                              <th>
-                                                @Html.DisplayNameFor(model => model.Observacao)
+                                                 @Html.DisplayName("Observacao")
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.Usuario.Login)
+                                                 @Html.DisplayName("IdUsuario")
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.Os.NumeroOs)
+                                                @Html.DisplayName("IdOs")
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.TipoPonto.Descricao)
+                                                 @Html.DisplayName("IdTipoPonto")
                                             </th>
                                            
                                         </tr>
@@ -78,6 +79,9 @@
     </tr>
 }
                                 </table>
+                                <br />
+ Página @Model.PageNumber de @Model.PageCount
+ @Html.PagedListPager(Model, page => Url.Action("ConsultaRegistros", new { pagina = page }))                         
 
                             </div>
                             <!-- /.table-responsive -->

@@ -20,7 +20,6 @@ namespace ProjetoPonto.Models
             return lista.ToList();
         }
 
-
         public string adicionarUsuario(Usuario u)
         {
             string erro = null;

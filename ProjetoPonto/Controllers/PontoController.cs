@@ -6,7 +6,8 @@ using System.Web.Mvc;
 using ProjetoPonto.Entity;
 using ProjetoPonto.Models;
 using System.Web.Security;
-
+using PagedList;
+using PagedList.Mvc;
 namespace ProjetoPonto.Controllers
 {
     [Authorize]
@@ -28,14 +29,17 @@ namespace ProjetoPonto.Controllers
             return Redirect("/Shared/Error");
         }
 
-        public ActionResult ConsultaRegistros()
+        public ActionResult ConsultaRegistros(int? pagina)
         {
             if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
             {
-                return View(pontoModel.todosPontos());
+                int tamanhoPagina = 15;
+                int numeroPagina = pagina ?? 1;
+                return View(pontoModel.todosPontos().ToPagedList(numeroPagina, tamanhoPagina));
             }
             return Redirect("/Shared/Error");
         }
+
 
 
         public ActionResult Registro(int id)
