@@ -37,6 +37,9 @@ namespace ProjetoPonto.Controllers
         {
             Usuario u = new Usuario();
             int totalUsuarios = usuarioModel.qtdUsuarios();
+            int totalUsuariosAdministradores = usuarioModel.qtdUsuariosAdministradores();
+            int totalUsuariosMecanicos = usuarioModel.qtdUsuariosMecanicos();
+            int totalUsuariosGerentes = usuarioModel.qtdUsuariosGerentes();
 
             Ponto p = new Ponto();
             int totalPontos = pontoModel.qtdPontos();
@@ -44,18 +47,22 @@ namespace ProjetoPonto.Controllers
 
             Os o = new Os();
             int totalOs = osModel.qtdOs();
-
+          
 
 
             ViewBag.TotalUsuarios = totalUsuarios;
             ViewBag.TotalPontos   = totalPontos;
             ViewBag.TotalOs = totalOs;
             ViewBag.TotalPontosAbertos = totalPontosAbertos;
+            ViewBag.TotalUsuariosAdministradores = totalUsuariosAdministradores;
+            ViewBag.TotalUsuariosMecanicos = totalUsuariosMecanicos;
+            ViewBag.TotalUsuariosGerentes = totalUsuariosGerentes;
 
 
             if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
             {
-                return View("AreaRestrita");
+                return View("AreaRestrita", usuarioModel.todosUsuarios());
+               
             }
             return Redirect("/Shared/Error");     
 

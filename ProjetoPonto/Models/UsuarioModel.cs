@@ -24,6 +24,25 @@ namespace ProjetoPonto.Models
             int quantidadeUsuarios = (from p in db.Usuario select p).Count();
             return quantidadeUsuarios;
         }
+
+        public int qtdUsuariosMecanicos()
+        {
+            int quantidadeUsuariosMecanicos = (from u in db.Usuario where u.IdPerfil == 3 select u).Count();
+            return quantidadeUsuariosMecanicos;
+        }
+
+        public int qtdUsuariosAdministradores()
+        {
+            int quantidadeUsuariosAdministradores = (from p in db.Usuario where p.IdPerfil == 1 select p).Count();
+            return quantidadeUsuariosAdministradores;
+        }
+
+        public int qtdUsuariosGerentes()
+        {
+            int quantidadeUsuariosGerentes = (from p in db.Usuario where p.IdPerfil == 2 select p).Count();
+            return quantidadeUsuariosGerentes;
+        }
+       
        
         public string adicionarUsuario(Usuario u)
         {
