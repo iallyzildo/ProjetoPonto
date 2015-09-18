@@ -13,7 +13,7 @@ namespace ProjetoPonto.Controllers
     public class FuncionarioController : Controller
     {
         private FuncionarioModel funcionarioModel = new FuncionarioModel();
-        private pontoEntities db = new pontoEntities();
+       
         public ActionResult Index()
         {
             if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
