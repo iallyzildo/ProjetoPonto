@@ -18,7 +18,7 @@ namespace ProjetoPonto.Controllers
         private UsuarioModel usuarioModel = new UsuarioModel();
         private OsModel osModel = new OsModel();
         private TipoPontoModel tipoPontoModel = new TipoPontoModel();
-
+        
         public ActionResult Index()
         {
             if (Roles.IsUserInRole(User.Identity.Name, "mecanico"))
@@ -39,6 +39,7 @@ namespace ProjetoPonto.Controllers
             }
             return Redirect("/Shared/Error");
         }
+
 
 
 

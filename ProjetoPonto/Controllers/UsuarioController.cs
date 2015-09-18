@@ -32,6 +32,11 @@ namespace ProjetoPonto.Controllers
              return Redirect("/Shared/Error");
         }
 
+        [HttpPost]
+        public ActionResult Index(string texto)
+        {
+            return View(usuarioModel.PesquisaUsuarios(texto));
+        }
          [Authorize]
         public ActionResult AreaRestrita()
         {

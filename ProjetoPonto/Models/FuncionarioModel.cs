@@ -16,6 +16,14 @@ namespace ProjetoPonto.Models
                         select f;
             return lista.ToList();
         }
+         
+        public List<Funcionario> PesquisaFuncionarios(string texto)
+        {
+            var lista = from u in db.Funcionario where u.Nome.Contains(texto)
+                        select u;
+            return lista.ToList();
+            
+        }
         public string adicionarFuncionario(Funcionario f)
         {
             string erro = null;

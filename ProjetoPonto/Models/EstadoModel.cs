@@ -17,6 +17,14 @@ namespace ProjetoPonto.Models
                         select e;
             return lista.ToList();
         }
+        public List<Estado> PesquisaEstados(string texto)
+        {
+            var lista = from e in db.Estado
+                        where e.Descricao.Contains(texto)
+                        select e;
+            return lista.ToList();
+
+        }
         public string adicionarEstado(Estado e)
         {
             string erro = null;

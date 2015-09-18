@@ -16,6 +16,14 @@ namespace ProjetoPonto.Models
                         select e;
             return lista.ToList();
         }
+        public List<Empresa> PesquisaEmpresas(string texto)
+        {
+            var lista = from e in db.Empresa
+                        where e.RazaoSocial.Contains(texto)
+                        select e;
+            return lista.ToList();
+
+        }
         public string adicionarEmpresa(Empresa e)
         {
             string erro = null;

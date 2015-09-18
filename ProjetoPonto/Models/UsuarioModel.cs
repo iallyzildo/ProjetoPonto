@@ -19,6 +19,15 @@ namespace ProjetoPonto.Models
                         select u;
             return lista.ToList();
         }
+
+        public List<Usuario> PesquisaUsuarios(string texto)
+        {
+            var lista = from u in db.Usuario
+                        where u.Login.Contains(texto)
+                        select u;
+            return lista.ToList();
+
+        }
         public int qtdUsuarios()
         {
             int quantidadeUsuarios = (from p in db.Usuario select p).Count();
@@ -42,8 +51,9 @@ namespace ProjetoPonto.Models
             int quantidadeUsuariosGerentes = (from p in db.Usuario where p.IdPerfil == 2 select p).Count();
             return quantidadeUsuariosGerentes;
         }
-       
-       
+
+        
+
         public string adicionarUsuario(Usuario u)
         {
             string erro = null;

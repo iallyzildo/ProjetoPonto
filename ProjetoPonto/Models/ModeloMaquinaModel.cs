@@ -16,6 +16,13 @@ namespace ProjetoPonto.Models
                         select m;
             return lista.ToList();
         }
+        public List<ModeloMaquina> PesquisaModeloMaquinas(string texto)
+        {
+            var lista = from m in db.ModeloMaquina
+                        where m.Descricao.Contains(texto)
+                        select m;
+            return lista.ToList();
+        }
         public string adicionarModeloMaquina(ModeloMaquina m)
         {
             string erro = null;

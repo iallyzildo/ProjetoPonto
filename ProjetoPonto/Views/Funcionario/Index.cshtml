@@ -25,6 +25,17 @@
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <div class="table-responsive">
+                        <div>
+                            @using (Html.BeginForm())
+                            {
+                                <p>Digite o nome</p>
+                                
+                                <input type="text" name="texto" id="texto" class="form-control" placeholder="Digite a pesquisa" />
+                                <div>
+                                    <button type="submit" class="btn btn-default">Filtrar </button>
+                                </div>   
+                            }
+                        </div>
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
                                 <tr>

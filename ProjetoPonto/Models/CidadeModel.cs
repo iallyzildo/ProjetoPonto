@@ -17,6 +17,14 @@ namespace ProjetoPonto.Models
                         select c;
             return lista.ToList();
         }
+        public List<Cidade> PesquisaCidades(string texto)
+        {
+            var lista = from c in db.Cidade
+                        where c.Descricao.Contains(texto)
+                        select c;
+            return lista.ToList();
+
+        }
         public string adicionarCidade(Cidade c)
         {
             string erro = null;

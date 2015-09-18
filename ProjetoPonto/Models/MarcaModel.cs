@@ -16,6 +16,14 @@ namespace ProjetoPonto.Models
                         select m;
             return lista.ToList();
         }
+        public List<Marca> PesquisaMarcas(string texto)
+        {
+            var lista = from m in db.Marca
+                        where m.Descricao.Contains(texto)
+                        select m;
+            return lista.ToList();
+
+        }
         public string adicionarMarca(Marca m)
         {
             string erro = null;

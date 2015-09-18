@@ -23,6 +23,11 @@ namespace ProjetoPonto.Controllers
             }
             return Redirect("/Shared/Error");
         }
+        [HttpPost]
+        public ActionResult Index(string texto)
+        {
+            return View(cidadeModel.PesquisaCidades(texto));
+        }
         public ActionResult Edit(int id)
         {
             if (Roles.IsUserInRole(User.Identity.Name, "administrador"))

@@ -22,6 +22,11 @@ namespace ProjetoPonto.Controllers
             }
             return Redirect("/Shared/Error");
         }
+        [HttpPost]
+        public ActionResult Index(string texto)
+        {
+            return View(marcaModel.PesquisaMarcas(texto));
+        }
         public ActionResult Edit(int id)
         {
             if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
