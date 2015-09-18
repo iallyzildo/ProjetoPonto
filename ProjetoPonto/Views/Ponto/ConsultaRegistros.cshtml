@@ -57,7 +57,9 @@
                                             </th>
                                            
                                         </tr>
-
+@{
+    TimeSpan? total = TimeSpan.Zero;
+} 
 @foreach (var item in Model)
 {
     <tr>
@@ -95,14 +97,20 @@
         </td>
 
     </tr>
-    TimeSpan? total = +duracao;
-}
+    
+    total = total + duracao;
+    
+        
+} 
+
 
                                 </table>
+    
+                            
                                 <br />
  Página @Model.PageNumber de @Model.PageCount
  @Html.PagedListPager(Model, page => Url.Action("ConsultaRegistros", new { pagina = page }))                         
-
+     Soma Total de Horas = @total 
                             </div>
                             <!-- /.table-responsive -->
                         </div>

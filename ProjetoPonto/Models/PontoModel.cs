@@ -20,7 +20,7 @@ namespace ProjetoPonto.Models
 
         public int qtdPontos()
         {
-            int quantidadePonto = (from p in db.Ponto select p).Count();
+            int quantidadePonto = (from p in db.Ponto where p.HoraFinal != null select p).Count();
             return quantidadePonto;
         }
         public int qtdPontosAbertos()
