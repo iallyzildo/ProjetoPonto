@@ -53,18 +53,16 @@ namespace ProjetoPonto.Controllers
 
         [HttpPost]
         public ActionResult BuscaRegistros(string os)
-        {     
-                var pdf = new ViewAsPdf(pontoModel.PesquisaPontosOs(os))
-             {
+        {
+            var pdf = new ViewAsPdf(pontoModel.PesquisaPontosOs(os))
+            {
+                ViewName = "Modelo",
                 CustomSwitches = "--print-media-type --header-center \"Redemaq Minas\""
-                //Model = modelo
+
             };
-                return pdf;
+            return pdf;
         }
-
-
-
-
+       
         public ActionResult Registro(int id)
         {
             if (Roles.IsUserInRole(User.Identity.Name, "mecanico"))

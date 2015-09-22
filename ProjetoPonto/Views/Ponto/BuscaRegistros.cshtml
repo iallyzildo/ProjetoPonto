@@ -14,19 +14,11 @@
     <link href="~/Content/estilos-relatorio.css" rel="stylesheet" />
 </head>
 <body>
-
-    <div id="container">
-        <div id="cabecalho">
-            <div id="nome">
-                <h1>Consulta de Ponto</h1>
-            </div>
-            <div id="unidade">
-                <h2>Software de Registro e Gerenciamento</h2>
-                <h3>Redemaq Minas</h3>
-                <h4>Revenda e Pós Venda Massey Ferguson</h4>
-            </div>
-        </div>
-             <div>
+    <br />
+     <br />
+     <br />
+     <br />
+     <br />
                             @using (Html.BeginForm())
                             {
                                 <p>Busca por OS</p>
@@ -36,72 +28,9 @@
                                     <button type="submit" class="btn btn-default">Gerar relatorio da OS </button>
                                 </div>   
                             }
-                        </div>
-        <div id="corpo">
-             
-            <div class="linha">
-                <p>Horas Registradas:</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Hora Inicial</th>
-                            <th>Hora Final</th>
-                            <th>Tempo Trabalhado</th>
-                            <th>Data Abertura</th>
-                            <th class="aling-right">Observação</th>
-                            <th class="aling-right">Usuario</th>
-                            <th class="aling-right">Numero Os</th>
-                            <th class="aling-right">Tipo Ponto</th>
-                        </tr>
-                    </thead>
- 
-                    <tbody>
-                        @{
-    TimeSpan? total = TimeSpan.Zero;
-} 
- @foreach (var item in Model)
- {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.HoraInicial)
-        </td>
-          <td>
-            @Html.DisplayFor(modelItem => item.HoraFinal)
-        </td>
-            @{
-                 TimeSpan inicio = (item.HoraInicial);
-                 TimeSpan ?fim = (item.HoraFinal);
-                 TimeSpan? duracao = fim - inicio;
-                 }    
-         <td>
-            @Html.DisplayFor(modelItem => @duracao)
-        </td>
-          <td>
-            @Html.DisplayFor(modelItem => item.DataAbertura)
-        </td>
-          <td>
-            @Html.DisplayFor(modelItem => item.Observacao)
-        </td>
-          <td>
-            @Html.DisplayFor(modelItem => item.Usuario.Login)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Os.NumeroOs)
-        </td>
-         <td>
-            @Html.DisplayFor(modelItem => item.TipoPonto.Descricao)
-        </td>
-
-    </tr>
-     total = total + duracao;
- }
-                                </table>
-                  Soma Total de Horas trabalhadas = @total 
-                <div />
+                    
+        
                       
-        <div id="rodape">
-            <p>Usuário: <span>@User.Identity.Name</span> Emitido: <span>@DateTime.Now</span> pontoredemaq.com</p>
-        </div>
-    </div>
+  
 </body>
 </html>
