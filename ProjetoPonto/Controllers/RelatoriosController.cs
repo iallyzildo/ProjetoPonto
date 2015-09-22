@@ -58,7 +58,7 @@ namespace ProjetoPonto.Controllers
             //    Login = "Ially Leandro",
             //};
 
-            var pdf = new ViewAsPdf(pontoModel.todosPontos())
+            var pdf = new ViewAsPdf(pontoModel.todosPontosFechados())
             {
                 ViewName = "Modelo",
                 CustomSwitches = "--print-media-type --header-center \"Redemaq Minas\""

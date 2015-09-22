@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using ProjetoPonto.Entity;
 using ProjetoPonto.Models;
+using Rotativa;
+using Rotativa.Options;
 using System.Web.Security;
 using PagedList;
 using PagedList.Mvc;
@@ -35,9 +37,29 @@ namespace ProjetoPonto.Controllers
             {
                 int tamanhoPagina = 15;
                 int numeroPagina = pagina ?? 1;
-                return View(pontoModel.todosPontos().ToPagedList(numeroPagina, tamanhoPagina));
+                return View(pontoModel.todosPontosFechados().ToPagedList(numeroPagina, tamanhoPagina));
             }
             return Redirect("/Shared/Error");
+        }
+
+        public ActionResult BuscaRegistros()
+        {
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            {
+                return View(pontoModel.todosPontosFechados());
+            }
+            return Redirect("/Shared/Error");
+        }
+
+        [HttpPost]
+        public ActionResult BuscaRegistros(string os)
+        {     
+                var pdf = new ViewAsPdf(pontoModel.PesquisaPontosOs(os))
+             {
+                CustomSwitches = "--print-media-type --header-center \"Redemaq Minas\""
+                //Model = modelo
+            };
+                return pdf;
         }
 
 

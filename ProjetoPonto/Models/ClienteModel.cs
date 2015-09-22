@@ -16,7 +16,14 @@ namespace ProjetoPonto.Models
                         select c;
             return lista.ToList();
         }
+        public List<Cliente> PesquisaClientes(string texto)
+        {
+            var lista = from c in db.Cliente
+                        where c.Nome.Contains(texto)
+                        select c;
+            return lista.ToList();
 
+        }
         public string adicionarCliente(Cliente c)
         {
             string erro = null;
@@ -40,5 +47,37 @@ namespace ProjetoPonto.Models
             return lista.ToList().FirstOrDefault();
         }
 
+        public string editarCliente(Cliente c)
+        {
+            string erro = null;
+            try
+            {
+                if (c.EntityState == System.Data.EntityState.Detached)
+                {
+                    db.Cliente.Attach(c);
+                }
+                db.ObjectStateManager.ChangeObjectState(c, System.Data.EntityState.Modified);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                erro = ex.Message;
+            }
+            return erro;
+        }
+        public string excluirCliente(Cliente c)
+        {
+            string erro = null;
+            try
+            {
+                db.Cliente.DeleteObject(c);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                erro = ex.Message;
+            }
+            return erro;
+        }
     }
 }

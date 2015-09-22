@@ -37,7 +37,7 @@ namespace ProjetoPonto.Controllers
                 int idStatusOs = 1;
                 int idModeloMaquina = 1;
                 int idCliente = 1;
-                int idTipoMaquina = 1;
+                int idTipoMaquina = 0;
                 if (id != 0)
                 {
                     o = osModel.obterOs(id);

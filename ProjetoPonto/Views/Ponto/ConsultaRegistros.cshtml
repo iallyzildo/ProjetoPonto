@@ -109,8 +109,11 @@
                             
                                 <br />
  Página @Model.PageNumber de @Model.PageCount
- @Html.PagedListPager(Model, page => Url.Action("ConsultaRegistros", new { pagina = page }))                         
-     Soma Total de Horas = @total 
+ @Html.PagedListPager(Model, page => Url.Action("ConsultaRegistros", new { pagina = page })) 
+                                
+                                                   
+     Soma Total de Horas por Pagina = @total 
+                                       
                             </div>
                             <!-- /.table-responsive -->
                         </div>

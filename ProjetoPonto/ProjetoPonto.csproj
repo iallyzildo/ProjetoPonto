@@ -178,6 +178,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CidadeController.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\EstadoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -431,6 +432,9 @@
     <Content Include="Views\Relatorios\Modelo.cshtml" />
     <Content Include="Views\Relatorios\PDFConfigurado.cshtml" />
     <Content Include="Views\Usuario\AreaRestrita.cshtml" />
+    <Content Include="Views\Ponto\BuscaRegistros.cshtml" />
+    <Content Include="Views\Cliente\Index.cshtml" />
+    <Content Include="Views\Cliente\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
