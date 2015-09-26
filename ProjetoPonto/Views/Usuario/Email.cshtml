@@ -1,0 +1,26 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    </br>
+    </br>
+    </br>
+    <title>Solicitação de fechamento de OS manual</title>
+</head>
+<body>
+    <h2>Desculpe,tivemos problema em nosso servidor.Volte dentro de alguns Ã-
+instantes.</h2>
+    <p>Solicite um ajuste manual ao Administrador do sistema, pois sua data de abertura é diferente da data que voce esta tentando fazer o fechamento .</p>
+    @using (Html.BeginForm("Envia","Usuario"))
+    {
+        <div class="editor-label">
+            @Html.Label("Mensagem")
+        </div>
+        <div class="editor-field">
+            @Html.TextArea("Mensagem")
+        </div> <input type="submit" value="Enviar"/>
+    }
+</body>
+</html>

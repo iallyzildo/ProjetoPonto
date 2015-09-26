@@ -88,7 +88,17 @@ namespace ProjetoPonto.Controllers
                     dataAbertura = p.DataAbertura.Date;
                     horaInicial = p.HoraInicial;
                     TimeSpan horaFinal = DateTime.Now.TimeOfDay;
-                    ViewBag.HoraFinal = horaFinal.ToString(@"hh\:mm\:ss"); 
+                    ViewBag.HoraFinal = horaFinal.ToString(@"hh\:mm\:ss");
+                    string dataInicio = p.DataAbertura.ToString(@"dd/MM/yyyy");
+                    string dataAtual = DateTime.Now.ToString(@"dd/MM/yyyy");
+                    if (dataInicio != dataAtual)
+                    {
+
+                        return Redirect("/Usuario/Email");
+                    }
+                    else {
+                        p.DataAbertura = p.DataAbertura;
+                    }
                    
                 }
                 ViewBag.HoraInicial = horaInicial.ToString(@"hh\:mm\:ss"); 

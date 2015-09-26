@@ -436,6 +436,8 @@
     <Content Include="Views\Cliente\Index.cshtml" />
     <Content Include="Views\Cliente\Edit.cshtml" />
     <Content Include="Views\Ponto\Modelo.cshtml" />
+    <Content Include="Views\Usuario\Email.cshtml" />
+    <Content Include="Views\Usuario\Envia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

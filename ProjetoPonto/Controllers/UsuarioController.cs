@@ -6,6 +6,7 @@ using System.Web.Security;
 using System.Web.Mvc;
 using ProjetoPonto.Entity;
 using ProjetoPonto.Models;
+using System.Web.Helpers;
 
 
 namespace ProjetoPonto.Controllers
@@ -19,9 +20,18 @@ namespace ProjetoPonto.Controllers
         private FuncionarioModel funcionarioModel = new FuncionarioModel();
         private EmpresaModel empresaModel = new EmpresaModel();
         private PerfilModel perfilModel = new PerfilModel();
-      
-      
-        
+
+
+        public UsuarioController()
+        {
+            WebMail.SmtpServer ="smtp.gmail.com";
+            WebMail.EnableSsl =true;
+            WebMail.SmtpPort =587;
+            WebMail.From = "iallyleandro1994@gmail.com";
+            WebMail.UserName = "iallyleandro1994@gmail.com";
+            WebMail.Password ="ilsf#rmm2";
+        }
+
         [Authorize]
         public ActionResult Index()
         {
@@ -31,12 +41,20 @@ namespace ProjetoPonto.Controllers
             }
              return Redirect("/Shared/Error");
         }
+        [Authorize]
+        public ActionResult Email()
+        {
+
+                return View();
+
+        }
 
         [HttpPost]
         public ActionResult Index(string texto)
         {
             return View(usuarioModel.PesquisaUsuarios(texto));
         }
+
          [Authorize]
         public ActionResult AreaRestrita()
         {
@@ -72,6 +90,18 @@ namespace ProjetoPonto.Controllers
             return Redirect("/Shared/Error");     
 
         }
+
+    
+
+       // POST : / Email / Envia
+       [HttpPost]
+       public ActionResult Envia(string mensagem)
+       {
+           WebMail.Send("ti.redemaqminas@gmail.com", "Mensagem do sistema", mensagem);
+           return View();
+
+       }
+
         public ActionResult Login()
         {
 
