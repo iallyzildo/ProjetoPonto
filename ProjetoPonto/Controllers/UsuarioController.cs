@@ -29,7 +29,7 @@ namespace ProjetoPonto.Controllers
             WebMail.SmtpPort =587;
             WebMail.From = "iallyleandro1994@gmail.com";
             WebMail.UserName = "iallyleandro1994@gmail.com";
-            WebMail.Password ="ilsf#rmm2";
+            WebMail.Password ="SENHA AQUI";
         }
 
         [Authorize]
