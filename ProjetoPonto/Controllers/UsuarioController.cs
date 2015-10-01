@@ -97,7 +97,7 @@ namespace ProjetoPonto.Controllers
        [HttpPost]
        public ActionResult Envia(string mensagem)
        {
-           WebMail.Send("ti.redemaqminas@gmail.com", "Mensagem do sistema", mensagem);
+           WebMail.Send("ti.redemaqminas@gmail.com", "Mensagem do sistema", usuarioModel.EnviarEmail(mensagem));
            return View();
 
        }

@@ -6,6 +6,7 @@ using ProjetoPonto.Entity;
 using System.Web.Security;
 using System.Web.Mvc;
 
+
 namespace ProjetoPonto.Models
 {
     public class UsuarioModel
@@ -13,6 +14,14 @@ namespace ProjetoPonto.Models
         private pontoEntities db = new pontoEntities();
         private PerfilModel perfilModel = new PerfilModel();
        
+     
+        public string  EnviarEmail(string mensagem)
+        {
+            string mensagemEmail = mensagem;
+            return mensagemEmail;
+
+        }
+
         public List<Usuario> todosUsuarios()
         {
             var lista = from u in db.Usuario

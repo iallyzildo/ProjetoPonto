@@ -10,6 +10,8 @@ using Rotativa.Options;
 using System.Web.Security;
 using PagedList;
 using PagedList.Mvc;
+using System.Web.Helpers;
+
 namespace ProjetoPonto.Controllers
 {
     [Authorize]
@@ -20,7 +22,25 @@ namespace ProjetoPonto.Controllers
         private UsuarioModel usuarioModel = new UsuarioModel();
         private OsModel osModel = new OsModel();
         private TipoPontoModel tipoPontoModel = new TipoPontoModel();
-        
+
+        public PontoController()
+        {
+            WebMail.SmtpServer ="smtp.gmail.com";
+            WebMail.EnableSsl =true;
+            WebMail.SmtpPort =587;
+            WebMail.From = "iallyleandro1994@gmail.com";
+            WebMail.UserName = "iallyleandro1994@gmail.com";
+            WebMail.Password ="ilsf#rmm2";
+        }
+
+        public ActionResult EnviaEmail(string mensagem)
+        {
+            WebMail.Send("ti.redemaqminas@gmail.com", "Mensagem do sistema", usuarioModel.EnviarEmail(mensagem));
+            return View();
+
+        }
+
+
         public ActionResult Index()
         {
             if (Roles.IsUserInRole(User.Identity.Name, "mecanico"))
@@ -89,16 +109,22 @@ namespace ProjetoPonto.Controllers
                     horaInicial = p.HoraInicial;
                     TimeSpan horaFinal = DateTime.Now.TimeOfDay;
                     ViewBag.HoraFinal = horaFinal.ToString(@"hh\:mm\:ss");
+
+
+
                     string dataInicio = p.DataAbertura.ToString(@"dd/MM/yyyy");
                     string dataAtual = DateTime.Now.ToString(@"dd/MM/yyyy");
+                    string horaAtual = DateTime.Now.TimeOfDay.ToString(@"hh\:mm\:ss");
+
+
+                    string mensagemEmail = "<h2> O usuario :" + p.Usuario.Login + " esta tentando finalizar o ponto :" + p.Os.NumeroOs + " no dia :" + dataAtual + " as :" + horaAtual + " que foi aberto dia :" + dataInicio + " as :" + p.HoraInicial + "<br/> | Favor confirmar com a gerencia a hora final para adicionar manualmente nos seus registros | </h2>";
+
                     if (dataInicio != dataAtual)
                     {
-
-                        return Redirect("/Usuario/Email");
+                        EnviaEmail(mensagemEmail);
+                        return Redirect("/Ponto/Index");
                     }
-                    else {
-                        p.DataAbertura = p.DataAbertura;
-                    }
+       
                    
                 }
                 ViewBag.HoraInicial = horaInicial.ToString(@"hh\:mm\:ss"); 
