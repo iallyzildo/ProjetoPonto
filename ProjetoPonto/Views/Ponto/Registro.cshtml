@@ -1,82 +1,88 @@
 ﻿@model ProjetoPonto.Entity.Ponto
 
-@{
-    ViewBag.Title = "Registro";
-}
+<body>
 
-<h2>Edit</h2>
-
-@using (Html.BeginForm())
-{
-    
-    <div class="form-horizontal">
-        <h4>Estado</h4>
-        <hr />
-
-        @Html.HiddenFor(model => model.IdPonto)
-        @Html.Hidden("DataAbertura", null, new { @class = "form-control" })
-        @Html.Hidden("HoraInicial", null, new { @class = "form-control" })
-        @Html.Hidden("IdUsuario", null, new { @class = "form-control" })
-
-        @if (Model.IdPonto != 0)
+    <div class="content-section-a">
+        @using (Html.BeginForm())
         {
-            @Html.Hidden("HoraFinal", null, new { @class = "form-control" })
+            <div class="form-horizontal">
+                <h4>Registro de Ponto</h4>
+                <hr />
+
+
+
+                @Html.HiddenFor(model => model.IdPonto)
+                @Html.Hidden("DataAbertura", null, new { @class = "form-control" })
+                @Html.Hidden("HoraInicial", null, new { @class = "form-control" })
+                @Html.Hidden("IdUsuario", null, new { @class = "form-control" })
+
+                @if (Model.IdPonto != 0)
+                {
+                    @Html.Hidden("HoraFinal", null, new { @class = "form-control" })
+                }
+
+
+
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.Observacao, new { @class = "control-label col-md-5" })
+                    <div class="col-md-3">
+                        @Html.TextAreaFor(model => model.Observacao, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IdOs, new { @class = "control-label col-md-5" })
+                    <div class="col-md-3">
+                        @Html.DropDownList("IdOs", null, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IdTipoPonto, new { @class = "control-label col-md-5" })
+                    <div class="col-md-3">
+                        @Html.DropDownList("IdTipoPonto", null, new { @class = "form-control" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-5 control-label" for="singlebutton"></label>
+                    <div class="col-md-4">
+                        <input type="submit" value="Confirmar" class="btn btn-primary" onclick="return validar();" />
+                    </div>
+                </div>
+            </div>
         }
 
-
-
-        <div class="form-group">
-
-            @Html.LabelFor(model => model.Observacao, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.TextAreaFor(model => model.Observacao, new { @class = "form-control" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdOs, new { @class = "control-label col-md-2" })
-            <div class="btn-group">
-                @Html.DropDownList("IdOs", null, new { @class = "form-control" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdTipoPonto, new { @class = "control-label col-md-2" })
-            <div class="btn-group">
-                @Html.DropDownList("IdTipoPonto", null, new { @class = "form-control" })
-            </div>
+        <div>
+           <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Ponto")'">Voltar</button>
+          
         </div>
 
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" onclick="return validar();" />
-            </div>
-        </div>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+        @if (ViewBag.Erro != null && ViewBag.Erro != "")
+        {
+            <script>
+                alert('@ViewBag.Erro');
+            </script>
+        }
+        <script>
+
+
+            function validar() {
+                if ($("#HoraInicial").val() == "") {
+                    alert('A hora inicial é obrigatória');
+                    return false;
+                }
+                return true;
+            }
+        </script>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Voltar", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-@if (ViewBag.Erro != null && ViewBag.Erro != "")
-{
-    <script>
-        alert('@ViewBag.Erro');
-    </script>
-}
-<script>
-
-
-    function validar() {
-        if ($("#HoraInicial").val() == "") {
-            alert('A hora inicial é obrigatória');
-            return false;
-        }
-        return true;
-    }
-</script>
+    </div>
+    </div>
+    
+</body>

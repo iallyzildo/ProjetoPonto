@@ -11,7 +11,8 @@
         <div class="container">
             <div class="row">
                 <p>
-                    @Html.ActionLink("Novo", "Registro", new { id = 0 })
+                    <button class="btn btn-primary" onclick="location.href='@Url.Action("Registro", "Ponto", new { id = 0 })'">Novo</button>
+                  
                 </p>
                 <hr class="section-heading-spacer">
 
@@ -80,7 +81,9 @@
 
         <td>
             
-            @Html.ActionLink("Fechar", "Registro", new { @class="btn btn-default btn-lg",  id = item.IdPonto })
+            
+
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("Registro", "Ponto", new { id = item.IdPonto })'">Fechar</button>
             
         </td>
     </tr>
