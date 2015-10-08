@@ -4,19 +4,17 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-
-@using (Html.BeginForm()) {
-
-
-    <div class="form-horizontal">
-        <h4>Solucao</h4>
-        <hr />
+<div class="content-section-a">
+        @using (Html.BeginForm())
+        {
+            <div class="form-horizontal">
+                <h4>Cadastro de Soluções</h4>
+                <hr />
 
         @Html.HiddenFor(model => model.IdProblema)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Descricao, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Descricao, new { @class = "control-label col-md-5" })
             <div class="col-md-3">
                 @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
             </div>
@@ -24,15 +22,16 @@
 
       
 
-       <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default"  onclick="return validar();" />
+    <div class="form-group">
+                    <label class="col-md-5 control-label" for="singlebutton"></label>
+                    <div class="col-md-4">
+            <input type="submit" value="Save" class="btn btn-primary"  onclick="return validar();" />
           </div>
         </div>
     </div>
 }
 <div>
-    @Html.ActionLink("Back to List", "Index") |
+    @Html.ActionLink("Voltar", "ListaSolucoes", new { idProblema= Model.IdProblema}, new { @class = "btn btn-primary", @style = "color:white" }) 
 </div>
 
 

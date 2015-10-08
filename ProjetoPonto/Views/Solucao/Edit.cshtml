@@ -4,42 +4,42 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<div class="content-section-a">
+        @using (Html.BeginForm())
+        {
+            <div class="form-horizontal">
+                <h4>Cadastro de Os</h4>
+                <hr />
 
-@using (Html.BeginForm()) {
-
-
-    <div class="form-horizontal">
-        <h4>Solucao</h4>
-        <hr />
 
         @Html.HiddenFor(model => model.IdSolucao)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Descricao, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Descricao, new { @class = "control-label col-md-5" })
             <div class="col-md-3">
                 @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdProblema, new { @class = "control-label col-md-2" })
-       <div class="btn-group">
+            @Html.LabelFor(model => model.IdProblema, new { @class = "control-label col-md-5" })
+       <div class="col-md-3">
             @Html.DropDownList("IdProblema",null, new { @class = "form-control" })
         </div>
              </div>
 
 
 
-       <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default"  onclick="return validar();" />
+    <div class="form-group">
+                    <label class="col-md-5 control-label" for="singlebutton"></label>
+                    <div class="col-md-4">
+            <input type="submit" value="Save" class="btn btn-primary"  onclick="return validar();" />
           </div>
         </div>
     </div>
 }
 <div>
-    @Html.ActionLink("Back to List", "Index") |
+      <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Solucao")'">Voltar</button>
 </div>
 
 

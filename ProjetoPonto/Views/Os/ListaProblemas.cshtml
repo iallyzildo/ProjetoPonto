@@ -10,11 +10,10 @@
         <div class="container">
             <div class="row">
 
-<h2>Problemas da Ordem de Servico nº: @ViewBag.NumeroOs</h2>
+
 
 <p>
-    @Html.ActionLink("Create New", "EditProblema", 
-                new { idOs = ViewBag.IdOs, idProblema = 0 })
+     @Html.ActionLink("Novo Problema", "EditProblema", new { idOs = ViewBag.IdOs, idProblema = 0 }, new { @class = "btn btn-primary", @style = "color:white" }) 
 </p>
     <hr class="section-heading-spacer">
 
@@ -24,7 +23,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Gerenciamento de Empresas
+               Problemas da Ordem de Servico nº: @ViewBag.NumeroOs
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -52,17 +51,19 @@
         </td>
 
         <td>
-            @Html.ActionLink("Edit", "EditProblema", 
-                new { idOs = item.IdOs, idProblema = item.IdProblema }) |
-            @Html.ActionLink("Delete", "DeleteProblema", new { idProblema = item.IdProblema }, new { @onclick = "return confirm ('Confirma exclusão?');" })
-        </td>
+             
+            @Html.ActionLink("Edit", "EditProblema", new  { idOs = item.IdOs, idProblema = item.IdProblema }, new { @class = "btn btn-primary", @style = "color:white" }) 
+            @Html.ActionLink("Delete", "DeleteProblema", new { idProblema = item.IdProblema }, new { @class = "btn btn-primary", @style = "color:white", @onclick = "return confirm('Tem certeza?');" })
+     
     </tr>
 }
 
 </table>
 
 <div>
-    @Html.ActionLink("Voltar para Os", "Edit", new { id = ViewBag.IdOs })
+    
+     @Html.ActionLink("Voltar para Os", "Edit", new { id = ViewBag.IdOs}, new { @class = "btn btn-primary", @style = "color:white" }) 
+
 </div>
                         
                         </table>

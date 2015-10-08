@@ -11,10 +11,9 @@
         <div class="container">
             <div class="row">
                 <p>
-                    <button class="btn btn-primary" onclick="location.href='@Url.Action("Registro", "Ponto", new { id = 0 })'">Novo</button>
-                  
+                 @Html.ActionLink("Novo", "Registro", new { id = 0 }, new { @class = "btn btn-primary", @style = "color:white" }) 
                 </p>
-                <hr class="section-heading-spacer">
+                
 
                 <div class="clearfix"></div>
 

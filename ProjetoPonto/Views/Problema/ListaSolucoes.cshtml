@@ -10,13 +10,12 @@
         <div class="container">
             <div class="row">
 
-<h2>Solucoes do Problema : @ViewBag.DescricaoProblema</h2>
 
-<p>
-    @Html.ActionLink("Create New", "EditSolucao", 
-                new { idProblema = ViewBag.IdProblema, idSolucao = 0 })
+
+ <p>
+     @Html.ActionLink("Nova Solucao", "EditSolucao", new { idProblema = ViewBag.IdProblema, idSolucao = 0 }, new { @class = "btn btn-primary", @style = "color:white" }) 
 </p>
-    <hr class="section-heading-spacer">
+  
 
                     <div class="clearfix"></div>
 
@@ -24,7 +23,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Gerenciamento de Empresas
+                   Solucoes do Problema : @ViewBag.DescricaoProblema
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -45,18 +44,19 @@
             @Html.DisplayFor(modelItem => item.Descricao)
         </td>
 
-        <td>
-            @Html.ActionLink("Edit", "EditSolucao", 
-                new { idProblema = item.IdProblema, idSolucao = item.IdSolucao }) |
-            @Html.ActionLink("Delete", "DeleteSolucao", new { idSolucao = item.IdSolucao }, new { @onclick = "return confirm ('Confirma exclusão?');" })
-        </td>
+         <td>
+             
+            @Html.ActionLink("Edit", "EditSolucao", new  { idProblema = item.IdProblema, idSolucao = item.IdSolucao }, new { @class = "btn btn-primary", @style = "color:white" }) 
+            @Html.ActionLink("Delete", "DeleteSolucao", new { idSolucao = item.IdSolucao }, new { @class = "btn btn-primary", @style = "color:white", @onclick = "return confirm('Tem certeza?');" })
+     </td>
+   
     </tr>
 }
 
 </table>
 
 <div>
-    @Html.ActionLink("Voltar para Problema", "EditProblema", new { id = ViewBag.IdProblema })
+     @Html.ActionLink("Voltar para problema", "Edit", new { id = ViewBag.IdProblema}, new { @class = "btn btn-primary", @style = "color:white" }) 
 </div>
                         
                         </table>

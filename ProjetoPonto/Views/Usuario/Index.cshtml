@@ -9,10 +9,11 @@
 
         <div class="container">
             <div class="row">
-                <p>
-                    @Html.ActionLink("Novo", "Edit", new { id = 0 })
+                 <p>
+                   
+                    @Html.ActionLink("Novo", "Edit", new { id = 0 }, new { @class = "btn btn-primary", @style = "color:white" }) 
                 </p>
-                <hr class="section-heading-spacer">
+                
 
                 <div class="clearfix"></div>
 
@@ -29,10 +30,11 @@
                             @using (Html.BeginForm())
                             {
                                 <p>Digite o nome</p>
-                                
+                                <div class="col-md-4">
                                 <input type="text" name="texto" id="texto" class="form-control" placeholder="Digite a pesquisa" />
+                                    </div>
                                 <div>
-                                    <button type="submit" class="btn btn-default">Filtrar </button>
+                                    <button type="submit" class="btn btn-primary">Buscar </button>
                                 </div>   
                             }
                             </div>
@@ -81,9 +83,9 @@
             @Html.DisplayFor(modelItem => item.Perfil.Descricao)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdUsuario }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdUsuario },
-                new { @onclick = "return confirm('Tem certeza?');"})
+             @Html.ActionLink("Editar", "Edit", new { id = item.IdUsuario }, new { @class = "btn btn-primary", @style = "color:white" }) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdUsuario }, new { @class = "btn btn-primary", @style = "color:white",@onclick = "return confirm('Tem certeza?');" })
+
         </td>
     </tr>
 }

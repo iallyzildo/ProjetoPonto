@@ -9,10 +9,8 @@
 
         <div class="container">
             <div class="row">
-                <p>
-                    @Html.ActionLink("Novo", "Edit", new { id = 0 })
-                </p>
-                <hr class="section-heading-spacer">
+
+        
 
                 <div class="clearfix"></div>
 
@@ -53,10 +51,9 @@
             @Html.DisplayFor(modelItem => item.SecaoProblema.Descricao)
         </td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdProblema }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdProblema },
-                new { @onclick = "return confirm('Tem certeza?');"})
+          <td>
+            @Html.ActionLink("Editar", "Edit", new {id=item.IdProblema  }, new { @class = "btn btn-primary", @style = "color:white" }) 
+            @Html.ActionLink("Delete", "Delete", new {id=item.IdProblema  }, new { @class = "btn btn-primary", @style = "color:white", @onclick = "return confirm('Tem certeza?');" })
         </td>
     </tr>
 }
