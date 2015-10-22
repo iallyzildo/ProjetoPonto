@@ -28,9 +28,9 @@ namespace ProjetoPonto.Controllers
             WebMail.SmtpServer ="smtp.gmail.com";
             WebMail.EnableSsl =true;
             WebMail.SmtpPort =587;
-            WebMail.From = "iallyleandro1994@gmail.com";
-            WebMail.UserName = "iallyleandro1994@gmail.com";
-            WebMail.Password ="ilsf#rmm2";
+            WebMail.From = "pontoredemaq@gmail.com";
+            WebMail.UserName = "pontoredemaq@gmail.com";
+            WebMail.Password ="x1x2x3x4";
         }
 
         public ActionResult EnviaEmail(string mensagem)
