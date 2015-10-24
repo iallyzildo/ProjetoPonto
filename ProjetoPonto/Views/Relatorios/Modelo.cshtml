@@ -3,9 +3,7 @@
 @{
     ViewBag.Title = "Consulta de Registros";
 }
-@{
- Layout = null;
- }
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -87,7 +85,23 @@
      total = total + duracao;
  }
                                 </table>
-                  Soma Total de Horas trabalhadas = @total 
+                <div />
+                  
+                    </br>Tempo Total Registrado 
+                         @{
+                       
+                       
+                       Double resultHoras= total.Value.TotalHours;
+                       if(total.Value.Days > 0){
+                      String valor = TimeSpan.FromHours(resultHoras).ToString(@"dd'd '\:hh\:mm\:ss");
+                             @valor
+                       }else{
+                           String valor = TimeSpan.FromHours(resultHoras).ToString(@"hh\:mm\:ss");
+                                @valor
+                       }
+                    }
+               
+
                 <div />
                       
         <div id="rodape">

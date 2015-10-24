@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<ProjetoPonto.Entity.Ponto>
 
-@{
- Layout = null;
- }
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -82,9 +80,20 @@
 
     </tr>
      total = total + duracao;
- }
-                                </table>
-                  Soma Total de Horas trabalhadas = @total 
+ }         </table>
+                <div /> </br>Tempo Total Registrado 
+                         @{
+                       
+                       
+                       Double resultHoras= total.Value.TotalHours;
+                       if(total.Value.Days > 0){
+                      String valor = TimeSpan.FromHours(resultHoras).ToString(@"dd'd '\:hh\:mm\:ss");
+                             @valor
+                       }else{
+                           String valor = TimeSpan.FromHours(resultHoras).ToString(@"hh\:mm\:ss");
+                                @valor
+                       }
+                    }
                 <div />
                       
         <div id="rodape">

@@ -187,6 +187,12 @@ namespace ProjetoPonto.Controllers
             problemaModel.excluirProblema(p);
             return RedirectToAction("ListaProblemas", new { idOs = p.IdOs});
         }
+        public ActionResult DeleteSolucao(int idSolucao)
+        {
+            Solucao s = solucaoModel.obterSolucao(idSolucao);
+            solucaoModel.excluirSolucao(s);
+            return RedirectToAction("ListaSolucoes", new { idProblema = s.IdProblema });
+        }
         public JsonResult ListaModeloMaquina(int idTipoMaquina)
         {
             var lista = new SelectList(modeloMaquinaModel.listarModeloMaquinaPorTipoMaquina(idTipoMaquina), "IdModeloMaquina", "Descricao", 0);

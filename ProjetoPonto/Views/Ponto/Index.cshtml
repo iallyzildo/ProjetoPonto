@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row">
                 <p>
-                 @Html.ActionLink("Novo", "Registro", new { id = 0 }, new { @class = "btn btn-primary", @style = "color:white" }) 
+                 @Html.ActionLink("Entrada", "Registro", new { id = 0 }, new { @class = "btn btn-primary", @style = "color:white" }) 
                 </p>
                 
 
@@ -82,7 +82,7 @@
             
             
 
-            <button class="btn btn-primary" onclick="location.href='@Url.Action("Registro", "Ponto", new { id = item.IdPonto })'">Fechar</button>
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("Registro", "Ponto", new { id = item.IdPonto })'">Saída</button>
             
         </td>
     </tr>
