@@ -82,9 +82,9 @@
      total = total + duracao;
  }         </table>
                 <div /> </br>Tempo Total Registrado 
-                         @{
+                         @*@{
                        
-                       
+                       Imprimir tempo com dias!
                        Double resultHoras= total.Value.TotalHours;
                        if(total.Value.Days > 0){
                       String valor = TimeSpan.FromHours(resultHoras).ToString(@"dd'd '\:hh\:mm\:ss");
@@ -93,6 +93,10 @@
                            String valor = TimeSpan.FromHours(resultHoras).ToString(@"hh\:mm\:ss");
                                 @valor
                        }
+                    }*@
+                @{
+                   string result = string.Format("{0}hr {1:mm}min {1:ss}s", (int)total.Value.TotalHours, total);
+                    @result
                     }
                 <div />
                       

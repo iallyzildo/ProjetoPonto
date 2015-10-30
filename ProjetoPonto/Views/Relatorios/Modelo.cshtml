@@ -88,7 +88,7 @@
                 <div />
                   
                     </br>Tempo Total Registrado 
-                         @{
+                        @* @{
                        
                        
                        Double resultHoras= total.Value.TotalHours;
@@ -99,6 +99,10 @@
                            String valor = TimeSpan.FromHours(resultHoras).ToString(@"hh\:mm\:ss");
                                 @valor
                        }
+                    }*@
+                  @{
+                   string result = string.Format("{0}hr {1:mm}min {1:ss}s", (int)total.Value.TotalHours, total);
+                    @result
                     }
                
 
