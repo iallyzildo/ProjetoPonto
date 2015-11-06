@@ -26,6 +26,14 @@ namespace ProjetoPonto.Models
             return lista.ToList();
         }
 
+        public List<Ponto> todosPontosAbertos()
+        {
+            var lista = from p in db.Ponto
+                        where p.HoraFinal == null
+                        select p;
+            return lista.ToList();
+        }
+
         public List<Ponto> PesquisaPontosOs(string os)
         {
             var lista = from p in db.Ponto

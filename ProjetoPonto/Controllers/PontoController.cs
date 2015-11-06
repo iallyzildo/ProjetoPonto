@@ -71,6 +71,17 @@ namespace ProjetoPonto.Controllers
             return Redirect("/Shared/Error");
         }
 
+        public ActionResult ListaPontos(int? pagina)
+        {
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            {
+                int tamanhoPagina = 15;
+                int numeroPagina = pagina ?? 1;
+                return View(pontoModel.todosPontosAbertos().ToPagedList(numeroPagina, tamanhoPagina));
+            }
+            return Redirect("/Shared/Error");
+        }
+
         [HttpPost]
         public ActionResult BuscaRegistros(string os)
         {
@@ -148,6 +159,53 @@ namespace ProjetoPonto.Controllers
             if (erro == null)
             {
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Erro = erro;
+                return View(p);
+            }
+        }
+
+        public ActionResult EditPonto(int id)
+        {
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            {
+
+                Ponto p = new Ponto();
+
+                int idUsuario = 1;
+                int idOs = 1;
+                int idTipoPonto = 1;
+               
+
+
+                if (id != 0)
+                {
+                    p = pontoModel.obterPonto(id);
+                    idUsuario = p.IdUsuario;
+                    idOs = p.IdOs;
+                    idTipoPonto = p.IdTipoPonto;
+                }
+                ViewBag.IdUsuario = new SelectList(usuarioModel.todosUsuarios(), "IdUsuario", "Login", idUsuario);
+                ViewBag.IdOs = new SelectList(osModel.todasOs(), "IdOs", "NumeroOs", idOs);
+                ViewBag.IdTipoPonto = new SelectList(tipoPontoModel.todosTipoPonto(), "IdTipoPonto", "Descricao", idTipoPonto);
+                return View(p);
+            }
+            return Redirect("/Shared/Error");
+        }
+        [HttpPost]
+        public ActionResult EditPonto(Ponto p)
+        {
+
+            string erro = null;
+            if (p.IdPonto == 0)
+                erro = pontoModel.adicionarPonto(p);
+            else
+                erro = pontoModel.editarPonto(p);
+            if (erro == null)
+            {
+                return RedirectToAction("ListaPontos");
             }
             else
             {
