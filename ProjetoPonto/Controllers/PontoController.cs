@@ -35,7 +35,7 @@ namespace ProjetoPonto.Controllers
 
         public ActionResult EnviaEmail(string mensagem)
         {
-            WebMail.Send("ti.redemaqminas@gmail.com", "Mensagem do sistema", usuarioModel.EnviarEmail(mensagem));
+            WebMail.Send("iallyleandro1994@gmail.com", "Mensagem do sistema", usuarioModel.EnviarEmail(mensagem));
             return View();
 
         }
@@ -122,7 +122,7 @@ namespace ProjetoPonto.Controllers
                     if (dataInicio != dataAtual)
                     {
                         EnviaEmail(mensagemEmail);
-                        return Redirect("/Ponto/Index");
+                        return View("Aviso");
                     }
        
                    

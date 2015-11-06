@@ -1,0 +1,57 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+}
+<body>
+  <a  name="services"></a>
+    <div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                         <p>
+     @Html.ActionLink("Novo", "Edit", new { id = 0 }, new { @class = "btn btn-primary", @style = "color:white" }) 
+</p>
+               
+
+                <div class="clearfix"></div>
+
+
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Gerenciamento de Estados
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                   <div>
+                            @using (Html.BeginForm())
+                            {
+                                <p>Digite o Estado</p>
+                                 <div class="col-md-4">
+                                <input type="text" name="texto" id="texto" class="form-control" placeholder="Digite a pesquisa" />
+                                 </div>
+                                   <div>
+                                    <button type="submit" class="btn btn-primary">Filtrar </button>
+                                </div>   
+                            }
+                            </div>
+                           
+
+                                </table>
+
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
