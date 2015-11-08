@@ -45,7 +45,7 @@ namespace ProjetoPonto.Controllers
         [HttpPost]
         public ActionResult Edit(Funcionario f)
         {
-            string erro = null;
+            string erro = funcionarioModel.validarFuncionario(f);
             if (f.IdFuncionario == 0)
                 erro = funcionarioModel.adicionarFuncionario(f);
             else

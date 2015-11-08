@@ -56,7 +56,10 @@
             @Html.DisplayFor(modelItem => item.Nome)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Cpf)
+              @{
+    string formatado = Convert.ToUInt64(item.Cpf).ToString(@"000\.000\.000\-00");
+    @formatado
+                }
         </td>
           <td>
             @Html.ActionLink("Editar", "Edit", new { id = item.IdCliente   }, new { @class = "btn btn-primary", @style = "color:white" }) 

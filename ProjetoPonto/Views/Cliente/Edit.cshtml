@@ -49,6 +49,7 @@
     </script>
 }
 <script>
+    $("#Cpf").mask('00000000000', { reverse: false });
     function validar() {
         if ($("#Nome").val() == "") {
             alert('O nome é obrigatorio!');
@@ -56,6 +57,10 @@
         }
         if ($("#Cpf").val() == "") {
             alert('O Cpf é obrigatorio!');
+            return false;
+        }
+        if ($("#CPF").val().length != 11) {
+            alert("CPF deve possuir 11 caracteres");
             return false;
         }
         return true;

@@ -63,6 +63,21 @@ namespace ProjetoPonto.Models
             }
             return erro;
         }
+        public string validarFuncionario(Funcionario f)
+        {
+            string erro = null;
+
+            if (f.Nome == null || f.Nome == "")
+            {
+                return "Nome obrigatório!";
+            }
+            if (f.Cpf == null || f.Cpf == "")
+            {
+                return "CPF obrigatório!";
+            }
+
+            return erro;
+        }
         public string excluirFuncionario(Funcionario f)
         {
             string erro = null;

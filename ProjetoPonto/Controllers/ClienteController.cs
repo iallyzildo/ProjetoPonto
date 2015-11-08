@@ -45,7 +45,7 @@ namespace ProjetoPonto.Controllers
         [HttpPost]
         public ActionResult Edit(Cliente c)
         {
-            string erro = null;
+            string erro = clienteModel.validarCliente(c);
             if (c.IdCliente == 0)
                 erro = clienteModel.adicionarCliente(c);
             else

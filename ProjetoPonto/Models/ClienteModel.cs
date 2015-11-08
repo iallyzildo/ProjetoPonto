@@ -65,6 +65,21 @@ namespace ProjetoPonto.Models
             }
             return erro;
         }
+        public string validarCliente(Cliente c)
+        {
+            string erro = null;
+
+            if (c.Nome == null || c.Nome == "")
+            {
+                return "Nome obrigatório!";
+            }
+            if (c.Cpf == null || c.Cpf == "")
+            {
+                return "CPF obrigatório!";
+            }
+
+            return erro;
+        }
         public string excluirCliente(Cliente c)
         {
             string erro = null;
