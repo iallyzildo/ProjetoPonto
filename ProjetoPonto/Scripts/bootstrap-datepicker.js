@@ -350,6 +350,8 @@
 		}
 	};
 	$.fn.datepicker.Constructor = Datepicker;
+        
+        
 	
 	var DPGlobal = {
 		modes: [
@@ -369,11 +371,12 @@
 				navStep: 10
 		}],
 		dates:{
-			days: ["Domingo", "Segunda", "Terca", "Quarta", "Quinta", "Sexta", "Sabado", "Domingo"],
-			daysShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"],
-			daysMin: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"],
-			months: ["Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
-			monthsShort: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
+			days: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"],
+                        daysShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"],
+                        daysMin: ["Do", "Se", "Te", "Qu", "Qu", "Se", "Sa", "Do"],
+                        months: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+                        monthsShort: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+                        today: "Hoje"
 		},
 		isLeapYear: function (year) {
 			return (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0))
@@ -449,7 +452,7 @@
 							'</tr>'+
 						'</thead>',
 		contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>'
-	};
+	};		
 	DPGlobal.template = '<div class="datepicker dropdown-menu">'+
 							'<div class="datepicker-days">'+
 								'<table class=" table-condensed">'+

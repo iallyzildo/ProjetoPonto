@@ -16,6 +16,15 @@ namespace ProjetoPonto.Models
                         select o;
             return lista.ToList();
         }
+        public List<Os> todasOsAbertas()
+        {
+            var lista = from o in db.Os
+                        join s in db.StatusOs
+                        on o.IdStatusOs equals s.IdStatusOs
+                        where s.IdStatusOs == 1
+                        select o;
+            return lista.ToList();
+        }
         public int qtdOs()
         {
             int quantidadeOs= (from o in db.Os select o).Count();

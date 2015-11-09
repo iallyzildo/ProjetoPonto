@@ -97,10 +97,23 @@
         alert('@Html.Raw(ViewBag.Erro)');
     </script>
 }
+    <script type="text/javascript">
+        $(function () {
+            var options = new Array();
+            options['language'] = 'pt-BR';
+            $('#DataAbertura').datepicker(options);
+        })
+        $(function () {
+            var options = new Array();
+            options['language'] = 'pt-BR';
+            $('#DataFechamento').datepicker(options);
+        })
+</script>
 <script>
-
-    $("#DataAbertura").datepicker({ dateFormat: "dd-mm-yy" });
-    $("#DataFechamento").datepicker({ dateFormat: "dd-mm-yy" });
+   
+ 
+  
+    //$("#DataFechamento").datepicker({ dateFormat: "dd-MM-yyyy" });
     function validar() {
 
         if ($("#Serie").val() == "") {

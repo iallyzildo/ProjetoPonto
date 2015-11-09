@@ -141,7 +141,7 @@ namespace ProjetoPonto.Controllers
                 ViewBag.HoraInicial = horaInicial.ToString(@"hh\:mm\:ss"); 
                 ViewBag.DataAbertura = dataAbertura.ToString(@"dd/MM/yyyy");
                 ViewBag.IdUsuario = idUsuario;
-                ViewBag.IdOs = new SelectList(osModel.todasOs(), "IdOs", "NumeroOs", idOs);
+                ViewBag.IdOs = new SelectList(osModel.todasOsAbertas(), "IdOs", "NumeroOs", idOs);
                 ViewBag.IdTipoPonto = new SelectList(tipoPontoModel.todosTipoPonto(), "IdTipoPonto", "Descricao", idTipoPonto);
                 return View(p);
             }
@@ -188,7 +188,7 @@ namespace ProjetoPonto.Controllers
                     idTipoPonto = p.IdTipoPonto;
                 }
                 ViewBag.IdUsuario = new SelectList(usuarioModel.todosUsuarios(), "IdUsuario", "Login", idUsuario);
-                ViewBag.IdOs = new SelectList(osModel.todasOs(), "IdOs", "NumeroOs", idOs);
+                ViewBag.IdOs = new SelectList(osModel.todasOsAbertas(), "IdOs", "NumeroOs", idOs);
                 ViewBag.IdTipoPonto = new SelectList(tipoPontoModel.todosTipoPonto(), "IdTipoPonto", "Descricao", idTipoPonto);
                 return View(p);
             }
