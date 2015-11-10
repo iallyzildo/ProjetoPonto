@@ -108,12 +108,10 @@
             options['language'] = 'pt-BR';
             $('#DataFechamento').datepicker(options);
         })
+      
 </script>
 <script>
-   
- 
-  
-    //$("#DataFechamento").datepicker({ dateFormat: "dd-MM-yyyy" });
+    $("#DataAbertura").mask('00/00/0000', { reverse: false });
     function validar() {
 
         if ($("#Serie").val() == "") {
