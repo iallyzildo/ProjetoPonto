@@ -23,7 +23,7 @@ namespace ProjetoPonto.Controllers
 
         public ActionResult Index()
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
             {
                 return View(osModel.todasOs());
             }
@@ -31,7 +31,7 @@ namespace ProjetoPonto.Controllers
         }
         public ActionResult Edit(int id)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
             {
                 Os o = new Os();
                 int idStatusOs = 1;
@@ -85,6 +85,8 @@ namespace ProjetoPonto.Controllers
         }
         public ActionResult EditProblema(int idOs, int idProblema)
         {
+             if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
+            {
             Problema p = new Problema();
             p.IdOs= idOs;
 
@@ -99,6 +101,8 @@ namespace ProjetoPonto.Controllers
 
             ViewBag.IdSecao = new SelectList(secaoProblemaModel.todasSecaoProblema(), "IdSecao", "Descricao", idSecao);
             return View(p);
+        }
+             return Redirect("/Shared/Error");
         }
         [HttpPost]
         public ActionResult EditProblema(Problema p)
@@ -125,6 +129,8 @@ namespace ProjetoPonto.Controllers
 
         public ActionResult EditSolucao(int idProblema, int idSolucao)
         {
+             if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
+            {
             Solucao s = new Solucao();
             s.IdProblema = idProblema;
 
@@ -135,6 +141,8 @@ namespace ProjetoPonto.Controllers
             }
             ViewBag.IdProblema = new SelectList(problemaModel.todosProblemas(), "IdProblema", "Descricao", idProblema);
             return View(s);
+        }
+             return Redirect("/Shared/Error");
         }
         [HttpPost]
         public ActionResult EditSolucao(Solucao s)
@@ -161,37 +169,57 @@ namespace ProjetoPonto.Controllers
         
         public ActionResult ListaProblemas(int idOs)
         {
+             if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
+            {
             List<Problema> problemasOs = problemaModel.listarProblemaPorOs(idOs);
             Os o = osModel.obterOs(idOs);
             ViewBag.IdOs = o.IdOs;
             ViewBag.NumeroOs = o.NumeroOs;
             return View(problemasOs);
         }
+             return Redirect("/Shared/Error");
+            }
         public ActionResult ListaSolucoes(int idProblema)
         {
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
+            {
             List<Solucao> solucoesProblema = solucaoModel.listarSolucaoPorProblema(idProblema);
             Problema p = problemaModel.obterProblema(idProblema);
             ViewBag.IdProblema = p.IdProblema;
             ViewBag.DescricaoProblema = p.Descricao;
             return View(solucoesProblema);
         }
+            return Redirect("/Shared/Error");
+        }
         public ActionResult Delete(int id)
         {
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
+            {
             Os o = osModel.obterOs(id);
             osModel.excluirOs(o);
             return RedirectToAction("Index");
         }
+            return Redirect("/Shared/Error");
+           }
         public ActionResult DeleteProblema(int idProblema)
         {
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
+            {
             Problema p = problemaModel.obterProblema(idProblema);
             problemaModel.excluirProblema(p);
             return RedirectToAction("ListaProblemas", new { idOs = p.IdOs});
         }
+            return Redirect("/Shared/Error");
+        }
         public ActionResult DeleteSolucao(int idSolucao)
         {
+             if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
+            {
             Solucao s = solucaoModel.obterSolucao(idSolucao);
             solucaoModel.excluirSolucao(s);
             return RedirectToAction("ListaSolucoes", new { idProblema = s.IdProblema });
+        }
+             return Redirect("/Shared/Error");
         }
         public JsonResult ListaModeloMaquina(int idTipoMaquina)
         {

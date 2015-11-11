@@ -59,7 +59,7 @@
                 <h5>Registrar Ponto</h5>
             </span></a>
                             }
-        @if (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "administrador"))
+        @if (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "administrador")||(System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
         {  
             <a href="Usuario/AreaRestrita" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i><span class="network-name">
                 <h5>Painel de Gerenciamento</h5>

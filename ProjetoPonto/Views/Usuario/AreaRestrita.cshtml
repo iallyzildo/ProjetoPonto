@@ -158,10 +158,12 @@
                     <li class="active">
                         <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Painel de Gerenciamento</a>
                     </li>
-                            
+                        @if (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "administrador"))
+                      {       
                     <li>
                         <a href="/Usuario/Index"><i class="fa fa-fw fa-edit"></i> Usuarios</a>
                     </li>
+                     }
                       <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Pontos Finalizados<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
@@ -178,10 +180,14 @@
                         </ul>
                     </li>
                     <li>
+                         @if (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "administrador"))
+                        {  
                     <li>
                         <a href="/Funcionario/Index"><i class="fa fa-fw fa-edit"></i> Funcionarios</a>
                     </li>
-
+                         }
+                     @if (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "administrador"))
+                        {  
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo1"><i class="fa fa-fw fa-arrows-v"></i>Empresa e Localidades<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo1" class="collapse">
@@ -196,6 +202,7 @@
                             </li>
                         </ul>
                     </li>
+                     }
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo2"><i class="fa fa-fw fa-desktop"></i> Ordem de Serviço <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo2" class="collapse">
@@ -270,7 +277,7 @@
                     <div class="col-lg-12">
                         <div class="alert alert-info alert-dismissable">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <i class="fa fa-info-circle"></i>  <strong>Seja bem vindo Usuario: @User.Identity.Name. Você está na área restrita para Administradores</strong> 
+                            <i class="fa fa-info-circle"></i>  <strong>Seja bem vindo Usuario: @User.Identity.Name. Você esta no Painel de Gerenciamento</strong> 
                         </div>
                     </div>
                 </div>

@@ -82,7 +82,7 @@ namespace ProjetoPonto.Controllers
             ViewBag.TotalUsuariosGerentes = totalUsuariosGerentes;
 
 
-            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador")||(System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
             {
                 return View("AreaRestrita", usuarioModel.todosUsuarios());
                

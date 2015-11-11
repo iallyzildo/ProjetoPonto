@@ -53,7 +53,7 @@ namespace ProjetoPonto.Controllers
 
         public ActionResult ConsultaRegistros(int? pagina)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador")||(System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
             {
                 int tamanhoPagina = 15;
                 int numeroPagina = pagina ?? 1;
@@ -64,7 +64,7 @@ namespace ProjetoPonto.Controllers
 
         public ActionResult BuscaRegistros()
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
             {
                 return View(pontoModel.todosPontosFechados());
             }
@@ -73,7 +73,7 @@ namespace ProjetoPonto.Controllers
 
         public ActionResult ListaPontos(int? pagina)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
             {
                 int tamanhoPagina = 15;
                 int numeroPagina = pagina ?? 1;
@@ -169,7 +169,7 @@ namespace ProjetoPonto.Controllers
 
         public ActionResult EditPonto(int id)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
             {
 
                 Ponto p = new Ponto();
