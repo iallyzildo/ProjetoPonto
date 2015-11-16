@@ -5,7 +5,7 @@
     DefaultTargets="Build">
 
     <PropertyGroup>
-        <OutputDir>d:\TESTMSBUILDOUTPUT</OutputDir>
+        <OutputDir>C:\TESTMSBUILDOUTPUT</OutputDir>
     </PropertyGroup>
 
     <ItemGroup>
