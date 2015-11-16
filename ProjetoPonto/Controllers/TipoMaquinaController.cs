@@ -16,7 +16,7 @@ namespace ProjetoPonto.Controllers
 
         public ActionResult Index()
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
             {
                 return View(tipoMaquinaModel.todosTipoMaquina());
             }
@@ -29,7 +29,7 @@ namespace ProjetoPonto.Controllers
         }
         public ActionResult Edit(int id)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
             {
                 TipoMaquina t = new TipoMaquina();
                 ViewBag.Titulo = "Nova TipoMaquina";
@@ -62,9 +62,13 @@ namespace ProjetoPonto.Controllers
         }
         public ActionResult Delete(int id)
         {
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
+            {
             TipoMaquina t = tipoMaquinaModel.obterTipoMaquina(id);
             tipoMaquinaModel.excluirTipoMaquina(t);
             return RedirectToAction("Index");
+            }
+            return Redirect("/Shared/Error");
         }
     }
 }

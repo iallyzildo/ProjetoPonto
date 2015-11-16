@@ -17,7 +17,11 @@ namespace ProjetoPonto.Controllers
 
         public ActionResult ConsultaRegistros()
         {
+             if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
+            {
            return View (pontoModel.todosPontos());
+            }
+             return Redirect("/Shared/Error");
         }
 
         /*
@@ -27,8 +31,12 @@ namespace ProjetoPonto.Controllers
          */
         public ActionResult PDFPadrao()
         {
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
+            {
             var pdf = new ViewAsPdf(pontoModel.todosPontos());
             return pdf;
+            }
+            return Redirect("/Shared/Error");
         }
 
         /*
@@ -37,15 +45,19 @@ namespace ProjetoPonto.Controllers
          */
         public ActionResult PDFConfigurado()
         {
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
+            {
             var pdf = new ViewAsPdf(pontoModel.todosPontos())
             {
-                FileName = "NomeDoArquivoPDF.pdf",
+                FileName = "RelatorioDePonto.pdf",
                 PageSize = Size.A4,
                 IsGrayScale = true,
                 CustomSwitches = "--print-media-type --header-center \"Redemaq Minas\"",
                 PageMargins = new Margins { Bottom = 5, Left = 5, Right = 5, Top = 5 },
             };
             return pdf;
+            }
+            return Redirect("/Shared/Error");
         }
 
         /*
@@ -53,6 +65,8 @@ namespace ProjetoPonto.Controllers
          */
         public ActionResult Modelo()
         {
+             if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
+            {
             //var modelo = new Usuario
             //{
             //    Login = "Ially Leandro",
@@ -66,6 +80,8 @@ namespace ProjetoPonto.Controllers
             };
 
             return pdf;
+            }
+             return Redirect("/Shared/Error");
         }
     }
 }

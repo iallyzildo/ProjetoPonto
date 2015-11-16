@@ -19,7 +19,7 @@ namespace ProjetoPonto.Controllers
 
         public ActionResult Index()
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
             {
                 return View(problemaModel.todosProblemas());
             }
@@ -27,7 +27,7 @@ namespace ProjetoPonto.Controllers
         }
         public ActionResult Edit(int id)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
             {
                 Problema p = new Problema();
                 int idOs = 1;
@@ -76,6 +76,8 @@ namespace ProjetoPonto.Controllers
         }
         public ActionResult EditSolucao(int idProblema, int idSolucao)
         {
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
+            {
             Solucao s = new Solucao();
             s.IdProblema = idProblema;
 
@@ -85,6 +87,8 @@ namespace ProjetoPonto.Controllers
             }
 
             return View(s);
+        }
+            return Redirect("/Shared/Error");
         }
         [HttpPost]
         public ActionResult EditSolucao(Solucao s)
@@ -110,23 +114,36 @@ namespace ProjetoPonto.Controllers
         }
         public ActionResult ListaSolucoes(int idProblema)
         {
+             if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
+            {
             List<Solucao> solucoesProblema = solucaoModel.listarSolucaoPorProblema(idProblema);
             Problema p = problemaModel.obterProblema(idProblema);
             ViewBag.IdProblema = p.IdProblema;
             ViewBag.DescricaoProblema = p.Descricao;
             return View(solucoesProblema);
         }
+             return Redirect("/Shared/Error");
+        }
         public ActionResult Delete(int id)
         {
+              if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
+            {
             Problema p = problemaModel.obterProblema(id);
             problemaModel.excluirProblema(p);
             return RedirectToAction("Index");
         }
+              return Redirect("/Shared/Error");
+        }
         public ActionResult DeleteSolucao(int idSolucao)
         {
+             if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
+            {
             Solucao s = solucaoModel.obterSolucao(idSolucao);
             solucaoModel.excluirSolucao(s);
             return RedirectToAction("ListaSolucoes", new { idProblema = s.IdProblema });
         }
+             return Redirect("/Shared/Error");
+        }
     }
+
 }

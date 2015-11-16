@@ -18,7 +18,7 @@ namespace ProjetoPonto.Controllers
 
         public ActionResult Index()
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
             {
                 return View(solucaoModel.todasSolucoes());
             }
@@ -26,7 +26,7 @@ namespace ProjetoPonto.Controllers
         }
         public ActionResult Edit(int id)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
             {
                 Solucao s = new Solucao();
                 int idProblema = 1;
@@ -74,9 +74,13 @@ namespace ProjetoPonto.Controllers
         }
         public ActionResult Delete(int id)
         {
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
+            {
             Solucao s = solucaoModel.obterSolucao(id);
             solucaoModel.excluirSolucao(s);
             return RedirectToAction("Index");
+        }
+            return Redirect("/Shared/Error");
         }
     }
 }

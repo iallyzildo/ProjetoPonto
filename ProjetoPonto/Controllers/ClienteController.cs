@@ -16,7 +16,7 @@ namespace ProjetoPonto.Controllers
 
         public ActionResult Index()
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
             {
                 return View(clienteModel.todosClientes());
             }
@@ -29,7 +29,7 @@ namespace ProjetoPonto.Controllers
         }
         public ActionResult Edit(int id)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
             {
                 Cliente c = new Cliente();
                 ViewBag.Titulo = "Novo Cliente";
@@ -62,9 +62,13 @@ namespace ProjetoPonto.Controllers
         }
         public ActionResult Delete(int id)
         {
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
+            {
             Cliente c = clienteModel.obterCliente(id);
             clienteModel.excluirCliente(c);
             return RedirectToAction("Index");
+            }
+            return Redirect("/Shared/Error");
         }
     }
 }

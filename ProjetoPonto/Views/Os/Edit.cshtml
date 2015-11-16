@@ -41,7 +41,7 @@
          <div class="form-group">
             @Html.LabelFor(model => model.DataFechamento, new { @class = "control-label col-md-5" })
             <div class="col-md-3">
-                @Html.TextBoxFor(model => model.DataFechamento,String.Format("{0:dd/MM/yyyy}", Model.DataFechamento), new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.DataFechamento,String.Format("{0:dd/MM/yyyy}", Model.DataAbertura), new { @class = "form-control" })
             </div>
         </div>
          
@@ -97,7 +97,7 @@
         alert('@Html.Raw(ViewBag.Erro)');
     </script>
 }
-    <script type="text/javascript">
+    @*<script type="text/javascript">
         $(function () {
             var options = new Array();
             options['language'] = 'pt-BR';
@@ -109,9 +109,10 @@
             $('#DataFechamento').datepicker(options);
         })
       
-</script>
+</script>*@
 <script>
     $("#DataAbertura").mask('00/00/0000', { reverse: false });
+    $("#DataFechamento").mask('00/00/0000', { reverse: false });
     function validar() {
 
         if ($("#Serie").val() == "") {

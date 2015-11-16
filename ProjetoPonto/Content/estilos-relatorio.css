@@ -68,7 +68,7 @@ body {
 .linha{
 	width: 100%;
 	display: table;
-	border-left: 2px solid #c3c3c3;
+	border-left: 1px solid #c3c3c3;
 	margin: 8px 0;
 	padding: 0 5px;
 }
@@ -94,7 +94,6 @@ table{
 }
 table th
 {
-	color: #222;
 	font-weight: bold;
 	padding: 5px 4px;
 	border-bottom: 2px solid #444;

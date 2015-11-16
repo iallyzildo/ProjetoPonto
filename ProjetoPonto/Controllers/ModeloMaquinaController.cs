@@ -18,7 +18,7 @@ namespace ProjetoPonto.Controllers
 
         public ActionResult Index()
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
             {
                 return View(modeloMaquinaModel.todosModeloMaquina());
             }
@@ -31,7 +31,7 @@ namespace ProjetoPonto.Controllers
         }
         public ActionResult Edit(int id)
         {
-            if (Roles.IsUserInRole(User.Identity.Name, "administrador"))
+            if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
             {
                 ModeloMaquina m = new ModeloMaquina();
                 int idMarca = 1;
@@ -80,9 +80,13 @@ namespace ProjetoPonto.Controllers
         }
         public ActionResult Delete(int id)
         {
+             if (Roles.IsUserInRole(User.Identity.Name, "administrador") || (System.Web.Security.Roles.IsUserInRole(User.Identity.Name, "gerencia")))
+            {
             ModeloMaquina m = modeloMaquinaModel.obterModeloMaquina(id);
             modeloMaquinaModel.excluirModeloMaquina(m);
             return RedirectToAction("Index");
+            }
+             return Redirect("/Shared/Error");
         }
 
     }

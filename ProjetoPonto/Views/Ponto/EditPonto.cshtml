@@ -90,11 +90,12 @@
         <script>
             $("#HoraInicial").mask('00:00:00');
             $("#HoraFinal").mask('00:00:00');
-            $(function () {
-                var options = new Array();
-                options['language'] = 'pt-BR';
-                $('#DataAbertura').datepicker(options);
-            })
+            $("#DataAbertura").mask('00/00/0000', { reverse: false });
+            //$(function () {
+            //    var options = new Array();
+            //    options['language'] = 'pt-BR';
+            //    $('#DataAbertura').datepicker(options);
+            //})
 
             function validar() {
                 if ($("#HoraInicial").val() == "") {
