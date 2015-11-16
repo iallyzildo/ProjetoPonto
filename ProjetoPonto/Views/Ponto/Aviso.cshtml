@@ -9,38 +9,31 @@
 
         <div class="container">
             <div class="row">
-                         <p>
-     @Html.ActionLink("Novo", "Edit", new { id = 0 }, new { @class = "btn btn-primary", @style = "color:white" }) 
-</p>
-               
-
+         
                 <div class="clearfix"></div>
 
 
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Gerenciamento de Estados
+                            Aviso
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
                                    <div>
-                            @using (Html.BeginForm())
-                            {
-                                <p>Digite o Estado</p>
-                                 <div class="col-md-4">
-                                <input type="text" name="texto" id="texto" class="form-control" placeholder="Digite a pesquisa" />
-                                 </div>
-                                   <div>
-                                    <button type="submit" class="btn btn-primary">Filtrar </button>
-                                </div>   
-                            }
+                                       <center>
+                        <h2> Sua solicitação de fechameno manual de ponto foi enviada com sucesso! Favor aguardar a gerência</h2>
+                                           </center>
                             </div>
                            
 
                                 </table>
-
+                                  <div>
+                                       <center>
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Ponto")'">Voltar</button>
+</center>
+        </div>
                             </div>
                             <!-- /.table-responsive -->
                         </div>

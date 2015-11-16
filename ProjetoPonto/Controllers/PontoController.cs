@@ -128,7 +128,7 @@ namespace ProjetoPonto.Controllers
                     string horaAtual = DateTime.Now.TimeOfDay.ToString(@"hh\:mm\:ss");
 
 
-                    string mensagemEmail = "<h2> O usuario :" + p.Usuario.Login + " esta tentando finalizar o ponto :" + p.Os.NumeroOs + " no dia :" + dataAtual + " as :" + horaAtual + " que foi aberto dia :" + dataInicio + " as :" + p.HoraInicial + "<br/> | Favor confirmar com a gerencia a hora final para adicionar manualmente nos seus registros | </h2>";
+                    string mensagemEmail = "<center><h1>Mensagem de Sistema</h1></center> <center><h2><table border ='1'> <tr> <th>Nome Usuário</th> <th>Número OS </th> <th>Data Solicitação</th> <th>Data Abertura do Ponto</th> <th>Status da OS</th></tr> <tr> <td> <center>" + p.Usuario.Login + "</center></td>  <td><center>" + p.Os.NumeroOs + "</center></td>  <td> <center>" + dataAtual + " as " + horaAtual + "</center></td>  <td> <center>" + dataInicio + " as " + p.HoraInicial + "</center><td/><center>Aberta </center></tr> </table> </center> </h2> <h3><center>| Favor confirmar com a gerencia a hora final para adicionar manualmente nos seus registros | </center> </h3> <h1> Link para acesso : http://localhost:58448/Ponto/EditPonto/" + p.IdPonto + "</h1>";
 
                     if (dataInicio != dataAtual)
                     {
